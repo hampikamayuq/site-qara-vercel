@@ -4,7 +4,7 @@ import test from "node:test";
 import { createConversionEvent } from "../app/conversion-events.mjs";
 
 test("renders local SEO schema and social cards on the homepage", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
@@ -37,40 +37,11 @@ test("renders local SEO schema and social cards on the homepage", async () => {
   assert.match(html, /roboto-400-latin\.woff2/);
 });
 
-test("sets the complete security policy on rendered Worker responses", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("security-headers-test", `${process.pid}-${Date.now()}`);
-  const { default: worker, withSecurityHeaders } = await import(workerUrl.href);
-  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
-  const ctx = { waitUntil() {}, passThroughOnException() {} };
-
-  const response = await worker.fetch(new Request("http://localhost/", { headers: { accept: "text/html" } }), env, ctx);
-
-  assert.equal(response.status, 200);
-  assert.equal(response.statusText, "");
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-  assert.equal(response.headers.get("strict-transport-security"), "max-age=63072000; includeSubDomains");
-  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
-  assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
-  assert.equal(response.headers.get("x-frame-options"), "DENY");
-  assert.equal(response.headers.get("permissions-policy"), "camera=(), microphone=(), geolocation=(), payment=()");
-  assert.equal(response.headers.get("content-security-policy"), null);
-  assert.match(await response.text(), /<html lang="pt-BR">/);
-
-  const noContent = withSecurityHeaders(new Response(null, {
-    status: 204,
-    statusText: "No Content",
-    headers: { "x-existing": "preserved" },
-  }));
-  assert.equal(noContent.status, 204);
-  assert.equal(noContent.statusText, "No Content");
-  assert.equal(noContent.headers.get("x-existing"), "preserved");
-  assert.equal(noContent.headers.get("x-content-type-options"), "nosniff");
-  assert.equal(noContent.body, null);
-});
+// A política de segurança deixou de ser código do Worker e virou configuração
+// declarativa: a asserção vive em content-integrity.test.mjs, sobre next.config.ts.
 
 test("ships an accessible mobile menu without disabling browser zoom", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("mobile-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -89,7 +60,7 @@ test("ships an accessible mobile menu without disabling browser zoom", async () 
 });
 
 test("ships progressive, accessible motion enhancement", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("motion-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -110,7 +81,7 @@ test("ships progressive, accessible motion enhancement", async () => {
 });
 
 test("ships the responsive premium consultation hero", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("hero-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -130,7 +101,7 @@ test("ships the responsive premium consultation hero", async () => {
 });
 
 test("lists all five available clinic languages", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("language-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -146,7 +117,7 @@ test("lists all five available clinic languages", async () => {
 });
 
 test("keeps international main content labelled in its rendered language", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("document-language-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
@@ -161,7 +132,7 @@ test("keeps international main content labelled in its rendered language", async
 });
 
 test("renders the balanced premium desktop header", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("header-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -179,7 +150,7 @@ test("renders the balanced premium desktop header", async () => {
 });
 
 test("lists Dr. Fabrício as the pediatric dermatology specialist", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("fabricio-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -201,7 +172,7 @@ test("renders the complete editorial library without duplicating the featured st
   assert.equal(slugs.length, 28);
   assert.equal(new Set(slugs).size, 28);
 
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("blog-index-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
@@ -244,7 +215,7 @@ test("does not present a medical specialty as Dr. Fabrício's RQE", async () => 
 });
 
 test("renders only the approved conversion contract across public conversion routes", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("conversion-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
@@ -290,7 +261,7 @@ test("renders only the approved conversion contract across public conversion rou
 });
 
 test("renders PT, EN, and ES switchers with only other locales instrumented", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("locale-conversion-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
@@ -301,8 +272,15 @@ test("renders PT, EN, and ES switchers with only other locales instrumented", as
     const html = await response.text();
     for (const [href, label] of [["/", "PT"], ["/en", "EN"], ["/es", "ES"]]) assert.match(html, new RegExp(`<a[^>]+href="${href}"[^>]*>${label}</a>`), `${route}: ${label}`);
     const currentHref = locale === "pt-BR" ? "/" : `/${locale}`;
-    assert.match(html, new RegExp(`<a[^>]+href="${currentHref}"[^>]+aria-current="page"[^>]*>`), route);
-    assert.doesNotMatch(html, new RegExp(`<a[^>]+href="${currentHref}"[^>]+data-conversion-event="language_change"[^>]*>`), route);
+    // A ordem dos atributos no HTML do React não é contrato — isole a tag do
+    // locale atual e verifique o conteúdo dela, em vez de assumir uma sequência.
+    const currentTags = (html.match(/<a[^>]*\bclass="lang-link"[^>]*>/g) ?? [])
+      .filter(tag => tag.includes(`href="${currentHref}"`));
+    assert.ok(currentTags.length > 0, `${route}: link do locale atual deve existir`);
+    for (const tag of currentTags) {
+      assert.match(tag, /aria-current="page"/, `${route}: ${tag}`);
+      assert.doesNotMatch(tag, /data-conversion-event="language_change"/, `${route}: ${tag}`);
+    }
     for (const target of ["pt-BR", "en", "es"].filter(target => target !== locale)) {
       assert.match(html, new RegExp(`data-conversion-event="language_change"[^>]+data-conversion-locale="${locale}"[^>]+data-conversion-to-locale="${target}"`), `${route}: ${target}`);
     }
@@ -310,7 +288,7 @@ test("renders PT, EN, and ES switchers with only other locales instrumented", as
 });
 
 test("labels Portuguese language changes with the rendered route context", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("language-context-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
@@ -364,7 +342,7 @@ test("credits aesthetic publications to Dr. Diego and ships the complete contact
     assert.match(entry[1], /rqe:"RQE 57517"/);
   }
 
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("footer-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const response = await worker.fetch(
@@ -385,7 +363,7 @@ test("credits aesthetic publications to Dr. Diego and ships the complete contact
 });
 
 test("uses the approved WhatsApp booking links by page and specialty", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  const workerUrl = new URL("./prerendered.mjs", import.meta.url);
   workerUrl.searchParams.set("booking-links-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };

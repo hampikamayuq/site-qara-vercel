@@ -1,74 +1,54 @@
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
+import { brotliCompressSync } from "node:zlib";
 import test from "node:test";
 
-import {
-  assertRouteBudget,
-  measureRouteBudget,
-} from "../scripts/check-performance-budget.mjs";
-
+// O budget antes media o bundle único do vinext em dist/client/assets. O Next
+// divide o runtime em chunks sob /_next/static, então medimos o que a rota
+// realmente carrega: todo asset referenciado no HTML pré-renderizado.
+//
+// 175KB de JS é o baseline do runtime do App Router do Next 16 (~163KB) com
+// folga para código da aplicação. O objetivo do teste é pegar regressão nossa,
+// não o custo fixo do framework — se este número subir, investigue o que foi
+// adicionado antes de aumentá-lo.
 const budget = {
-  javascriptBrotli: 85 * 1024,
+  javascriptBrotli: 175 * 1024,
   cssBrotli: 15 * 1024,
 };
 
-async function loadWorker() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("performance-test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker;
-}
+async function measureRouteBudget(route) {
+  const name = route === "/" ? "index" : route.replace(/^\//, "");
+  const html = await readFile(new URL(`../.next/server/app/${name}.html`, import.meta.url), "utf8");
+  const assets = [...new Set([...html.matchAll(/\/_next\/static\/[^"\s>]+?\.(?:js|css)/g)].map(match => match[0]))];
 
-async function builtAssetNames() {
-  const assets = await readdir(new URL("../dist/client/assets/", import.meta.url));
-  return {
-    css: assets.find(asset => asset.endsWith(".css")),
-    javascript: assets.find(asset => asset.endsWith(".js")),
-  };
+  const measured = { route, javascriptBrotli: 0, cssBrotli: 0, assets: [] };
+  for (const asset of assets) {
+    const contents = await readFile(new URL(`../.next/${asset.slice("/_next/".length)}`, import.meta.url));
+    const brotli = brotliCompressSync(contents).length;
+    const type = asset.endsWith(".css") ? "css" : "javascript";
+    measured.assets.push({ asset, type, brotli });
+    if (type === "css") measured.cssBrotli += brotli;
+    else measured.javascriptBrotli += brotli;
+  }
+  return measured;
 }
 
 for (const route of ["/", "/blog"]) {
   test(`keeps ${route} within the Brotli asset budget`, async () => {
-    const metrics = await measureRouteBudget(await loadWorker(), route);
+    const metrics = await measureRouteBudget(route);
 
-    assert.equal(metrics.route, route);
-    assert.ok(metrics.assets.some(asset => asset.type === "javascript"));
-    assert.ok(metrics.assets.some(asset => asset.type === "css"));
-    assert.ok(metrics.javascriptBrotli > 0);
-    assert.ok(metrics.cssBrotli > 0);
-    assertRouteBudget(metrics, budget);
+    assert.ok(metrics.assets.some(asset => asset.type === "javascript"), `${route} did not discover JavaScript assets`);
+    assert.ok(metrics.assets.some(asset => asset.type === "css"), `${route} did not discover CSS assets`);
+    assert.ok(
+      metrics.javascriptBrotli <= budget.javascriptBrotli,
+      `${route}: JavaScript ${(metrics.javascriptBrotli / 1024).toFixed(1)}KB excede o budget de ${budget.javascriptBrotli / 1024}KB`,
+    );
+    assert.ok(
+      metrics.cssBrotli <= budget.cssBrotli,
+      `${route}: CSS ${(metrics.cssBrotli / 1024).toFixed(1)}KB excede o budget de ${budget.cssBrotli / 1024}KB`,
+    );
   });
 }
-
-test("measures unquoted same-origin asset attributes", async () => {
-  const { css, javascript } = await builtAssetNames();
-  assert.ok(css);
-  assert.ok(javascript);
-
-  const worker = {
-    fetch: async () => new Response(
-      `<link rel=stylesheet href=/assets/${css}><script src=/assets/${javascript}></script>`,
-    ),
-  };
-  const metrics = await measureRouteBudget(worker, "/unquoted-assets");
-
-  assert.equal(metrics.assets.length, 2);
-  assert.ok(metrics.javascriptBrotli > 0);
-  assert.ok(metrics.cssBrotli > 0);
-});
-
-test("rejects a route that does not discover both asset types", async () => {
-  const { javascript } = await builtAssetNames();
-  assert.ok(javascript);
-
-  await assert.rejects(
-    measureRouteBudget(
-      { fetch: async () => new Response(`<script src=/assets/${javascript}></script>`) },
-      "/missing-css",
-    ),
-    /did not discover CSS assets/,
-  );
-});
 
 test("does not retain Tailwind imports or dependencies", async () => {
   const [css, packageJson] = await Promise.all([
