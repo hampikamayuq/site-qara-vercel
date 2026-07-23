@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
+import { join } from "node:path";
 import test from "node:test";
 import { articles } from "../app/blog/articles.ts";
 import { articleContent } from "../app/blog/article-content.ts";
@@ -39,18 +40,35 @@ test("keeps each medical article backed by complete, attributable evidence", () 
 });
 
 test("sets safe static security headers without an untested CSP", async () => {
-  const headers = await readFile(new URL("../public/_headers", import.meta.url), "utf8");
-  const staticRule = headers.match(/^\/\*\n((?:  [^\n]*\n)*)/m);
-  assert.ok(staticRule, "a /* header rule is required");
-  const staticHeaders = staticRule[1].replace(/^  /gm, "");
+  const config = await readFile(new URL("../next.config.ts", import.meta.url), "utf8");
 
-  assert.match(staticHeaders, /^Strict-Transport-Security:\s*max-age=/m);
-  assert.match(staticHeaders, /^X-Content-Type-Options:\s*nosniff$/m);
-  assert.match(staticHeaders, /^Referrer-Policy:\s*strict-origin-when-cross-origin$/m);
-  assert.match(staticHeaders, /^X-Frame-Options:\s*DENY$/m);
-  assert.match(staticHeaders, /^Permissions-Policy:\s*camera=\(\), microphone=\(\), geolocation=\(\), payment=\(\)$/m);
-  assert.doesNotMatch(staticHeaders, /Content-Security-Policy:/i, "CSP needs separate Vinext/RSC validation before it is enabled");
-  assert.doesNotMatch(headers, /Content-Security-Policy:/i, "CSP must remain absent from every header rule until Vinext/RSC validation is complete");
+  assert.match(config, /"Strict-Transport-Security",\s*value:\s*"max-age=/);
+  assert.match(config, /"X-Content-Type-Options",\s*value:\s*"nosniff"/);
+  assert.match(config, /"Referrer-Policy",\s*value:\s*"strict-origin-when-cross-origin"/);
+  assert.match(config, /"X-Frame-Options",\s*value:\s*"DENY"/);
+  assert.match(config, /"Permissions-Policy",\s*value:\s*"camera=\(\), microphone=\(\), geolocation=\(\), payment=\(\)"/);
+  assert.match(config, /source:\s*"\/:path\*",\s*headers:\s*securityHeaders/, "a catch-all header rule is required");
+  assert.doesNotMatch(config, /Content-Security-Policy/i, "CSP needs separate RSC validation before it is enabled");
+});
+
+test("redirects legacy WordPress URLs with a real 308, not a rendered page", async () => {
+  const config = await readFile(new URL("../next.config.ts", import.meta.url), "utf8");
+
+  // Cada URL legada precisa estar declarada em redirects(), que responde na
+  // camada de roteamento. Como page chamando permanentRedirect() a resposta
+  // sai 200 com <meta refresh> — sinal fraco para o Google e a URL antiga
+  // continua indexável.
+  for (const source of ["/psoriase-2", "/psoriase-3", "/hidradenite2-2", "/english", "/unha", "/estetica", "/servico", "/especialista", "/dr-miguelceccarelli", "/dermatiteatopica", "/dermatopediatria2", "/cirurgiadermatologica", "/cirurgia-dermatologica-copacabana", "/category/especialidades", "/site-clinica-qara-2", "/elementor-pagina-de-destino-277", "/elementor-pagina-de-destino-289"]) {
+    assert.match(config, new RegExp(`"${source}":\\s*"`), `${source} precisa estar em legacyRedirects`);
+  }
+  assert.match(config, /permanent:\s*true/, "os redirects legados precisam ser permanentes (308)");
+
+  const appEntries = await readdir(new URL("../app/", import.meta.url), { recursive: true, withFileTypes: true });
+  for (const entry of appEntries) {
+    if (!entry.isFile() || !entry.name.endsWith(".tsx")) continue;
+    const source = await readFile(join(entry.parentPath, entry.name), "utf8");
+    assert.doesNotMatch(source, /permanentRedirect\(/, `${entry.name}: use redirects() no next.config.ts`);
+  }
 });
 
 test("updates the document language when international routes change", async () => {
