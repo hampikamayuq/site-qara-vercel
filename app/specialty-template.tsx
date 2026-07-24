@@ -5,19 +5,30 @@ import { appointmentLinks, whatsappHref } from "./clinic-links";
 
 export type Specialty = { eyebrow:string; title:string; lead:string; introTitle:string; intro:string[]; topics:[string,string][]; process:[string,string][]; doctor:string; credential:string; doctorText:string; doctorImage:string; faq:[string,string][]; related:[string,string][]; team?:[doctor:string, credential:string, doctorImage:string, reason:string][] };
 
+// Mensagem de WhatsApp por especialidade. Chega pré-preenchida com a condição
+// e o profissional, o que deixa a triagem do lead pronta antes da primeira
+// resposta. Especialidade fora deste mapa cai numa mensagem genérica, que
+// funciona mas não diz de onde veio — por isso há teste cobrindo a ausência.
+const APPOINTMENT_BY_SPECIALTY: Record<string, string> = {
+  "dermatologia-clinica": appointmentLinks.diego,
+  "unhas": appointmentLinks.unhasMiguel,
+  "dermatologia-estetica": appointmentLinks.esteticaMiguel,
+  "doencas-inflamatorias": appointmentLinks.manuelaInflamatorias,
+  "psoriase": appointmentLinks.manuelaPsoriase,
+  "hidradenite": appointmentLinks.manuelaHidrosadenite,
+  "vitiligo": appointmentLinks.manuelaVitiligo,
+  "dermatite-atopica": appointmentLinks.manuelaDermatiteAtopica,
+  "dermatopediatria": appointmentLinks.dermatopediatria,
+};
+
 function slugifyDoctor(name: string) {
   return name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\./g, "").replace(/\s+/g, "-");
 }
 
 export function SpecialtyTemplate({data, path, feature, children}:{data:Specialty; path?:string; feature?:ReactNode; children?:ReactNode}) {
   const specialty = path?.replace(/^\//, "");
-  const appointmentHref = specialty === "dermatologia-clinica" ? appointmentLinks.diego
-    : specialty === "unhas" || specialty === "dermatologia-estetica" ? appointmentLinks.miguel
-    : specialty === "doencas-inflamatorias" || specialty === "psoriase" ? appointmentLinks.manuelaPsoriase
-    : specialty === "hidradenite" ? appointmentLinks.manuelaHidrosadenite
-    : specialty === "dermatite-atopica" ? appointmentLinks.manuelaDermatiteAtopica
-    : specialty === "dermatopediatria" ? appointmentLinks.dermatopediatria
-    : whatsappHref(`Olá, gostaria de consultar horários para uma avaliação de ${data.eyebrow}.`);
+  const appointmentHref = (specialty && APPOINTMENT_BY_SPECIALTY[specialty])
+    ?? whatsappHref(`Olá, gostaria de consultar horários para uma avaliação de ${data.eyebrow}.`);
   const schema = path ? {
     "@context":"https://schema.org","@type":"MedicalWebPage",
     name:data.title,description:data.lead,inLanguage:"pt-BR",

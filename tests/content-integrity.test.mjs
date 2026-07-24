@@ -81,10 +81,15 @@ test("registers every specialty page in the sitemap and the conversion allowlist
   // createConversionDetailSafely engole o erro e TODAS as conversões daquela
   // página são descartadas sem nenhum sinal. Foi o que aconteceu com
   // /psoriase, /hidradenite e /vitiligo.
-  const [data, sitemap] = await Promise.all([
+  const [data, sitemap, template] = await Promise.all([
     readFile(new URL("../app/specialties-data.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/specialty-template.tsx", import.meta.url), "utf8"),
   ]);
+  const appointmentMap = template.slice(
+    template.indexOf("const APPOINTMENT_BY_SPECIALTY"),
+    template.indexOf("function slugifyDoctor"),
+  );
   const slugs = [...data.matchAll(/^ {2}"?([a-z-]+)"?:\s*\{/gm)].map(match => match[1]);
   assert.ok(slugs.length > 0, "nenhuma especialidade encontrada");
 
@@ -95,6 +100,7 @@ test("registers every specialty page in the sitemap and the conversion allowlist
   for (const slug of slugs.filter(slug => routed.has(slug))) {
     assert.match(sitemap, new RegExp(`"/${slug}"`), `/${slug} tem página própria mas está fora do sitemap`);
     assert.ok(allowed.has(slug), `/${slug} tem página própria mas está fora da allowlist de conversão`);
+    assert.match(appointmentMap, new RegExp(`"${slug}":`), `/${slug} não tem mensagem de WhatsApp própria e cai na genérica`);
   }
 });
 
