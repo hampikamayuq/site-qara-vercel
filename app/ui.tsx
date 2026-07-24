@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { appointmentLinks, clinicContact, whatsappHref } from "./clinic-links";
+import { appointmentHrefForPath, appointmentLinks, clinicContact, whatsappHref } from "./clinic-links";
 
 export const clinicMapsUrl = clinicContact.mapsUrl;
 
@@ -46,7 +46,7 @@ export function Header({ current, conversionContext }: { current?: string; conve
           <Link href="/#especialistas">Equipe</Link><Link href="/#clinica">Clínica</Link><Link href="/blog" aria-current={cur("/blog")}>Conteúdo</Link>
           <div className="language-switcher" aria-label="Idiomas" role="group"><Link className="lang-link" href="/" lang="pt-BR" {...language("pt-BR", "header")}>PT</Link><Link className="lang-link" href="/en" lang="en" {...language("en", "header")}>EN</Link><Link className="lang-link" href="/es" lang="es" {...language("es", "header")}>ES</Link></div>
         </nav>
-        <a className="header-cta" href={current === "/" ? appointmentLinks.home : whatsappHref("Olá, gostaria de agendar uma avaliação na Clínica QARA.")} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp (abre em nova aba)" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="schedule"><span className="cta-full">Agendar pelo WhatsApp</span><span className="cta-short">Agendar</span></a>
+        <a className="header-cta" href={appointmentHrefForPath(current)} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp (abre em nova aba)" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="schedule"><span className="cta-full">Agendar pelo WhatsApp</span><span className="cta-short">Agendar</span></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menu de navegação"><span>Menu</span><i aria-hidden="true" /></summary>
           <nav aria-label="Navegação móvel">
@@ -56,7 +56,7 @@ export function Header({ current, conversionContext }: { current?: string; conve
             <Link href="/" lang="pt-BR" {...language("pt-BR", "mobile_menu")}>PT</Link>
             <Link href="/en" lang="en" {...language("en", "mobile_menu")}>English</Link>
             <Link href="/es" lang="es" {...language("es", "mobile_menu")}>Español</Link>
-            <a className="mobile-menu-cta" href={current === "/" ? appointmentLinks.home : whatsappHref("Olá, gostaria de agendar uma avaliação na Clínica QARA.")} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp (abre em nova aba)" data-conversion-event="whatsapp_click" data-conversion-placement="mobile_menu" data-conversion-variant="schedule">Agendar pelo WhatsApp</a>
+            <a className="mobile-menu-cta" href={appointmentHrefForPath(current)} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp (abre em nova aba)" data-conversion-event="whatsapp_click" data-conversion-placement="mobile_menu" data-conversion-variant="schedule">Agendar pelo WhatsApp</a>
           </nav>
         </details>
       </div>
@@ -78,9 +78,6 @@ export function Footer() {
   );
 }
 
-export function WhatsAppFloatingButton() {
-  return <a className="whatsapp-float" href={clinicContact.whatsappFloatingUrl} target="_blank" rel="noopener noreferrer" aria-label="Agendar uma consulta pelo WhatsApp (abre em nova aba)" data-conversion-event="whatsapp_click" data-conversion-placement="floating" data-conversion-variant="schedule"><img src="/images/whatsapp-icon.png" width="64" height="64" alt="" aria-hidden="true" /></a>;
-}
 
 export function SectionHeading({ eyebrow, title, text }: { eyebrow?: string; title: string; text: string }) {
   return (

@@ -4,7 +4,7 @@ import { MotionController } from "./motion-controller";
 import { ConversionTracker } from "./conversion-tracker";
 import { DocumentLanguage } from "./document-language";
 import { GoogleTagManager } from "./gtm";
-import { WhatsAppFloatingButton } from "./ui";
+import { WhatsAppFloatingButton } from "./whatsapp-float";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clinicaqara.com.br"),

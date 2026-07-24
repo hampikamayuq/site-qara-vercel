@@ -31,3 +31,26 @@ export const appointmentLinks = Object.freeze({
   manuelaVitiligo: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de vitiligo com a Dra. Manuela Pedretti Cabral"),
   dermatopediatria: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatopediatria"),
 });
+
+// Fonte única do link de agendamento por página. Toda página de especialidade
+// nomeia o profissional (e a condição, quando faz sentido); qualquer outra
+// página cai na mensagem acolhedora do botão flutuante (appointmentLinks.home).
+// Usada pelo botão flutuante, pelo "Agendar" do header e pelos CTAs das páginas,
+// para que todos os botões de agendar de uma página levem a mesma mensagem.
+const appointmentByPath: Record<string, string> = {
+  "/dermatologia-clinica": appointmentLinks.diego,
+  "/cirurgia-dermatologica": appointmentLinks.diego,
+  "/cabelo": appointmentLinks.cabeloDiana,
+  "/unhas": appointmentLinks.miguel,
+  "/dermatologia-estetica": appointmentLinks.diego,
+  "/doencas-inflamatorias": appointmentLinks.manuela,
+  "/psoriase": appointmentLinks.manuelaPsoriase,
+  "/hidradenite": appointmentLinks.manuelaHidrosadenite,
+  "/vitiligo": appointmentLinks.manuelaVitiligo,
+  "/dermatite-atopica": appointmentLinks.manuelaDermatiteAtopica,
+  "/dermatopediatria": appointmentLinks.dermatopediatria,
+};
+
+export function appointmentHrefForPath(path?: string): string {
+  return (path && appointmentByPath[path]) ?? appointmentLinks.home;
+}

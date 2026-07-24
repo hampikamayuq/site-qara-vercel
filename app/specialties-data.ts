@@ -328,10 +328,13 @@ export const specialties: Record<string, Specialty> = {
       ["Procedimentos cirúrgicos", "Blefaroplastia (cirurgia das pálpebras), correção de cicatrizes e outros procedimentos selecionados podem ser indicados após avaliação criteriosa. O paciente recebe orientações detalhadas sobre preparo, recuperação e cuidados após a cirurgia."],
     ],
     process,
-    doctor: "Dr. Miguel Ceccarelli",
-    credential: "CRM-RJ 52-0109245-6 · RQE 34414",
-    doctorText: "Dermatologista com atuação em dermatologia estética, o Dr. Miguel conduz cada indicação a partir de um planejamento individualizado, alinhado à anatomia e aos objetivos do paciente.",
-    doctorImage: "/images/dr-miguel.webp",
+    doctor: "Dr. Diego Gálvez",
+    credential: "CRM-RJ 52-0112387-4 · RQE 57517",
+    doctorText: "Dermatologista e cirurgião dermatológico, o Dr. Diego conduz os procedimentos estéticos a partir de diagnóstico preciso e planejamento individualizado, priorizando segurança e resultado natural.",
+    doctorImage: "/images/dr-diego.webp",
+    team: [
+      ["Dr. Miguel Ceccarelli", "CRM-RJ 52-0109245-6 · RQE 34414", "/images/dr-miguel.webp", "Procedimentos estéticos"],
+    ],
     faq: [
       ["O resultado fica natural?", "O planejamento busca equilíbrio e respeito às características de cada rosto e de cada pele, evitando excessos. Ainda assim, os resultados variam de pessoa para pessoa, e as expectativas são alinhadas antes de qualquer procedimento."],
       ["Todo procedimento exige afastamento das atividades?", "Não. Alguns permitem retorno imediato à rotina, enquanto outros pedem alguns dias de recuperação. O tempo esperado para cada técnica é explicado na consulta, para que o paciente possa se programar."],
