@@ -27,7 +27,7 @@ export const appointmentLinks = Object.freeze({
   manuelaDermatiteAtopica: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatite atópica com a Dra. Manuela Pedretti Cabral"),
   manuelaPsoriase: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de psoríase com a Dra. Manuela Pedretti Cabral"),
   manuelaHidrosadenite: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de hidrosadenite com a Dra. Manuela Pedretti Cabral"),
+  manuela: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta com a Dra. Manuela Pedretti Cabral"),
   manuelaVitiligo: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de vitiligo com a Dra. Manuela Pedretti Cabral"),
-  manuelaInflamatorias: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de doenças inflamatórias da pele com a Dra. Manuela Pedretti Cabral"),
   dermatopediatria: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatopediatria"),
 });

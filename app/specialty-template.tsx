@@ -13,7 +13,7 @@ const APPOINTMENT_BY_SPECIALTY: Record<string, string> = {
   "dermatologia-clinica": appointmentLinks.diego,
   "unhas": appointmentLinks.miguel,
   "dermatologia-estetica": appointmentLinks.diego,
-  "doencas-inflamatorias": appointmentLinks.manuelaInflamatorias,
+  "doencas-inflamatorias": appointmentLinks.manuela,
   "psoriase": appointmentLinks.manuelaPsoriase,
   "hidradenite": appointmentLinks.manuelaHidrosadenite,
   "vitiligo": appointmentLinks.manuelaVitiligo,
