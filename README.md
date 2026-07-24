@@ -43,10 +43,31 @@ Hospedado na Vercel, com deploy automático a cada push. O framework é
 detectado sozinho; não há `vercel.json` porque a configuração padrão do Next
 já é a correta.
 
-Variável de ambiente opcional:
+Variáveis de ambiente, ambas opcionais:
 
-- `NEXT_PUBLIC_CONVERSION_ENDPOINT` — endpoint do tracker de conversão. Sem
-  ela, o tracker degrada silenciosamente e não envia eventos.
+- `NEXT_PUBLIC_GTM_ID` — container do Google Tag Manager (`GTM-XXXXXXX`). Sem
+  ela nada é carregado: nenhum request ao Google, nenhum cookie. Rastrear é
+  uma decisão explícita.
+- `NEXT_PUBLIC_CONVERSION_ENDPOINT` — endpoint próprio para receber os eventos
+  de conversão. Sem ela o tracker degrada silenciosamente.
+
+## Conversão
+
+Todo CTA carrega atributos `data-conversion-*`, lidos por
+`app/conversion-tracker.tsx` e empurrados para `window.dataLayer`. Os eventos
+disponíveis para virar conversão no Google Ads:
+
+| Evento | Onde |
+|---|---|
+| `whatsapp_click` | 15 CTAs (hero, header, rodapé, botão flutuante, páginas de especialidade) |
+| `phone_click` | contato |
+| `maps_click` | seção de localização |
+| `specialty_view` | page view das páginas de especialidade |
+| `doctor_profile_view` | page view dos perfis médicos |
+| `article_to_specialty_click` | artigo do blog → especialidade |
+
+No GTM, cada um vira um gatilho de evento personalizado (o nome do evento
+chega no campo `event`) ligado a uma tag de conversão do Google Ads.
 
 ## Notas
 
