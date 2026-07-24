@@ -441,6 +441,12 @@ body:has(.mega-menu[open])::before, body:has(.mobile-menu[open])::before { anima
 .mega-group > a:hover { background: var(--qara-blush-soft); color: var(--qara-focus); }
 .mega-specialties > a { align-items: start; flex-direction: column; gap: 2px; justify-content: center; padding-block: 11px; }
 .mega-specialties small { color: var(--qara-copy); font-family: Roboto,Arial,sans-serif; font-size: .875rem; line-height: 1.45; }
+.mega-sub { display: flex; flex-direction: column; padding: 2px 0 8px 14px; }
+.mega-sub a { align-items: center; color: var(--qara-copy); display: flex; font-family: Roboto,Arial,sans-serif; font-size: .875rem; min-height: 34px; transition: color .2s ease-out; }
+.mega-sub a::before { color: var(--qara-taupe); content: "›"; margin-right: 8px; }
+.mega-sub a:hover { color: var(--qara-focus); }
+.mega-specialties > .mega-sub + a { border-top: 1px solid var(--qara-line-soft); }
+.mobile-menu-group div a.mobile-sub { color: var(--qara-copy); font-size: .9rem; padding-left: 32px; }
 
 .journey-section { background: var(--qara-ink); color: rgba(255,255,255,.76); padding-block: clamp(76px,8vw,108px); }
 .journey-grid { display: grid; gap: clamp(48px,7vw,100px); grid-template-columns: .8fr 1.2fr; }

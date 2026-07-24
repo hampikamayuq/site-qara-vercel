@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { appointmentHrefForPath, appointmentLinks, clinicContact, whatsappHref } from "./clinic-links";
 
@@ -11,15 +11,24 @@ export function Header({ current, conversionContext }: { current?: string; conve
   const locale = current === "/en" ? "en" : current === "/es" ? "es" : "pt-BR";
   const context = conversionContext ?? (current === "/en" || current === "/es" ? "international" : current === "/blog" ? "blog" : current && current !== "/" ? "specialty" : "home");
   const language = (target: "pt-BR" | "en" | "es", placement: "header" | "mobile_menu") => target === locale ? { "aria-current": "page" as const } : { "data-conversion-event": "language_change", "data-conversion-placement": placement, "data-conversion-context": context, "data-conversion-locale": locale, "data-conversion-to-locale": target };
-  const specialties = [
-    ["Dermatologia clínica", "/dermatologia-clinica", "Acne, rosácea, manchas e pintas"],
-    ["Cirurgia dermatológica", "/cirurgia-dermatologica", "Biópsias, lesões e reconstruções"],
-    ["Cabelos e couro cabeludo", "/cabelo", "Queda, alopecias e transplante"],
-    ["Doenças das unhas", "/unhas", "Micose, inflamações e cirurgia ungueal"],
-    ["Doenças inflamatórias", "/doencas-inflamatorias", "Psoríase, dermatite e hidradenite"],
-    ["Dermatopediatria", "/dermatopediatria", "Pele de bebês, crianças e adolescentes"],
-    ["Dermatologia estética", "/dermatologia-estetica", "Pele, cicatrizes e envelhecimento"],
-  ] as const;
+  const specialties: readonly { label: string; href: string; text: string; children?: readonly [string, string][] }[] = [
+    { label: "Dermatologia clínica", href: "/dermatologia-clinica", text: "Acne, rosácea, manchas e pintas" },
+    { label: "Cirurgia dermatológica", href: "/cirurgia-dermatologica", text: "Biópsias, lesões e reconstruções", children: [
+      ["Câncer da pele", "/cancer-de-pele"],
+      ["Cirurgia com controle de margens", "/cirurgia-controle-de-margens"],
+      ["Biópsia", "/biopsia"],
+    ] },
+    { label: "Cabelos e couro cabeludo", href: "/cabelo", text: "Queda, alopecias e transplante" },
+    { label: "Doenças das unhas", href: "/unhas", text: "Micose, inflamações e cirurgia ungueal" },
+    { label: "Doenças inflamatórias", href: "/doencas-inflamatorias", text: "Psoríase, dermatite e hidradenite", children: [
+      ["Psoríase", "/psoriase"],
+      ["Dermatite atópica", "/dermatite-atopica"],
+      ["Hidradenite supurativa", "/hidradenite"],
+      ["Vitiligo", "/vitiligo"],
+    ] },
+    { label: "Dermatopediatria", href: "/dermatopediatria", text: "Pele de bebês, crianças e adolescentes" },
+    { label: "Dermatologia estética", href: "/dermatologia-estetica", text: "Pele, cicatrizes e envelhecimento" },
+  ];
   const needs = [
     ["Acne, rosácea e manchas", "/dermatologia-clinica"],
     ["Pintas e câncer da pele", "/blog/cancer-da-pele-sinais-de-alerta"],
@@ -38,7 +47,7 @@ export function Header({ current, conversionContext }: { current?: string; conve
             <summary>Especialidades <span aria-hidden="true">⌄</span></summary>
             <div className="mega-panel">
               <div className="mega-guide"><p>Comece pela sua necessidade.</p><span>Se ainda não sabe qual especialista procurar, nossa equipe pode orientar.</span><a href={whatsappHref("Olá, ainda não sei qual especialista procurar — podem me orientar?")} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="guidance">Pedir orientação →</a></div>
-              <div className="mega-group mega-specialties"><strong>Especialidades</strong>{specialties.map(([label,href,text])=><Link href={href} aria-current={cur(href)} key={href}><span>{label}</span><small>{text}</small></Link>)}</div>
+              <div className="mega-group mega-specialties"><strong>Especialidades</strong>{specialties.map(s=><Fragment key={s.href}><Link href={s.href} aria-current={cur(s.href)}><span>{s.label}</span><small>{s.text}</small></Link>{s.children&&<div className="mega-sub">{s.children.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div>}</Fragment>)}</div>
               <div className="mega-group"><strong>Queixas frequentes</strong>{needs.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
               <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
             </div>
@@ -50,7 +59,7 @@ export function Header({ current, conversionContext }: { current?: string; conve
         <details className="mobile-menu">
           <summary aria-label="Abrir menu de navegação"><span>Menu</span><i aria-hidden="true" /></summary>
           <nav aria-label="Navegação móvel">
-            <details className="mobile-menu-group"><summary>Especialidades</summary><div>{specialties.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div></details>
+            <details className="mobile-menu-group"><summary>Especialidades</summary><div>{specialties.map(s=><Fragment key={s.href}><Link href={s.href} aria-current={cur(s.href)}>{s.label}</Link>{s.children?.map(([label,href])=><Link className="mobile-sub" href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</Fragment>)}</div></details>
             <details className="mobile-menu-group"><summary>Encontre seu cuidado</summary><div>{needs.map(([label,href])=><Link href={href} key={label}>{label}</Link>)}</div></details>
             {clinic.map(([label,href])=><Link href={href} key={label}>{label}</Link>)}
             <Link href="/" lang="pt-BR" {...language("pt-BR", "mobile_menu")}>PT</Link>
