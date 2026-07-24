@@ -58,7 +58,9 @@ test("redirects legacy WordPress URLs with a real 308, not a rendered page", asy
   // camada de roteamento. Como page chamando permanentRedirect() a resposta
   // sai 200 com <meta refresh> — sinal fraco para o Google e a URL antiga
   // continua indexável.
-  for (const source of ["/psoriase-2", "/psoriase-3", "/hidradenite2-2", "/english", "/unha", "/estetica", "/servico", "/especialista", "/dr-miguelceccarelli", "/dermatiteatopica", "/dermatopediatria2", "/cirurgiadermatologica", "/cirurgia-dermatologica-copacabana", "/category/especialidades", "/site-clinica-qara-2", "/elementor-pagina-de-destino-277", "/elementor-pagina-de-destino-289"]) {
+  // Conferidos contra o sitemap_index.xml do WordPress: toda URL indexada lá
+  // precisa de destino aqui, senão vira 404 e perde o ranking acumulado.
+  for (const source of ["/psoriase22", "/psoriase-3", "/hidradenite3", "/english", "/unha", "/estetica", "/dr-miguelceccarelli", "/dermatiteatopica", "/dermatopediatria2", "/cirurgiadermatologica", "/cirurgia-dermatologica-copacabana", "/category/especialidades", "/site-clinica-qara-2", "/elementor-pagina-de-destino-277", "/elementor-pagina-de-destino-289", "/feed", "/psoriase-2", "/hidradenite2-2", "/especialista", "/servico"]) {
     assert.match(config, new RegExp(`"${source}":\\s*"`), `${source} precisa estar em legacyRedirects`);
   }
   assert.match(config, /permanent:\s*true/, "os redirects legados precisam ser permanentes (308)");
