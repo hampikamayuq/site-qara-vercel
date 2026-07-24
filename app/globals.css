@@ -303,7 +303,8 @@ blockquote footer { color: var(--qara-copy); font-size: .75rem; }
 .doctor-band h2 { color: white; }
 .doctor-band a { color: white; display: inline-block; font-weight: 600; margin-top: 15px; }
 .credential-light { color: white; font-weight: 600; }
-.specialty-team-grid { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 32px; }
+.specialty-team { display: grid; gap: 95px; grid-template-columns: .8fr 1.2fr; }
+.specialty-team-grid { display: grid; gap: 32px; grid-template-columns: repeat(auto-fill, minmax(0, 190px)); }
 .specialty-team-grid article { border-top: 1px solid var(--qara-gray-200); padding-top: 20px; }
 .specialty-team-grid img { aspect-ratio: 3/4; margin-bottom: 16px; object-fit: cover; object-position: center 18%; width: 100%; }
 .specialty-team-grid h3 { font-family: "Telegraf", Arial, sans-serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 4px; }
@@ -535,7 +536,7 @@ body:has(.mega-menu[open])::before, body:has(.mobile-menu[open])::before { anima
   .article-mobile-toc summary { cursor: pointer; font-weight: 600; list-style-position: inside; min-height: 44px; padding-top: 11px; }
   .article-mobile-toc nav { display: grid; gap: 4px; padding: 10px 0 12px 20px; }
   .article-mobile-toc a { align-items: center; color: var(--qara-copy); display: flex; font-size: .9rem; min-height: 44px; }
-  .specialty-hero-grid, .intro-split, .care-process, .doctor-band-grid, .specialty-faq, .treatment-feature { gap: 50px; grid-template-columns: 1fr; }
+  .specialty-hero-grid, .intro-split, .care-process, .doctor-band-grid, .specialty-faq, .treatment-feature, .specialty-team { gap: 50px; grid-template-columns: 1fr; }
   .treatment-feature-reverse > div:first-child, .treatment-feature-reverse .treatment-photo { order: 0; }
   .specialty-hero-grid > div:first-child { padding-top: 70px; }
   .specialty-portrait { min-height: 560px; }
