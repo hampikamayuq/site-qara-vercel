@@ -73,6 +73,30 @@ test("redirects legacy WordPress URLs with a real 308, not a rendered page", asy
   }
 });
 
+test("keeps analytics opt-in and queues events before the container loads", async () => {
+  const gtm = await readFile(new URL("../app/gtm.tsx", import.meta.url), "utf8");
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+
+  // Sem NEXT_PUBLIC_GTM_ID o componente não renderiza nada: nenhum request para
+  // o Google, nenhum cookie. Isso mantém a decisão de rastrear explícita.
+  assert.match(gtm, /if\s*\(!id\)\s*return null/);
+  assert.match(layout, /<GoogleTagManager id=\{process\.env\.NEXT_PUBLIC_GTM_ID\}/);
+
+  // A fila precisa existir antes do loader. O conversion-tracker usa
+  // `dataLayer?.push()`, então sem a fila os eventos disparados antes do GTM
+  // subir seriam descartados em silêncio.
+  assert.match(gtm, /id="dataLayer-init"\s+strategy="beforeInteractive"/);
+  assert.match(gtm, /id="gtm-loader"\s+strategy="afterInteractive"/);
+  assert.ok(
+    gtm.indexOf('id="dataLayer-init"') < gtm.indexOf('id="gtm-loader"'),
+    "a fila dataLayer precisa ser renderizada antes do loader do GTM",
+  );
+
+  // O build padrão não pode conter rastreamento embutido.
+  const html = await readFile(new URL("../.next/server/app/index.html", import.meta.url), "utf8");
+  assert.doesNotMatch(html, /googletagmanager|gtag\(|GTM-[A-Z0-9]/, "nenhum ID de rastreamento pode estar hardcoded");
+});
+
 test("updates the document language when international routes change", async () => {
   const [controller, layout] = await Promise.all([
     readFile(new URL("../app/document-language.tsx", import.meta.url), "utf8"),

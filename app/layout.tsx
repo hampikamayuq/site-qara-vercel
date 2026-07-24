@@ -3,6 +3,7 @@ import "./globals.css";
 import { MotionController } from "./motion-controller";
 import { ConversionTracker } from "./conversion-tracker";
 import { DocumentLanguage } from "./document-language";
+import { GoogleTagManager } from "./gtm";
 import { WhatsAppFloatingButton } from "./ui";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="preload" href="/fonts/Telegraf-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/roboto-400-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <GoogleTagManager id={process.env.NEXT_PUBLIC_GTM_ID} />
       </head>
       <body data-motion-root>
         {children}
