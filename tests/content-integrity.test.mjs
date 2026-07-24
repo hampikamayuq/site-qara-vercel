@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import test from "node:test";
+import { conversionAllowlists } from "../app/conversion-events.mjs";
 import { articles } from "../app/blog/articles.ts";
 import { articleContent } from "../app/blog/article-content.ts";
 import { evidence } from "../app/blog/article-evidence.ts";
@@ -73,9 +74,13 @@ test("redirects legacy WordPress URLs with a real 308, not a rendered page", asy
   }
 });
 
-test("lists every specialty page in the sitemap", async () => {
-  // app/sitemap.ts é uma lista manual: página nova que não for adicionada ali
-  // nasce fora do sitemap e o Google demora muito mais para encontrá-la.
+test("registers every specialty page in the sitemap and the conversion allowlist", async () => {
+  // Os dois registros são listas mantidas à mão, e esquecer qualquer um falha
+  // em silêncio: fora do sitemap o Google demora muito mais para achar a
+  // página; fora da allowlist createConversionEvent lança, o
+  // createConversionDetailSafely engole o erro e TODAS as conversões daquela
+  // página são descartadas sem nenhum sinal. Foi o que aconteceu com
+  // /psoriase, /hidradenite e /vitiligo.
   const [data, sitemap] = await Promise.all([
     readFile(new URL("../app/specialties-data.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
@@ -85,9 +90,11 @@ test("lists every specialty page in the sitemap", async () => {
 
   const appEntries = await readdir(new URL("../app/", import.meta.url), { withFileTypes: true });
   const routed = new Set(appEntries.filter(entry => entry.isDirectory()).map(entry => entry.name));
+  const allowed = new Set(conversionAllowlists.specialty);
 
   for (const slug of slugs.filter(slug => routed.has(slug))) {
     assert.match(sitemap, new RegExp(`"/${slug}"`), `/${slug} tem página própria mas está fora do sitemap`);
+    assert.ok(allowed.has(slug), `/${slug} tem página própria mas está fora da allowlist de conversão`);
   }
 });
 

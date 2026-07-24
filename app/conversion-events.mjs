@@ -14,7 +14,14 @@ export const conversionAllowlists = Object.freeze({
   variant: freeze(["schedule", "guidance", "whatsapp", "phone", "maps"]),
   context: freeze(["home", "specialty", "profile", "blog", "article", "international", "not_found"]),
   doctor: freeze(["dr-miguel-ceccarelli", "dr-diego-galvez", "dra-diana-stohmann", "dra-manuela-pedretti", "dr-fabricio-de-andrade"]),
-  specialty: freeze(["dermatologia-clinica", "cirurgia-dermatologica", "cabelo", "unhas", "doencas-inflamatorias", "dermatopediatria", "dermatologia-estetica"]),
+  // Também alimenta publicPathnames logo abaixo. Página de condição que não
+  // estiver aqui tem todas as conversões descartadas em silêncio, porque
+  // createConversionDetailSafely engole o throw e devolve null.
+  specialty: freeze([
+    "dermatologia-clinica", "cirurgia-dermatologica", "cabelo", "unhas",
+    "doencas-inflamatorias", "dermatopediatria", "dermatologia-estetica",
+    "psoriase", "hidradenite", "vitiligo", "dermatite-atopica",
+  ]),
   article: freeze([
     "cancer-da-pele-sinais-de-alerta", "biopsia-de-pele-quando-e-indicada", "queda-de-cabelo-causas", "alopecia-androgenetica",
     "psoriase-guia-para-pacientes", "dermatite-atopica", "hidradenite-supurativa", "doencas-das-unhas",

@@ -21,6 +21,16 @@ const SPECIALTY: Record<string, [string, string]> = {
   "Dermatologia clínica": ["Dermatologia clínica", "/dermatologia-clinica"],
 };
 
+// Quando o artigo é sobre uma condição que tem página própria, aponta direto
+// para ela em vez do hub da categoria: um clique a menos até a conversão.
+const ARTICLE_SPECIALTY: Record<string, [string, string]> = {
+  "dermatite-atopica": ["Dermatite atópica", "/dermatite-atopica"],
+  "dermatite-atopica-no-bebe": ["Dermatite atópica", "/dermatite-atopica"],
+  "psoriase-guia-para-pacientes": ["Psoríase", "/psoriase"],
+  "hidradenite-supurativa": ["Hidradenite supurativa", "/hidradenite"],
+  "vitiligo-causas-e-tratamento": ["Vitiligo", "/vitiligo"],
+};
+
 const CATEGORY_SLUG: Record<string, string> = {
   "Câncer da pele": "cancer-da-pele", Cirurgia: "cirurgia", Cabelos: "cabelos", Unhas: "unhas",
   "Doenças inflamatórias": "doencas-inflamatorias", "Dermatologia estética": "dermatologia-estetica",
@@ -81,7 +91,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const authorImage = AUTHOR_IMAGES[ev.author.url];
   const sameCategory = articles.filter(item => item.category === article.category && item.slug !== article.slug);
   const related = [...sameCategory, ...articles.filter(item => item.category !== article.category && item.slug !== article.slug)].slice(0, 3);
-  const specialty = SPECIALTY[article.category];
+  const specialty = ARTICLE_SPECIALTY[article.slug] ?? SPECIALTY[article.category];
   const schema = {
     "@context": "https://schema.org",
     "@type": ["MedicalWebPage", "Article"],

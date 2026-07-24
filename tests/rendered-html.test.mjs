@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile, stat } from "node:fs/promises";
 import test from "node:test";
-import { createConversionEvent } from "../app/conversion-events.mjs";
+import { conversionAllowlists, createConversionEvent } from "../app/conversion-events.mjs";
 
 test("renders local SEO schema and social cards on the homepage", async () => {
   const workerUrl = new URL("./prerendered.mjs", import.meta.url);
@@ -222,7 +222,11 @@ test("renders only the approved conversion contract across public conversion rou
   const ctx = { waitUntil() {}, passThroughOnException() {} };
   const source = await readFile(new URL("../app/blog/articles.ts", import.meta.url), "utf8");
   const articleSlugs = [...source.matchAll(/\{slug:"([^"]+)"/g)].map(match => match[1]);
-  const specialties = ["dermatologia-clinica", "cirurgia-dermatologica", "cabelo", "unhas", "doencas-inflamatorias", "dermatopediatria", "dermatologia-estetica"];
+  // Derivado da allowlist em vez de repetido à mão: página de especialidade
+  // nova entra na cobertura sozinha. Enquanto era lista fixa aqui, /psoriase,
+  // /hidradenite e /vitiligo ficaram de fora e as conversões delas foram
+  // descartadas em silêncio sem nenhum teste acusar.
+  const specialties = [...conversionAllowlists.specialty];
   const doctors = ["dr-miguel-ceccarelli", "dr-diego-galvez", "dra-diana-stohmann", "dra-manuela-pedretti", "dr-fabricio-de-andrade"];
   const routes = ["/", ...specialties.map(slug => `/${slug}`), ...doctors.map(slug => `/equipe/${slug}`), "/en", "/es", "/blog", ...articleSlugs.map(slug => `/blog/${slug}`)];
   const approvedAttributes = new Set(["event", "placement", "variant", "context", "doctor", "specialty", "article", "category", "locale", "to-locale"]);

@@ -13,7 +13,8 @@ export function SpecialtyTemplate({data, path, feature, children}:{data:Specialt
   const specialty = path?.replace(/^\//, "");
   const appointmentHref = specialty === "dermatologia-clinica" ? appointmentLinks.diego
     : specialty === "unhas" || specialty === "dermatologia-estetica" ? appointmentLinks.miguel
-    : specialty === "doencas-inflamatorias" ? appointmentLinks.manuelaPsoriase
+    : specialty === "doencas-inflamatorias" || specialty === "psoriase" ? appointmentLinks.manuelaPsoriase
+    : specialty === "hidradenite" ? appointmentLinks.manuelaHidrosadenite
     : specialty === "dermatite-atopica" ? appointmentLinks.manuelaDermatiteAtopica
     : specialty === "dermatopediatria" ? appointmentLinks.dermatopediatria
     : whatsappHref(`Olá, gostaria de consultar horários para uma avaliação de ${data.eyebrow}.`);
