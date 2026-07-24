@@ -25,7 +25,10 @@ const legacyRedirects: Record<string, string> = {
   "/category/especialidades": "/",
   "/cirurgiadermatologica": "/cirurgia-dermatologica",
   "/cirurgia-dermatologica-copacabana": "/cirurgia-dermatologica",
-  "/dermatiteatopica": "/blog/dermatite-atopica",
+  // Era página de serviço no WordPress. Agora tem equivalente 1:1 em
+  // /dermatite-atopica — mesma intenção comercial, melhor alvo para o
+  // ranking acumulado do que o artigo informativo do blog.
+  "/dermatiteatopica": "/dermatite-atopica",
   "/dermatopediatria2": "/dermatopediatria",
   "/dr-miguelceccarelli": "/equipe/dr-miguel-ceccarelli",
   "/elementor-pagina-de-destino-277": "/",

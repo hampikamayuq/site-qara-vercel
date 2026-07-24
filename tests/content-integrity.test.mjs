@@ -73,6 +73,24 @@ test("redirects legacy WordPress URLs with a real 308, not a rendered page", asy
   }
 });
 
+test("lists every specialty page in the sitemap", async () => {
+  // app/sitemap.ts é uma lista manual: página nova que não for adicionada ali
+  // nasce fora do sitemap e o Google demora muito mais para encontrá-la.
+  const [data, sitemap] = await Promise.all([
+    readFile(new URL("../app/specialties-data.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+  ]);
+  const slugs = [...data.matchAll(/^ {2}"?([a-z-]+)"?:\s*\{/gm)].map(match => match[1]);
+  assert.ok(slugs.length > 0, "nenhuma especialidade encontrada");
+
+  const appEntries = await readdir(new URL("../app/", import.meta.url), { withFileTypes: true });
+  const routed = new Set(appEntries.filter(entry => entry.isDirectory()).map(entry => entry.name));
+
+  for (const slug of slugs.filter(slug => routed.has(slug))) {
+    assert.match(sitemap, new RegExp(`"/${slug}"`), `/${slug} tem página própria mas está fora do sitemap`);
+  }
+});
+
 test("keeps analytics opt-in and queues events before the container loads", async () => {
   const gtm = await readFile(new URL("../app/gtm.tsx", import.meta.url), "utf8");
   const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
