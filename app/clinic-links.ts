@@ -40,6 +40,9 @@ export const appointmentLinks = Object.freeze({
 const appointmentByPath: Record<string, string> = {
   "/dermatologia-clinica": appointmentLinks.diego,
   "/cirurgia-dermatologica": appointmentLinks.diego,
+  "/cancer-de-pele": appointmentLinks.diego,
+  "/cirurgia-controle-de-margens": appointmentLinks.diego,
+  "/biopsia": appointmentLinks.diego,
   "/cabelo": appointmentLinks.cabeloDiana,
   "/unhas": appointmentLinks.miguel,
   "/dermatologia-estetica": appointmentLinks.diego,

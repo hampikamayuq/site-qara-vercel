@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { MotionController } from "./motion-controller";
 import { ConversionTracker } from "./conversion-tracker";
+import { GclidCapture } from "./gclid-capture";
 import { DocumentLanguage } from "./document-language";
 import { GoogleTagManager } from "./gtm";
 import { WhatsAppFloatingButton } from "./whatsapp-float";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <WhatsAppFloatingButton />
         <MotionController />
         <ConversionTracker endpoint={process.env.NEXT_PUBLIC_CONVERSION_ENDPOINT} />
+        <GclidCapture />
         <script dangerouslySetInnerHTML={{ __html: `addEventListener("keydown",function(e){if(e.key!=="Escape")return;var d=e.target&&e.target.closest?e.target.closest("details[open]"):null;d=d||document.querySelector(".mega-menu[open],.mobile-menu[open]");if(d){d.removeAttribute("open");var s=d.querySelector("summary");s&&s.focus()}});addEventListener("click",function(e){var l=e.target&&e.target.closest?e.target.closest(".mega-menu[open] a,.mobile-menu[open] a"):null;if(l){var dd=l.closest("details[open]");while(dd){dd.removeAttribute("open");dd=dd.parentElement?dd.parentElement.closest("details[open]"):null}}document.querySelectorAll(".mega-menu[open],.mobile-menu[open]").forEach(function(d){d.contains(e.target)||d.removeAttribute("open")});var f=e.target&&e.target.closest?e.target.closest(".blog-index nav a"):null;if(f){f.closest("nav").querySelectorAll("a").forEach(function(x){x.removeAttribute("aria-current")});f.setAttribute("aria-current","true")}});` }} />
       </body>
     </html>

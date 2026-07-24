@@ -81,8 +81,7 @@ test("registers every specialty page in the sitemap and the conversion allowlist
   // createConversionDetailSafely engole o erro e TODAS as conversões daquela
   // página são descartadas sem nenhum sinal. Foi o que aconteceu com
   // /psoriase, /hidradenite e /vitiligo.
-  const [data, sitemap, links] = await Promise.all([
-    readFile(new URL("../app/specialties-data.ts", import.meta.url), "utf8"),
+  const [sitemap, links] = await Promise.all([
     readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/clinic-links.ts", import.meta.url), "utf8"),
   ]);
@@ -90,14 +89,23 @@ test("registers every specialty page in the sitemap and the conversion allowlist
     links.indexOf("const appointmentByPath"),
     links.indexOf("export function appointmentHrefForPath"),
   );
-  const slugs = [...data.matchAll(/^ {2}"?([a-z-]+)"?:\s*\{/gm)].map(match => match[1]);
-  assert.ok(slugs.length > 0, "nenhuma especialidade encontrada");
 
+  // A fonte da verdade é a rota que renderiza o SpecialtyTemplate, não
+  // specialties-data.ts: as landing pages de câncer/biópsia definem os dados
+  // inline, então uma checagem baseada só naquele arquivo as deixaria passar
+  // batido — exatamente o furo que permitiu a elas nascerem fora da allowlist.
   const appEntries = await readdir(new URL("../app/", import.meta.url), { withFileTypes: true });
-  const routed = new Set(appEntries.filter(entry => entry.isDirectory()).map(entry => entry.name));
+  const slugs = [];
+  for (const entry of appEntries.filter(e => e.isDirectory())) {
+    const page = join(entry.parentPath, entry.name, "page.tsx");
+    try {
+      if ((await readFile(page, "utf8")).includes("SpecialtyTemplate")) slugs.push(entry.name);
+    } catch { /* diretório sem page.tsx própria (rotas dinâmicas, grupos) */ }
+  }
+  assert.ok(slugs.length > 0, "nenhuma página de especialidade encontrada");
   const allowed = new Set(conversionAllowlists.specialty);
 
-  for (const slug of slugs.filter(slug => routed.has(slug))) {
+  for (const slug of slugs) {
     assert.match(sitemap, new RegExp(`"/${slug}"`), `/${slug} tem página própria mas está fora do sitemap`);
     assert.ok(allowed.has(slug), `/${slug} tem página própria mas está fora da allowlist de conversão`);
     assert.match(appointmentMap, new RegExp(`"/${slug}":`), `/${slug} não tem mensagem de WhatsApp própria e cai na genérica`);
