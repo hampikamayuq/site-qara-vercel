@@ -24,8 +24,6 @@ export const appointmentLinks = Object.freeze({
   diego: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta com o Dr. Diego Galvez"),
   cabeloDiana: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de cabelo com a Dra. Diana Stohmann"),
   miguel: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta com o Dr. Miguel Ceccarelli"),
-  unhasMiguel: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de unhas com o Dr. Miguel Ceccarelli"),
-  esteticaMiguel: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatologia estética com o Dr. Miguel Ceccarelli"),
   manuelaDermatiteAtopica: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatite atópica com a Dra. Manuela Pedretti Cabral"),
   manuelaPsoriase: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de psoríase com a Dra. Manuela Pedretti Cabral"),
   manuelaHidrosadenite: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de hidrosadenite com a Dra. Manuela Pedretti Cabral"),

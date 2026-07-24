@@ -11,8 +11,8 @@ export type Specialty = { eyebrow:string; title:string; lead:string; introTitle:
 // funciona mas não diz de onde veio — por isso há teste cobrindo a ausência.
 const APPOINTMENT_BY_SPECIALTY: Record<string, string> = {
   "dermatologia-clinica": appointmentLinks.diego,
-  "unhas": appointmentLinks.unhasMiguel,
-  "dermatologia-estetica": appointmentLinks.esteticaMiguel,
+  "unhas": appointmentLinks.miguel,
+  "dermatologia-estetica": appointmentLinks.diego,
   "doencas-inflamatorias": appointmentLinks.manuelaInflamatorias,
   "psoriase": appointmentLinks.manuelaPsoriase,
   "hidradenite": appointmentLinks.manuelaHidrosadenite,
