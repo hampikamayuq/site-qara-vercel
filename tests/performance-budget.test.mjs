@@ -70,3 +70,24 @@ test("keeps the minimal browser reset that the design depends on", async () => {
   assert.match(css, /img,\s*video\s*\{[^}]*height:\s*auto[^}]*max-width:\s*100%/s);
   assert.match(css, /button,\s*input,\s*optgroup,\s*select,\s*textarea\s*\{[^}]*background-color:\s*transparent[^}]*border:\s*0 solid[^}]*color:\s*inherit[^}]*font:\s*inherit[^}]*letter-spacing:\s*inherit/s);
 });
+
+// O parallax do hero já foi dirigido por listener de scroll escrevendo em --hero-shift, que é
+// consumida por um transform: dois frames de layout read/write por scroll. O caminho normal
+// agora é o compositor via view timeline; o JS só entra onde o navegador não suporta.
+test("resolves the hero parallax on the compositor, with scroll only as fallback", async () => {
+  const [css, controller] = await Promise.all([
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/motion-controller.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(css, /@supports \(animation-timeline: view\(\)\)/);
+  assert.match(css, /@keyframes qara-hero-parallax/);
+  assert.match(css, /animation-timeline:\s*view\(\)/);
+
+  const reduceMotionBlock = css.slice(css.indexOf("@media (prefers-reduced-motion: reduce)"));
+  assert.ok(reduceMotionBlock, "o bloco de prefers-reduced-motion desapareceu");
+  assert.match(reduceMotionBlock, /\.specialty-portrait img \{ animation: none !important; \}/);
+
+  assert.match(controller, /CSS\.supports\("animation-timeline", "view\(\)"\)/);
+  assert.match(controller, /if \(hero\) \{\s*updateHero\(\);\s*window\.addEventListener\("scroll"/);
+});

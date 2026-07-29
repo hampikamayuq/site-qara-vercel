@@ -69,7 +69,10 @@ export function MotionController() {
     });
     mutations.observe(document.body, { childList: true, subtree: true });
 
-    const hero = document.querySelector<HTMLElement>(HERO_MEDIA);
+    // Parallax do hero: onde há view timeline, o CSS resolve sozinho (ver qara-hero-parallax em
+    // globals.css) e nenhum listener de scroll é instalado. O caminho abaixo é só o fallback.
+    const cssViewTimeline = typeof CSS !== "undefined" && typeof CSS.supports === "function" && CSS.supports("animation-timeline", "view()");
+    const hero = cssViewTimeline ? null : document.querySelector<HTMLElement>(HERO_MEDIA);
     const wideScreen = window.matchMedia("(min-width: 861px)");
     let frame = 0;
     const updateHero = () => {
@@ -82,9 +85,11 @@ export function MotionController() {
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateHero);
     };
-    updateHero();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+    if (hero) {
+      updateHero();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+    }
 
     return () => {
       root.classList.remove("motion-ready");

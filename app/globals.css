@@ -673,12 +673,29 @@ body:has(.mega-menu[open])::before, body:has(.mobile-menu[open])::before { anima
 .motion-ready .motion-right:not(.is-visible) { transform: translate3d(var(--motion-distance), 0, 0); }
 .motion-ready .motion-item.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
 
+/* Fallback: --hero-shift vem do JS só em navegador sem view timeline. */
 .hero-image img,
 .hero-visual img,
 .hero-media img,
 .specialty-portrait img {
   transform: translate3d(0, var(--hero-shift), 0) scale(1.025);
   transition: transform 120ms linear;
+}
+
+/* Caminho preferido: o compositor resolve o parallax sem listener de scroll e sem animar CSS var
+   (app/motion-controller.tsx detecta o mesmo suporte e não instala o fallback). */
+@media (min-width: 861px) {
+  @supports (animation-timeline: view()) {
+    .hero-image img,
+    .hero-visual img,
+    .hero-media img,
+    .specialty-portrait img { animation: qara-hero-parallax linear both; animation-timeline: view(); transition: none; }
+  }
+}
+
+@keyframes qara-hero-parallax {
+  from { transform: translate3d(0, -12px, 0) scale(1.025); }
+  to { transform: translate3d(0, 12px, 0) scale(1.025); }
 }
 
 .button,
@@ -795,4 +812,10 @@ body:has(.mega-menu[open])::before, body:has(.mobile-menu[open])::before { anima
   .hero-visual img,
   .hero-media img,
   .specialty-portrait img { opacity: 1 !important; transform: none !important; }
+  /* Obrigatório: com animation-timeline: view() o animation-duration forçado acima não para o
+     parallax, porque a duração passa a ser o próprio progresso do scroll. */
+  .hero-image img,
+  .hero-visual img,
+  .hero-media img,
+  .specialty-portrait img { animation: none !important; }
 }
