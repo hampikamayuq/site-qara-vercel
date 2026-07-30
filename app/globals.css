@@ -156,8 +156,8 @@ blockquote footer { color: var(--qara-copy); font-size: .75rem; }
 .quotes-grid { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
 .quotes-grid blockquote { background: white; display: flex; flex-direction: column; gap: 18px; justify-content: space-between; padding: 30px; }
 .quotes-grid blockquote p { font-size: 1.05rem; margin: 0; }
-.quotes-grid footer { color: var(--qara-copy); font-size: .75rem; }
-.rating-row { border-top: 1px solid var(--qara-gray-200); display: flex; flex-wrap: wrap; gap: 24px 64px; margin-top: 48px; padding-top: 28px; }
+.quotes-grid footer { color: var(--qara-copy); font-size: .75rem; text-wrap: balance; }
+.rating-row { border-top: 1px solid var(--qara-gray-200); display: flex; flex-wrap: wrap; font-variant-numeric: tabular-nums; gap: 24px 64px; margin-top: 48px; padding-top: 28px; }
 .rating-row a { align-items: center; display: inline-flex; flex-wrap: wrap; gap: 12px 14px; min-height: 48px; transition: color .2s ease-out; }
 .rating-row a:hover { color: var(--qara-focus); }
 .rating-stars { color: var(--qara-taupe); font-size: .9375rem; letter-spacing: 4px; }

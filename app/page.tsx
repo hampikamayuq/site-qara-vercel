@@ -216,10 +216,16 @@ export default function Home() {
                 da clínica, e nenhuma pode afirmar resultado (DESIGN.md:262).
                 Palavra alguma é alterada; só a pontuação é normalizada quando o
                 original não tem (a 1ª usava quebra de linha em vez de ponto).
-                Grafia do paciente fica — ver "nos mín detalhes" na 3ª. */}
-            <blockquote><p>Amei a experiência!! Ótimos profissionais e muito atenciosos. Confio de olhos fechados!!!</p><footer>Mariana · Avaliação pública no Google</footer></blockquote>
-            <blockquote><p>Fui muito bem atendida. Dr. Miguel foi muito didático ao me explicar tudo sobre o que eu tinha e me deu toda orientação.</p><footer>Dalva Maria do Bomfim Lopes · Avaliação pública no Google</footer></blockquote>
-            <blockquote><p>Muito profissional, atenciosa e extremamente dedicada. Explica tudo nos mín detalhes, transmite segurança e passa uma tranquilidade que faz toda a diferença.</p><footer>Cristiane Taverna · Avaliação pública no Doctoralia</footer></blockquote>
+                Grafia do paciente fica — ver "nos mín detalhes" na 3ª.
+
+                O espaço antes do "·" é U+00A0 (não separável), e é por isso
+                que o footer é string e não texto solto: sem ele, o nome longo
+                quebra com o separador abrindo a linha de baixo, que lê como
+                marcador de lista. Colado ao nome, a única quebra possível é
+                depois dele — e o text-wrap: balance escolhe onde. */}
+            <blockquote><p>Amei a experiência!! Ótimos profissionais e muito atenciosos. Confio de olhos fechados!!!</p><footer>{"Mariana · Avaliação pública no Google"}</footer></blockquote>
+            <blockquote><p>Fui muito bem atendida. Dr. Miguel foi muito didático ao me explicar tudo sobre o que eu tinha e me deu toda orientação.</p><footer>{"Dalva Maria do Bomfim Lopes · Avaliação pública no Google"}</footer></blockquote>
+            <blockquote><p>Muito profissional, atenciosa e extremamente dedicada. Explica tudo nos mín detalhes, transmite segurança e passa uma tranquilidade que faz toda a diferença.</p><footer>{"Cristiane Taverna · Avaliação pública no Doctoralia"}</footer></blockquote>
           </div>
           <div className="rating-row">
             <a href={clinicMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Google, 142 avaliações (abre em nova aba)">
