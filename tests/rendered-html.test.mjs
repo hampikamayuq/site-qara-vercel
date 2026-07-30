@@ -30,7 +30,10 @@ test("renders local SEO schema and social cards on the homepage", async () => {
   );
   const html = await response.text();
   assert.doesNotMatch(html, /codex-preview/);
-  assert.match(html, /"aggregateRating":\{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":141\}/);
+  // Sem aggregateRating de propósito: MedicalClinic é subtipo de LocalBusiness,
+  // excluído dos review snippets do Google, e a marcação seria autoatribuída.
+  // O 5,0/142 visível, com link para a fonte, continua na página.
+  assert.doesNotMatch(html, /"aggregateRating"/);
   assert.match(html, /"geo":\{"@type":"GeoCoordinates"/);
   assert.match(html, /"postalCode":"22041-012"/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image"\/>/);
@@ -322,10 +325,12 @@ test("centralizes clinic contact destinations", async () => {
   assert.match(central, /google\.com\/maps/);
   assert.match(central, /doctoralia\.com\.br\/clinicas\/clinica-qara-2/);
 
-  const files = ["ui.tsx", "page.tsx", "specialty-template.tsx", "cabelo/page.tsx", "cirurgia-dermatologica/page.tsx", "equipe/[slug]/page.tsx", "blog/page.tsx", "international.tsx", "not-found.tsx"];
+  assert.match(central, /instagram\.com\/qaraclinica/);
+
+  const files = ["ui.tsx", "page.tsx", "seo.ts", "specialty-template.tsx", "cabelo/page.tsx", "cirurgia-dermatologica/page.tsx", "equipe/[slug]/page.tsx", "blog/page.tsx", "international.tsx", "not-found.tsx"];
   for (const file of files) {
     const source = await readFile(new URL(`../app/${file}`, import.meta.url), "utf8");
-    assert.doesNotMatch(source, /5521992189718|contato@clinicaqara\.com\.br|google\.com\/maps\/place\/|doctoralia\.com\.br\/clinicas\/clinica-qara-2/, file);
+    assert.doesNotMatch(source, /5521992189718|contato@clinicaqara\.com\.br|google\.com\/maps\/place\/|doctoralia\.com\.br\/clinicas\/clinica-qara-2|instagram\.com\/qaraclinica/, file);
   }
 });
 
@@ -393,4 +398,54 @@ test("uses the approved WhatsApp booking links by page and specialty", async () 
     const html = await response.text();
     assert.match(html, new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), route);
   }
+});
+
+// A home passou a emitir três nós: a clínica (entidade), a página e a FAQ. As
+// referências entre eles são por @id, então um @id órfão quebra o grafo em
+// silêncio — daí a checagem de resolução.
+test("describes the homepage as one entity graph, with every @id resolved", async () => {
+  const html = await readFile(new URL("../.next/server/app/index.html", import.meta.url), "utf8");
+  const nodes = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+
+  assert.deepEqual(nodes.map(node => node["@type"]), ["MedicalClinic", "MedicalWebPage", "FAQPage"]);
+
+  const clinic = nodes.find(node => node["@type"] === "MedicalClinic");
+  // Derivados dos arrays que a página renderiza: se um médico ou especialidade
+  // entrar na página sem entrar no schema, estas contas divergem.
+  assert.equal(clinic.employee.length, 5);
+  assert.equal(clinic.hasOfferCatalog.itemListElement.length, 7);
+  // Regra da ordem clínica do DESIGN.md: médica primeiro, estética por último.
+  const offered = clinic.hasOfferCatalog.itemListElement.map(item => item.itemOffered.name);
+  assert.equal(offered[0], "Dermatologia clínica");
+  assert.equal(offered.at(-1), "Dermatologia estética");
+  assert.ok(clinic.hasMap);
+  assert.equal(clinic.sameAs.length, 2);
+
+  const declared = new Set(nodes.flatMap(function ids(node) {
+    return typeof node === "object" && node !== null
+      ? [...(node["@id"] && Object.keys(node).length > 1 ? [node["@id"]] : []), ...Object.values(node).flatMap(ids)]
+      : [];
+  }));
+  const referenced = [...html.matchAll(/\{"@id":"([^"]+)"\}/g)].map(match => match[1]);
+  assert.ok(referenced.length >= 3, "a página deve referenciar a clínica por @id");
+  for (const id of referenced) assert.ok(declared.has(id), `@id órfão: ${id}`);
+});
+
+// practicalFaq alimenta os <details> e o FAQPage. Este teste é o que torna essa
+// fonte única exigível: se alguém duplicar as perguntas, os dois lados divergem
+// e isto falha. Escopado ao bloco da FAQ — a página tem outros <summary>
+// (mega-menu e menu móvel).
+test("keeps the homepage FAQ schema in lockstep with the rendered questions", async () => {
+  const html = await readFile(new URL("../.next/server/app/index.html", import.meta.url), "utf8");
+  const block = html.split('class="practical-list"')[1].split("</section>")[0];
+  const rendered = [...block.matchAll(/<summary>([\s\S]*?)<\/summary>/g)].map(match => match[1]);
+  const faq = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map(match => JSON.parse(match[1]))
+    .find(node => node["@type"] === "FAQPage");
+
+  assert.ok(faq, "a home precisa emitir FAQPage como as páginas de especialidade");
+  assert.equal(rendered.length, 5);
+  assert.equal(faq.mainEntity.length, rendered.length);
+  for (const [index, question] of rendered.entries()) assert.equal(faq.mainEntity[index].name, question);
+  for (const question of faq.mainEntity) assert.ok(block.includes(question.acceptedAnswer.text), question.name);
 });

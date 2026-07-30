@@ -149,3 +149,59 @@ test("updates the document language when international routes change", async () 
   assert.match(layout, /import \{ DocumentLanguage \} from "\.\/document-language"/);
   assert.match(layout, /<DocumentLanguage \/>/);
 });
+
+// O canonical vinha do layout e era herdado por quem não declarava o seu, então
+// a página de erro afirmava ser a home. O layout não define mais `alternates`;
+// estes três testes cobrem a classe inteira do bug, nos dois sentidos.
+async function prerenderedPages() {
+  const root = new URL("../.next/server/app/", import.meta.url);
+  const pages = [];
+  async function walk(dir, prefix) {
+    for (const entry of await readdir(new URL(dir, root), { withFileTypes: true })) {
+      if (entry.isDirectory()) await walk(`${dir}${entry.name}/`, `${prefix}${entry.name}/`);
+      else if (entry.name.endsWith(".html")) {
+        const name = `${prefix}${entry.name}`;
+        pages.push({
+          name,
+          route: name === "index.html" ? "" : `/${name.replace(/\.html$/, "")}`,
+          isError: entry.name.startsWith("_"),
+          html: await readFile(new URL(`${dir}${entry.name}`, root), "utf8"),
+        });
+      }
+    }
+  }
+  await walk("", "");
+  return pages;
+}
+
+test("points every prerendered canonical at its own route", async () => {
+  const pages = await prerenderedPages();
+  assert.ok(pages.length > 40, "o build não produziu as páginas esperadas");
+  for (const { name, route, isError, html } of pages) {
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    if (isError) {
+      assert.equal(canonical, undefined, `${name}: página de erro não deve declarar canonical`);
+      continue;
+    }
+    if (canonical) assert.equal(canonical, `https://clinicaqara.com.br${route}`, name);
+  }
+});
+
+test("gives every prerendered route its own title", async () => {
+  const pages = await prerenderedPages();
+  const titles = pages.map(({ name, html }) => [name, html.match(/<title>([^<]*)<\/title>/)?.[1]]);
+  for (const [name, title] of titles) assert.ok(title, `${name}: sem <title>`);
+  const seen = new Map();
+  for (const [name, title] of titles) {
+    assert.equal(seen.get(title), undefined, `${name} repete o title de ${seen.get(title)}: ${title}`);
+    seen.set(title, name);
+  }
+});
+
+test("confines hreflang to the three routes that are actually translated", async () => {
+  const translated = new Set(["", "/en", "/es"]);
+  for (const { name, route, html } of await prerenderedPages()) {
+    const links = (html.match(/rel="alternate" hrefLang/g) ?? []).length;
+    assert.equal(links, translated.has(route) ? 4 : 0, `${name}: ${links} hreflang`);
+  }
+});

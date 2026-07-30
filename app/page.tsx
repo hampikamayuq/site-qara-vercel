@@ -1,12 +1,30 @@
+import type { Metadata } from "next";
 import { clinicMapsUrl, CtaBand, Footer, Header, portraitSrcSet } from "./ui";
 import Link from "next/link";
 import { articles } from "./blog/articles";
 import { evidence } from "./blog/article-evidence";
 import { appointmentLinks, clinicContact } from "./clinic-links";
+import { CLINIC_ID, clinicNode, DEFAULT_OG_IMAGE, faqPageSchema, HREFLANG, OG_BASE, SITE_URL, WEBSITE_ID } from "./seo";
 
+// Fonte única: alimentam <title>, meta description, Open Graph, Twitter (que o
+// Next autopreenche) e o MedicalWebPage. Não repetir estas strings.
+const TITLE = "Dermatologista em Copacabana, RJ | Clínica QARA";
+const DESCRIPTION = "Clínica dermatológica em Copacabana, RJ: dermatologia clínica e cirúrgica, cabelos, unhas, doenças inflamatórias e dermatopediatria. Atendimento particular com hora marcada.";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/", languages: HREFLANG },
+  // Reafirma OG_BASE porque o Next substitui o objeto openGraph inteiro por
+  // nível, em vez de mesclar com o do layout.
+  openGraph: { ...OG_BASE, url: "/", images: [DEFAULT_OG_IMAGE] },
+};
+
+// A ordem obedece à regra da ordem clínica do DESIGN.md: dermatologia médica
+// primeiro, estética por último. Não reordenar por keyword.
 const services = [
   ["Dermatologia clínica", "Acne, rosácea, manchas, alergias e avaliação de pintas.", "/dermatologia-clinica"],
-  ["Cirurgia dermatológica", "Biópsias, retirada de lesões e reconstruções da pele.", "/cirurgia-dermatologica"],
+  ["Cirurgia dermatológica", "Biópsias, câncer da pele, retirada de lesões e reconstruções.", "/cirurgia-dermatologica"],
   ["Cabelos e couro cabeludo", "Queda capilar, alopecias, doenças do couro cabeludo e transplante.", "/cabelo"],
   ["Doenças das unhas", "Micose, unha encravada, inflamações, tumores e cirurgia ungueal.", "/unhas"],
   ["Doenças inflamatórias", "Psoríase, dermatite atópica, hidradenite e doenças autoimunes.", "/doencas-inflamatorias"],
@@ -32,48 +50,102 @@ function LineIcon({ type }: { type: string }) {
   return <svg className="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d={paths[type]} /></svg>;
 }
 
+// Fonte única: alimenta os <details> visíveis E o FAQPage. Uma pergunta nova
+// aqui aparece nos dois, então o schema não pode divergir do texto da página.
+// Respostas em texto puro: acceptedAnswer.text não aceita marcação.
+const practicalFaq: [string, string][] = [
+  ["Qual é o horário de atendimento?", "A clínica atende de segunda a sexta, das 8h às 21h, e aos sábados, das 8h às 13h, sempre com hora marcada."],
+  ["Como escolher o dermatologista adequado?", "Conte brevemente sua queixa pelo WhatsApp. Nossa equipe indicará o profissional com a área de atuação mais adequada."],
+  ["A clínica atende planos de saúde?", "O atendimento é particular. Emitimos nota fiscal e documentos médicos para solicitação de reembolso, conforme as regras do seu plano."],
+  ["Há atendimento por telemedicina?", "Alguns casos podem ser avaliados por telemedicina em todo o Brasil. Procedimentos e exames físicos exigem atendimento presencial."],
+  ["Quais idiomas estão disponíveis?", "A equipe oferece atendimento em português, espanhol, inglês, francês e alemão, conforme disponibilidade do profissional."],
+];
+
+// Páginas de condição específica, que fora daqui só recebem link do mega-menu.
+// Os mesmos rótulos e hrefs existem em ui.tsx (children de `specialties`); se um
+// terceiro consumidor aparecer, extrair os dois para um módulo compartilhado.
+const conditionLinks: [string, string][] = [
+  ["câncer da pele", "/cancer-de-pele"],
+  ["cirurgia com controle de margens", "/cirurgia-controle-de-margens"],
+  ["biópsia", "/biopsia"],
+  ["psoríase", "/psoriase"],
+  ["dermatite atópica", "/dermatite-atopica"],
+  ["hidradenite supurativa", "/hidradenite"],
+  ["vitiligo", "/vitiligo"],
+];
+
+// A clínica é uma entidade só (clinicNode), descrita aqui com o que é próprio da
+// home: quem trabalha nela e o que ela oferece. Ambos derivam dos arrays que a
+// página já renderiza, para não criar uma segunda cópia dos mesmos fatos.
+//
+// Sem aggregateRating de propósito: MedicalClinic é subtipo de LocalBusiness,
+// que o Google excluiu dos review snippets — a marcação não pode gerar estrelas e
+// é review markup autoatribuído. O 5,0/142 visível na página, com link para a
+// fonte, é a forma honesta de dizer a mesma coisa.
 const clinicSchema = {
   "@context": "https://schema.org",
-  "@type": "MedicalClinic",
-  name: "Clínica QARA",
-  description: "Clínica dermatológica em Copacabana: dermatologia clínica e cirúrgica, cabelos, unhas, doenças inflamatórias, dermatopediatria e dermatologia estética.",
-  url: "https://clinicaqara.com.br",
-  image: "https://clinicaqara.com.br/images/qara-atendimento.webp",
-  telephone: clinicContact.telephone,
-  medicalSpecialty: "Dermatology",
-  identifier: "CRM-RJ 1285041",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Rua Santa Clara, 50 — salas 521/522",
-    addressLocality: "Rio de Janeiro",
-    addressRegion: "RJ",
-    postalCode: "22041-012",
-    addressCountry: "BR",
+  ...clinicNode(),
+  // Só nome, área e url do perfil: CRM e RQE vivem em /equipe/[slug] e a url já
+  // liga as duas entidades.
+  employee: specialists.map(([name, area, key]) => ({
+    "@type": "Physician",
+    name,
+    description: area,
+    url: `${SITE_URL}/equipe/${slugs[key]}`,
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Especialidades dermatológicas",
+    itemListElement: services.map(([name, description, href]) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name, description, url: `${SITE_URL}${href}` },
+    })),
   },
-  geo: { "@type": "GeoCoordinates", latitude: -22.9716311, longitude: -43.1868668 },
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "5.0", reviewCount: 141 },
-  email: clinicContact.email,
-  openingHoursSpecification: [
-    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "21:00" },
-    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "13:00" },
-  ],
-  areaServed: "Copacabana, Rio de Janeiro",
-  availableLanguage: ["pt-BR", "en", "es", "de", "fr"],
 };
+
+// A página, distinta da entidade. `about`/`mainEntity` apontam para a clínica
+// por @id em vez de redeclará-la.
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "@id": `${SITE_URL}/#webpage`,
+  url: SITE_URL,
+  name: TITLE,
+  description: DESCRIPTION,
+  inLanguage: "pt-BR",
+  isPartOf: {
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    url: SITE_URL,
+    name: "Clínica QARA",
+    inLanguage: "pt-BR",
+    publisher: { "@id": CLINIC_ID },
+  },
+  about: { "@id": CLINIC_ID },
+  mainEntity: { "@id": CLINIC_ID },
+  primaryImageOfPage: `${SITE_URL}/images/qara-hero-consulta.webp`,
+};
+
+const faqSchema = faqPageSchema(practicalFaq);
 
 export default function Home() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <Header current="/" />
     <main id="conteudo">
       <section className="craft-hero">
         <div className="hero-image" aria-hidden="true"><img src="/images/qara-hero-consulta.webp" srcSet="/images/qara-hero-consulta-640.webp 640w, /images/qara-hero-consulta-1024.webp 1024w, /images/qara-hero-consulta.webp 1672w" sizes="100vw" alt="" width={1672} height={941} fetchPriority="high" /></div>
         <div className="shell craft-hero-inner">
           <div className="craft-hero-copy">
-            <p className="kicker">Clínica QARA · Copacabana</p>
-            <h1>Conhecimento que cuida.<br />Presença que transforma.</h1>
+            <p className="kicker">Clínica QARA · Copacabana, Rio de Janeiro</p>
+            {/* A coluna do hero tem ~460px: a 72px (≥1440px) "em Copacabana." não
+                cabe em uma linha e "em" fica órfão. Não usar nbsp aqui — torna a
+                frase inquebrável e o navegador parte "Copacaba/na." no meio. */}
+            <h1>Conhecimento que cuida.<br />Dermatologia em Copacabana.</h1>
             <span className="hero-rule" aria-hidden="true" />
-            <p className="lead">Dermatologia clínica e cirúrgica com precisão técnica e sensibilidade humana para cuidar do que há de mais autêntico em você.</p>
+            <p className="lead">Presença que transforma. Diagnóstico preciso, conduta baseada em evidências e acompanhamento com o mesmo especialista.</p>
             <div className="actions">
               <a className="button craft-primary" href={appointmentLinks.home} data-conversion-event="whatsapp_click" data-conversion-placement="hero" data-conversion-variant="schedule" data-conversion-context="home">Agendar pelo WhatsApp</a>
               <a className="quiet-link" href="#cuidados">Ver especialidades <span>↓</span></a>
@@ -83,35 +155,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="assurance-bar" aria-label="Informações essenciais"><div className="shell"><p><strong>Copacabana</strong><span>Rua Santa Clara, próximo ao metrô</span></p><p><strong>Atendimento particular</strong><span>Nota fiscal e documentação para reembolso</span></p><p><strong>Português, inglês e espanhol</strong><span>Alemão e francês conforme o especialista</span></p></div></section>
+      <section className="assurance-bar" aria-label="Informações essenciais"><div className="shell"><p><strong>Copacabana · Zona Sul</strong><span>Rua Santa Clara, 50 · próximo ao metrô Siqueira Campos</span></p><p><strong>Atendimento particular</strong><span>Nota fiscal e documentação para reembolso</span></p><p><strong>Português, inglês e espanhol</strong><span>Alemão e francês conforme o especialista</span></p></div></section>
 
-      <section className="journey-section" id="jornada"><div className="shell journey-grid"><div><h2>Uma consulta organizada para compreender antes de tratar.</h2><p>A avaliação relaciona sintomas, histórico, exame dermatológico e, quando necessário, exames complementares.</p></div><ol><li><b>1</b><div><h3>Escuta e avaliação</h3><p>Você conta o que percebe, há quanto tempo e o que já tentou. O médico examina a pele, os cabelos ou as unhas.</p></div></li><li><b>2</b><div><h3>Diagnóstico e investigação</h3><p>As hipóteses são explicadas. Dermatoscopia, tricoscopia, exames laboratoriais ou biópsia podem ser indicados.</p></div></li><li><b>3</b><div><h3>Plano e acompanhamento</h3><p>Benefícios, limites, riscos e alternativas orientam uma decisão compartilhada e o acompanhamento da evolução.</p></div></li></ol></div></section>
+      <section className="journey-section" id="jornada"><div className="shell journey-grid"><div><h2>Como funciona a consulta: compreender antes de tratar.</h2><p>A avaliação relaciona sintomas, histórico, exame dermatológico e, quando necessário, exames complementares.</p></div><ol><li><b>1</b><div><h3>Escuta e avaliação</h3><p>Você conta o que percebe, há quanto tempo e o que já tentou. O médico examina a pele, os cabelos ou as unhas.</p></div></li><li><b>2</b><div><h3>Diagnóstico e investigação</h3><p>As hipóteses são explicadas. Dermatoscopia, tricoscopia, exames laboratoriais ou biópsia podem ser indicados.</p></div></li><li><b>3</b><div><h3>Plano e acompanhamento</h3><p>Benefícios, limites, riscos e alternativas orientam uma decisão compartilhada e o acompanhamento da evolução.</p></div></li></ol></div></section>
 
       <section className="care-strip" id="cuidados">
         <div className="shell care-grid">
-          <div className="care-intro"><h2>Encontre a área adequada para sua necessidade.</h2><p>Se houver dúvida, conte brevemente sua queixa pelo WhatsApp e nossa equipe orienta a escolha do profissional.</p></div>
-          <div className="care-list">{services.map(([title,text,href]) => <Link className="care-item" href={href} key={title}><div><h3>{title}</h3><p>{text}</p></div><b aria-hidden="true">→</b></Link>)}</div>
+          <div className="care-intro"><h2>Encontre a especialidade adequada para o seu caso.</h2><p>Se houver dúvida, conte brevemente sua queixa pelo WhatsApp e nossa equipe orienta a escolha do profissional.</p></div>
+          {/* A nota acompanha a lista dentro da mesma célula do grid: como irmã
+              direta ela cairia numa linha nova, a 100px de distância. E fora da
+              lista porque .care-item já é um <a> — link dentro de link é inválido. */}
+          <div>
+            <div className="care-list">{services.map(([title,text,href]) => <Link className="care-item" href={href} key={title}><div><h3>{title}</h3><p>{text}</p></div><b aria-hidden="true">→</b></Link>)}</div>
+            <p className="care-note">Casos específicos: {conditionLinks.map(([label, href], index) => <span key={href}>{index > 0 && (index === conditionLinks.length - 1 ? " e " : ", ")}<Link href={href}>{label}</Link></span>)}.</p>
+          </div>
         </div>
       </section>
 
       <section className="precision-section">
         <div className="shell precision-grid">
-          <div className="precision-intro"><h2>Precisão técnica.<br />Cuidado integral.<br />Decisões seguras.</h2><span className="dark-rule" /><p>Ciência, tecnologia e experiência para oferecer tratamentos individualizados, sempre com ética, segurança e naturalidade.</p></div>
+          <div className="precision-intro"><h2>Precisão técnica.<br />Cuidado integral.<br />Decisões seguras.</h2><span className="dark-rule" /><p>Condutas baseadas em evidências, estrutura adequada para procedimentos e decisão compartilhada em cada etapa.</p></div>
           <div className="principles">
             <article><LineIcon type="skin" /><h3>Abordagem individualizada</h3><p>Cada pele, história e objetivo são únicos.</p></article>
             <article><LineIcon type="book" /><h3>Atualização científica</h3><p>Condutas baseadas em evidências e avaliação cuidadosa.</p></article>
             <article><LineIcon type="heart" /><h3>Presença em todas as etapas</h3><p>O especialista que investiga seu caso é o mesmo que acompanha a evolução, com hora marcada e canal direto de resposta.</p></article>
-            <article><LineIcon type="shield" /><h3>Segurança em primeiro lugar</h3><p>Estrutura e protocolos para consultas e procedimentos.</p></article>
+            <article><LineIcon type="shield" /><h3>Segurança em procedimentos</h3><p>Estrutura, materiais e protocolos definidos para cada procedimento.</p></article>
           </div>
         </div>
       </section>
 
       <section className="section shell" id="especialistas">
-        <div className="specialist-lead"><div><p className="kicker">Corpo clínico</p><h2>Nossos especialistas</h2><p>Conheça a formação e a principal área de atuação de cada dermatologista.</p></div>
+        <div className="specialist-lead"><div><p className="kicker">Corpo clínico</p><h2>Dermatologistas da Clínica QARA</h2><p>Conheça a formação e a principal área de atuação de cada dermatologista.</p></div>
         <div className="craft-specialists">
           {specialists.map(([name,area,key,src]) => <article key={name}>
             <div className={`doctor-image doctor-${key}`}><img src={src} srcSet={portraitSrcSet[src]} sizes={portraitSrcSet[src] && "(max-width: 620px) 90vw, (max-width: 900px) 45vw, 240px"} alt={`Retrato profissional de ${name}`} width={1000} height={1300} loading="lazy" decoding="async" /></div>
-            <h3>{name}</h3><p>{area}</p><a href={`/equipe/${slugs[key]}`}>Conheça o especialista <span>→</span></a>
+            <h3><a href={`/equipe/${slugs[key]}`}>{name}</a></h3><p>{area}</p><a href={`/equipe/${slugs[key]}`}>Conheça o especialista <span>→</span></a>
           </article>)}
         </div></div>
       </section>
@@ -134,26 +212,37 @@ export default function Home() {
             <p>Avaliações públicas de pacientes no Google e no Doctoralia. Experiências individuais não substituem avaliação médica.</p>
           </div>
           <div className="quotes-grid">
-            <blockquote><p>Dr Diego Galvez é um excelente profissional, minha cicatriz ficou imperceptível!</p><footer>Marcus Vinícius · Avaliação pública no Google</footer></blockquote>
-            <blockquote><p>Fui muito bem atendida. Dr. Miguel foi muito didático ao me explicar tudo sobre o que eu tinha e me deu toda orientação.</p><footer>Dalva Maria do Bomfim Lopes · Avaliação pública no Google</footer></blockquote>
-            <blockquote><p>Muito profissional, atenciosa e extremamente dedicada. Explica tudo nos mín detalhes, transmite segurança e passa uma tranquilidade que faz toda a diferença.</p><footer>Cristiane Taverna · Avaliação pública no Doctoralia</footer></blockquote>
+            {/* Citações de fontes públicas: são palavras de paciente, não copy
+                da clínica, e nenhuma pode afirmar resultado (DESIGN.md:262).
+                Palavra alguma é alterada; só a pontuação é normalizada quando o
+                original não tem (a 1ª usava quebra de linha em vez de ponto).
+                Grafia do paciente fica — ver "nos mín detalhes" na 3ª.
+
+                O espaço antes do "·" é U+00A0 (não separável), e é por isso
+                que o footer é string e não texto solto: sem ele, o nome longo
+                quebra com o separador abrindo a linha de baixo, que lê como
+                marcador de lista. Colado ao nome, a única quebra possível é
+                depois dele — e o text-wrap: balance escolhe onde. */}
+            <blockquote><p>Amei a experiência!! Ótimos profissionais e muito atenciosos. Confio de olhos fechados!!!</p><footer>{"Mariana · Avaliação pública no Google"}</footer></blockquote>
+            <blockquote><p>Fui muito bem atendida. Dr. Miguel foi muito didático ao me explicar tudo sobre o que eu tinha e me deu toda orientação.</p><footer>{"Dalva Maria do Bomfim Lopes · Avaliação pública no Google"}</footer></blockquote>
+            <blockquote><p>Muito profissional, atenciosa e extremamente dedicada. Explica tudo nos mín detalhes, transmite segurança e passa uma tranquilidade que faz toda a diferença.</p><footer>{"Cristiane Taverna · Avaliação pública no Doctoralia"}</footer></blockquote>
           </div>
           <div className="rating-row">
-            <a href={clinicMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Google, 141 avaliações (abre em nova aba)">
+            <a href={clinicMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Google, 142 avaliações (abre em nova aba)">
               <span className="rating-stars" aria-hidden="true">★★★★★</span>
               <b>5,0</b>
-              <span>141 avaliações no Google</span>
+              <span>142 avaliações no Google</span>
             </a>
-            <a href={clinicContact.doctoraliaUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Doctoralia, 583 opiniões (abre em nova aba)">
+            <a href={clinicContact.doctoraliaUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Doctoralia, 589 opiniões (abre em nova aba)">
               <img src="/images/doctoralia.webp" alt="Doctoralia" width={124} height={22} loading="lazy" decoding="async" />
               <span className="rating-stars" aria-hidden="true">★★★★★</span>
               <b>5,0</b>
-              <span>583 opiniões</span>
+              <span>589 opiniões</span>
             </a>
           </div>
         </div>
       </section>
-      <section className="practical-section shell"><div><h2>Informações práticas.</h2></div><div className="practical-list"><details><summary>Qual é o horário de atendimento?</summary><p>A clínica atende de segunda a sexta, das 8h às 21h, e aos sábados, das 8h às 13h, sempre com hora marcada.</p></details><details><summary>Como escolher o especialista?</summary><p>Conte brevemente sua queixa pelo WhatsApp. Nossa equipe indicará o profissional com a área de atuação mais adequada.</p></details><details><summary>A clínica atende planos de saúde?</summary><p>O atendimento é particular. Emitimos nota fiscal e documentos médicos para solicitação de reembolso, conforme as regras do seu plano.</p></details><details><summary>Há atendimento por telemedicina?</summary><p>Alguns casos podem ser avaliados por telemedicina em todo o Brasil. Procedimentos e exames físicos exigem atendimento presencial.</p></details><details><summary>Quais idiomas estão disponíveis?</summary><p>A equipe oferece atendimento em português, espanhol, inglês, francês e alemão, conforme disponibilidade do profissional.</p></details></div></section>
+      <section className="practical-section shell"><div><h2>Informações práticas.</h2></div><div className="practical-list">{practicalFaq.map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
       <section className="location-section"><div className="shell location-grid"><div><h2>Copacabana, Rio de Janeiro.</h2><p>Rua Santa Clara, 50 · salas 521/522<br />Próximo ao metrô Siqueira Campos.</p><a href={clinicMapsUrl} target="_blank" rel="noreferrer" data-conversion-event="maps_click" data-conversion-placement="contact" data-conversion-variant="maps" data-conversion-context="home">Abrir no Google Maps <span>→</span></a></div><div className="map-art"><iframe src={clinicContact.mapsEmbedUrl} title="Mapa da Clínica QARA em Copacabana" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div></section>
       <CtaBand />
     </main>
