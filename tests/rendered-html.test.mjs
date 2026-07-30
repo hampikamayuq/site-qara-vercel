@@ -211,10 +211,16 @@ test("ships responsive variants for every blog cover", async () => {
   }
 });
 
-test("does not present a medical specialty as Dr. Fabrício's RQE", async () => {
+test("never presents a medical specialty where an RQE belongs", async () => {
   const source = await readFile(new URL("../app/blog/article-evidence.ts", import.meta.url), "utf8");
   assert.doesNotMatch(source, /rqe:"Dermatologista e pediatra"/);
-  assert.match(source, /qualification:"Dermatologista e pediatra"/);
+  // A asserção positiva antes exigia a qualification do Dr. Fabrício, porque ele
+  // assinava os artigos de dermatopediatria. A clínica atribuiu esses artigos ao
+  // Dr. Diego Gálvez, então o pino de nome morreu — mas a regra que ele guardava
+  // não: nenhum rqe pode carregar texto de especialidade, de quem for a autoria.
+  const rqes = [...source.matchAll(/rqe:"([^"]*)"/g)].map(([, value]) => value);
+  assert.ok(rqes.length > 0, "evidence records should still declare RQEs");
+  for (const rqe of rqes) assert.match(rqe, /^RQE\s+\S+$/, `rqe inválido: ${rqe}`);
 });
 
 test("renders only the approved conversion contract across public conversion routes", async () => {
