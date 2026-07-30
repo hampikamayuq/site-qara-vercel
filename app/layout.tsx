@@ -6,21 +6,27 @@ import { GclidCapture } from "./gclid-capture";
 import { DocumentLanguage } from "./document-language";
 import { GoogleTagManager } from "./gtm";
 import { WhatsAppFloatingButton } from "./whatsapp-float";
+import { DEFAULT_OG_IMAGE, OG_BASE, SITE_URL } from "./seo";
 
+// Só defaults globais. Deliberadamente sem `alternates`: canonical e hreflang
+// são herdados por qualquer rota que não declare os seus, e uma rota herdando o
+// canonical da home afirma que ela e a home são a mesma URL. Sem a chave aqui,
+// quem esquecer fica sem canonical (o Google auto-canonicaliza) em vez de com um
+// errado. Cada rota indexável declara o seu.
+//
+// openGraph.title/description também estão ausentes de propósito: o Next os
+// preenche a partir do title/description resolvidos da página.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://clinicaqara.com.br"),
+  metadataBase: new URL(SITE_URL),
   title: "Clínica QARA | Dermatologia em Copacabana",
   description: "Dermatologia clínica e cirúrgica, cabelos, unhas e doenças inflamatórias com atendimento especializado em Copacabana.",
   icons: { icon: "/favicon.ico" },
-  alternates: { canonical: "/", languages: { "pt-BR": "/", en: "/en", es: "/es", "x-default": "/" } },
-  openGraph: {
-    type: "website",
-    siteName: "Clínica QARA",
-    locale: "pt_BR",
-    title: "Clínica QARA | Dermatologia em Copacabana",
-    description: "Dermatologia clínica e cirúrgica, cabelos, unhas e doenças inflamatórias com atendimento especializado em Copacabana.",
-    images: [{ url: "/images/qara-atendimento.webp", width: 1460, height: 973, alt: "Atendimento na Clínica QARA" }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
+  openGraph: { ...OG_BASE, images: [DEFAULT_OG_IMAGE] },
   twitter: { card: "summary_large_image" },
 };
 

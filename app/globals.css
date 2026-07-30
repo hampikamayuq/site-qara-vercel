@@ -387,6 +387,9 @@ blockquote footer { color: var(--qara-copy); font-size: .75rem; }
 .lang-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 2px; }
 .lang-tags span { border: 1px solid var(--qara-gray-200); border-radius: 999px; color: var(--qara-copy); font-size: .66rem; font-weight: 600; letter-spacing: .06em; padding: 3px 9px; }
 .craft-specialists a, .clinic-story a { color: var(--qara-focus); font-size: .875rem; font-weight: 600; }
+/* O nome é o anchor text do perfil, mas continua lendo como título. */
+.craft-specialists h3 a { color: inherit; font: inherit; }
+.craft-specialists h3 a:hover { color: var(--qara-focus); }
 .clinic-story { background: var(--qara-taupe-deep); color: white; }
 .clinic-story-grid { display: grid; grid-template-columns: .72fr 1.35fr .55fr; min-height: 520px; }
 .clinic-story-grid > div:first-child { align-self: center; padding: 60px 60px 60px 0; }
@@ -464,6 +467,9 @@ body:has(.mega-menu[open])::before, body:has(.mobile-menu[open])::before { anima
 .care-intro { position: sticky; top: 130px; }
 .care-intro h2 { font-size: clamp(2rem,3.8vw,3.6rem); }
 .care-intro > p:last-child { color: var(--qara-copy); max-width: 42ch; }
+.care-note { color: var(--qara-copy); font-size: .875rem; line-height: 1.6; margin-top: 26px; }
+.care-note a { border-bottom: 1px solid var(--qara-gray-200); color: var(--qara-focus); font-weight: 600; transition: border-color .2s ease-out; }
+.care-note a:hover { border-color: var(--qara-focus); }
 .care-list { display: grid; grid-template-columns: 1fr 1fr; }
 .care-item { align-items: start; border-left: 0; border-top: 1px solid var(--qara-gray-200); display: grid; gap: 18px; grid-template-columns: 1fr 24px; min-height: 178px; padding: 26px 24px 26px 0; position: relative; transition: background-color .2s ease-out; }
 .care-item:hover { background: var(--qara-blush-soft); }

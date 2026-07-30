@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { clinicMapsUrl, Footer, Header, portraitSrcSet } from "./ui";
 import { clinicContact, whatsappHref } from "./clinic-links";
+import { clinicNode, faqPageSchema } from "./seo";
 
 export type IntlContent = {
   path: string; ogLocale: string;
@@ -23,23 +24,11 @@ export type IntlContent = {
 
 export function InternationalPage({ c }: { c: IntlContent }) {
   const locale = c.path === "/en" ? "en" : "es";
-  const clinicSchema = {
-    "@context": "https://schema.org", "@type": "MedicalClinic",
-    name: "Clínica QARA", url: `https://clinicaqara.com.br${c.path}`,
-    telephone: clinicContact.telephone, email: clinicContact.email,
-    medicalSpecialty: "Dermatology",
-    address: { "@type": "PostalAddress", streetAddress: "Rua Santa Clara, 50 — salas 521/522", addressLocality: "Rio de Janeiro", addressRegion: "RJ", postalCode: "22041-012", addressCountry: "BR" },
-    geo: { "@type": "GeoCoordinates", latitude: -22.9716311, longitude: -43.1868668 },
-    availableLanguage: ["pt-BR", "en", "es", "de", "fr"],
-    openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "21:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "13:00" },
-    ],
-  };
-  const faqSchema = {
-    "@context": "https://schema.org", "@type": "FAQPage",
-    mainEntity: c.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
-  };
+  // A clínica é uma entidade só: estas rotas publicam o mesmo nó que '/', com o
+  // mesmo @id e a mesma url canônica. Antes o endereço, o horário e a geo eram
+  // reescritos aqui à mão, e o nó saía mais magro e com url própria.
+  const clinicSchema = { "@context": "https://schema.org", ...clinicNode() };
+  const faqSchema = faqPageSchema(c.faq);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }} />

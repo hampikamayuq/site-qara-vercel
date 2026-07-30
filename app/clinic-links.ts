@@ -9,6 +9,7 @@ export const clinicContact = Object.freeze({
   mapsUrl: "https://maps.app.goo.gl/uRAQvNVj4cGekVDB9",
   mapsEmbedUrl: "https://www.google.com/maps?q=Cl%C3%ADnica%20QARA%2C%20Rua%20Santa%20Clara%2050%2C%20Copacabana%2C%20Rio%20de%20Janeiro&z=17&output=embed",
   doctoraliaUrl: "https://www.doctoralia.com.br/clinicas/clinica-qara-2",
+  instagramUrl: "https://instagram.com/qaraclinica",
 });
 
 export function whatsappHref(message: string): string {
