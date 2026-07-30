@@ -24,6 +24,24 @@ const STAGGER_GROUPS = [
 
 const HERO_MEDIA = ".hero-image, .hero-visual, .hero-media, .specialty-portrait";
 
+// Opções do observer, como constantes porque a checagem de altura abaixo depende
+// exatamente delas: se uma mudar sem a outra, o cálculo mente.
+const REVEAL_THRESHOLD = 0.08;
+const REVEAL_ROOT_INSET = 0.09;
+
+// O threshold é uma proporção do próprio alvo, então alvo muito mais alto que a
+// viewport nunca o alcança: a seção de 9.300px do /blog chega a 6% de si mesma em
+// tela de 640px e ficaria em opacity 0 para sempre — página em branco. Perto do
+// limite (8,3% em tela de 844px) ela só cruza o threshold depois de ~2.000px de
+// rolagem, o que é o mesmo defeito mais devagar. Sem margem confortável não há
+// animação a fazer: o alvo entra visível e os filhos seguem animando.
+const canReveal = (element: Element) => {
+  const height = element.getBoundingClientRect().height;
+  if (!height) return true;
+  const rootHeight = window.innerHeight * (1 - REVEAL_ROOT_INSET);
+  return rootHeight / height >= REVEAL_THRESHOLD * 1.25;
+};
+
 export function MotionController() {
   useEffect(() => {
     const root = document.documentElement;
@@ -40,12 +58,13 @@ export function MotionController() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -9%", threshold: 0.08 },
+      { rootMargin: `0px 0px -${REVEAL_ROOT_INSET * 100}%`, threshold: REVEAL_THRESHOLD },
     );
 
     const observe = (element: Element, variant: string, index = 0) => {
       if (observed.has(element)) return;
       observed.add(element);
+      if (!canReveal(element)) return;
       element.classList.add("motion-item", variant);
       if (element instanceof HTMLElement) element.style.setProperty("--motion-index", String(Math.min(index, 7)));
       observer.observe(element);
