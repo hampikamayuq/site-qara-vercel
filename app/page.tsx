@@ -212,10 +212,12 @@ export default function Home() {
             <p>Avaliações públicas de pacientes no Google e no Doctoralia. Experiências individuais não substituem avaliação médica.</p>
           </div>
           <div className="quotes-grid">
-            {/* Citações transcritas verbatim das fontes públicas, inclusive
-                pontuação e grafia: são palavras de paciente, não copy da
-                clínica. Nenhuma pode afirmar resultado (DESIGN.md:262). */}
-            <blockquote><p>Amei a experiência!! Ótimos profissionais e muito atenciosos<br />Confio de olhos fechados !!!</p><footer>Mariana · Avaliação pública no Google</footer></blockquote>
+            {/* Citações de fontes públicas: são palavras de paciente, não copy
+                da clínica, e nenhuma pode afirmar resultado (DESIGN.md:262).
+                Palavra alguma é alterada; só a pontuação é normalizada quando o
+                original não tem (a 1ª usava quebra de linha em vez de ponto).
+                Grafia do paciente fica — ver "nos mín detalhes" na 3ª. */}
+            <blockquote><p>Amei a experiência!! Ótimos profissionais e muito atenciosos. Confio de olhos fechados!!!</p><footer>Mariana · Avaliação pública no Google</footer></blockquote>
             <blockquote><p>Fui muito bem atendida. Dr. Miguel foi muito didático ao me explicar tudo sobre o que eu tinha e me deu toda orientação.</p><footer>Dalva Maria do Bomfim Lopes · Avaliação pública no Google</footer></blockquote>
             <blockquote><p>Muito profissional, atenciosa e extremamente dedicada. Explica tudo nos mín detalhes, transmite segurança e passa uma tranquilidade que faz toda a diferença.</p><footer>Cristiane Taverna · Avaliação pública no Doctoralia</footer></blockquote>
           </div>
