@@ -80,7 +80,7 @@ const conditionLinks: [string, string][] = [
 //
 // Sem aggregateRating de propósito: MedicalClinic é subtipo de LocalBusiness,
 // que o Google excluiu dos review snippets — a marcação não pode gerar estrelas e
-// é review markup autoatribuído. O 5,0/141 visível na página, com link para a
+// é review markup autoatribuído. O 5,0/142 visível na página, com link para a
 // fonte, é a forma honesta de dizer a mesma coisa.
 const clinicSchema = {
   "@context": "https://schema.org",
@@ -212,20 +212,24 @@ export default function Home() {
             <p>Avaliações públicas de pacientes no Google e no Doctoralia. Experiências individuais não substituem avaliação médica.</p>
           </div>
           <div className="quotes-grid">
+            {/* Citações transcritas verbatim das fontes públicas, inclusive
+                pontuação e grafia: são palavras de paciente, não copy da
+                clínica. Nenhuma pode afirmar resultado (DESIGN.md:262). */}
+            <blockquote><p>Amei a experiência!! Ótimos profissionais e muito atenciosos<br />Confio de olhos fechados !!!</p><footer>Mariana · Avaliação pública no Google</footer></blockquote>
             <blockquote><p>Fui muito bem atendida. Dr. Miguel foi muito didático ao me explicar tudo sobre o que eu tinha e me deu toda orientação.</p><footer>Dalva Maria do Bomfim Lopes · Avaliação pública no Google</footer></blockquote>
             <blockquote><p>Muito profissional, atenciosa e extremamente dedicada. Explica tudo nos mín detalhes, transmite segurança e passa uma tranquilidade que faz toda a diferença.</p><footer>Cristiane Taverna · Avaliação pública no Doctoralia</footer></blockquote>
           </div>
           <div className="rating-row">
-            <a href={clinicMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Google, 141 avaliações (abre em nova aba)">
+            <a href={clinicMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Google, 142 avaliações (abre em nova aba)">
               <span className="rating-stars" aria-hidden="true">★★★★★</span>
               <b>5,0</b>
-              <span>141 avaliações no Google</span>
+              <span>142 avaliações no Google</span>
             </a>
-            <a href={clinicContact.doctoraliaUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Doctoralia, 583 opiniões (abre em nova aba)">
+            <a href={clinicContact.doctoraliaUrl} target="_blank" rel="noopener noreferrer" aria-label="Nota 5,0 no Doctoralia, 589 opiniões (abre em nova aba)">
               <img src="/images/doctoralia.webp" alt="Doctoralia" width={124} height={22} loading="lazy" decoding="async" />
               <span className="rating-stars" aria-hidden="true">★★★★★</span>
               <b>5,0</b>
-              <span>583 opiniões</span>
+              <span>589 opiniões</span>
             </a>
           </div>
         </div>

@@ -32,7 +32,7 @@ test("renders local SEO schema and social cards on the homepage", async () => {
   assert.doesNotMatch(html, /codex-preview/);
   // Sem aggregateRating de propósito: MedicalClinic é subtipo de LocalBusiness,
   // excluído dos review snippets do Google, e a marcação seria autoatribuída.
-  // O 5,0/141 visível, com link para a fonte, continua na página.
+  // O 5,0/142 visível, com link para a fonte, continua na página.
   assert.doesNotMatch(html, /"aggregateRating"/);
   assert.match(html, /"geo":\{"@type":"GeoCoordinates"/);
   assert.match(html, /"postalCode":"22041-012"/);
