@@ -16,6 +16,8 @@ const data: Specialty = {
   eyebrow: "Biópsia de pele",
   title: "Biópsia de pele para um diagnóstico preciso.",
   lead: "Coleta de uma pequena amostra de pele, unha ou couro cabeludo para análise ao microscópio, em procedimento breve com anestesia local, em Copacabana. Atendimento particular, com nota fiscal para reembolso.",
+  heroImage: "/images/specialties/biopsia.webp",
+  heroImageAlt: "Dermatologista preparando uma biópsia de pele no antebraço de uma paciente",
   introTitle: "Quando o diagnóstico precisa do exame do tecido.",
   intro: [
     "Algumas lesões e doenças da pele se parecem muito entre si. Quando o exame clínico e a dermatoscopia não bastam para esclarecer o diagnóstico, a biópsia (a retirada de uma pequena amostra para análise ao microscópio) costuma ser o caminho mais seguro para definir a conduta.",

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Breadcrumb, CtaBand, Footer, Header, portraitSrcSet } from "./ui";
 import { appointmentHrefForPath } from "./clinic-links";
 
-export type Specialty = { eyebrow:string; title:string; lead:string; introTitle:string; intro:string[]; topics:[string,string][]; process:[string,string][]; doctor:string; credential:string; doctorText:string; doctorImage:string; faq:[string,string][]; related:[string,string][]; team?:[doctor:string, credential:string, doctorImage:string, reason:string][] };
+export type Specialty = { eyebrow:string; title:string; lead:string; introTitle:string; intro:string[]; topics:[string,string][]; process:[string,string][]; doctor:string; credential:string; doctorText:string; doctorImage:string; heroImage?:string; heroImageAlt?:string; faq:[string,string][]; related:[string,string][]; team?:[doctor:string, credential:string, doctorImage:string, reason:string][] };
 
 function slugifyDoctor(name: string) {
   return name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\./g, "").replace(/\s+/g, "-");
@@ -12,6 +12,10 @@ function slugifyDoctor(name: string) {
 export function SpecialtyTemplate({data, path, feature, children}:{data:Specialty; path?:string; feature?:ReactNode; children?:ReactNode}) {
   const specialty = path?.replace(/^\//, "");
   const appointmentHref = appointmentHrefForPath(path);
+  const heroImage = data.heroImage ?? data.doctorImage;
+  const heroSrcSet = data.heroImage
+    ? `${data.heroImage.replace(/\.webp$/, "-640.webp")} 640w, ${data.heroImage} 1122w`
+    : portraitSrcSet[data.doctorImage];
   const schema = path ? {
     "@context":"https://schema.org","@type":"MedicalWebPage",
     name:data.title,description:data.lead,inLanguage:"pt-BR",
@@ -24,7 +28,7 @@ export function SpecialtyTemplate({data, path, feature, children}:{data:Specialt
     mainEntity:data.faq.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}})),
   } : null;
   return <>{schema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/>}{faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>}<Header current={path}/><main id="conteudo">
-  <section className="specialty-hero" data-conversion-event="specialty_view" data-conversion-placement="hero" data-conversion-context="specialty" data-conversion-specialty={specialty}><Breadcrumb trail={[[data.eyebrow, ""]]}>{data.eyebrow}</Breadcrumb><div className="shell specialty-hero-grid"><div><p className="kicker">{data.eyebrow}</p><h1>{data.title}</h1><p className="lead">{data.lead}</p><div className="actions"><a className="button craft-primary" href={appointmentHref} data-conversion-event="whatsapp_click" data-conversion-placement="hero" data-conversion-variant="schedule" data-conversion-context="specialty" data-conversion-specialty={specialty}>Consultar horários</a><a className="quiet-link" href="#atendimentos">Ver condições atendidas ↓</a></div></div><div className={`specialty-portrait portrait-${data.doctor.split(" ")[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()}`}><img src={data.doctorImage} srcSet={portraitSrcSet[data.doctorImage]} sizes={portraitSrcSet[data.doctorImage] && "(max-width: 900px) 100vw, 45vw"} width={1000} height={1400} fetchPriority="high" alt={`${data.doctor}, dermatologista da Clínica QARA`}/></div></div></section>
+  <section className="specialty-hero" data-conversion-event="specialty_view" data-conversion-placement="hero" data-conversion-context="specialty" data-conversion-specialty={specialty}><Breadcrumb trail={[[data.eyebrow, ""]]}>{data.eyebrow}</Breadcrumb><div className="shell specialty-hero-grid"><div><p className="kicker">{data.eyebrow}</p><h1>{data.title}</h1><p className="lead">{data.lead}</p><div className="actions"><a className="button craft-primary" href={appointmentHref} data-conversion-event="whatsapp_click" data-conversion-placement="hero" data-conversion-variant="schedule" data-conversion-context="specialty" data-conversion-specialty={specialty}>Consultar horários</a><a className="quiet-link" href="#atendimentos">Ver condições atendidas ↓</a></div></div><div className={data.heroImage ? "specialty-portrait specialty-topic-image" : `specialty-portrait portrait-${data.doctor.split(" ")[1].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()}`}><img src={heroImage} srcSet={heroSrcSet} sizes={heroSrcSet && "(max-width: 900px) 100vw, 45vw"} width={1122} height={1402} fetchPriority="high" alt={data.heroImageAlt ?? `${data.doctor}, dermatologista da Clínica QARA`}/></div></div></section>
   <section className="section shell intro-split"><div><h2>{data.introTitle}</h2></div><div>{data.intro.map(p=><p key={p}>{p}</p>)}</div></section>
   {feature}
   <section className="specialty-soft" id="atendimentos"><div className="shell section"><div className="editorial-heading"><div><h2>Condições atendidas nesta especialidade.</h2></div><p>Exames e tratamentos são indicados somente após a consulta e variam conforme o diagnóstico, a saúde e os objetivos de cada paciente.</p></div><div className="procedure-list">{data.topics.map(([t,p])=><article key={t}><div><h3>{t}</h3><p>{p}</p></div></article>)}</div></div></section>

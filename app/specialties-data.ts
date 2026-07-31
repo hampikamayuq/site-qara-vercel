@@ -353,6 +353,8 @@ export const specialties: Record<string, Specialty> = {
     eyebrow: "Acne",
     title: "Tratamento da acne em cada fase da vida, antes que vire cicatriz.",
     lead: "Avaliação e tratamento da acne em adolescentes e adultos, com plano em etapas e prevenção de manchas e cicatrizes, em Copacabana, no Rio de Janeiro.",
+    heroImage: "/images/specialties/acne.webp",
+    heroImageAlt: "Paciente adulta jovem com acne em consulta dermatológica",
     introTitle: "Acne é inflamação, não falta de limpeza.",
     intro: [
       "A acne é uma condição inflamatória dos folículos, influenciada por oleosidade, hormônios e predisposição genética. Não resulta de falta de higiene; lavar o rosto em excesso pode até piorar o quadro. Na adolescência, predomina o estímulo hormonal da puberdade; no adulto, especialmente em mulheres, fatores hormonais, medicamentos e cosméticos ganham peso, e o padrão das lesões muda.",
@@ -394,6 +396,8 @@ export const specialties: Record<string, Specialty> = {
     eyebrow: "Melasma",
     title: "Controle do melasma com plano em etapas e manutenção contínua.",
     lead: "Avaliação do padrão e da profundidade do pigmento e tratamento individualizado do melasma, com estratégia de manutenção, em Copacabana, no Rio de Janeiro.",
+    heroImage: "/images/specialties/melasma.webp",
+    heroImageAlt: "Dermatologista avaliando manchas de melasma no rosto de uma paciente",
     introTitle: "Melasma é uma condição crônica da pigmentação, não uma mancha comum.",
     intro: [
       "O melasma é uma hiperpigmentação adquirida e crônica, mais comum em mulheres, com participação de predisposição genética, hormônios e exposição à luz. Os melanócitos das áreas afetadas permanecem mais reativos: não apenas o sol direto, mas também a luz visível e o calor estimulam a produção de pigmento; por isso, as manchas tendem a voltar, mesmo com protetor solar.",
@@ -431,6 +435,8 @@ export const specialties: Record<string, Specialty> = {
     eyebrow: "Rosácea",
     title: "Controle da vermelhidão e das crises de rosácea.",
     lead: "Diagnóstico preciso da rosácea, identificação de gatilhos e tratamento conforme o subtipo, com acompanhamento contínuo, em Copacabana, no Rio de Janeiro.",
+    heroImage: "/images/specialties/rosacea.webp",
+    heroImageAlt: "Dermatologista examinando a rosácea no rosto de uma paciente",
     introTitle: "Rosácea não é acne, e tratar como se fosse costuma piorar.",
     intro: [
       "A rosácea é uma condição inflamatória crônica que causa vermelhidão persistente no centro do rosto, vasos visíveis, ardor e lesões inflamadas. Diferente da acne, não costuma formar cravos, e produtos indicados para acne tendem a irritar a pele com rosácea. Como as duas condições podem inclusive coexistir, o diagnóstico correto é o que define o tratamento.",
@@ -584,6 +590,8 @@ export const specialties: Record<string, Specialty> = {
     eyebrow: "Avaliação de pintas",
     title: "Exame de pintas com dermatoscopia em toda consulta.",
     lead: "Exame dermatológico completo das pintas com dermatoscopia, avaliação do perfil de risco e indicação de biópsia quando necessária, em Copacabana, no Rio de Janeiro.",
+    heroImage: "/images/specialties/avaliacao-de-pintas.webp",
+    heroImageAlt: "Dermatologista examinando pintas no antebraço de um paciente com dermatoscópio",
     introTitle: "A maioria das pintas é benigna; o exame identifica as que não são.",
     intro: [
       "Pintas (nevos) são muito comuns e, na maior parte dos casos, benignas. O papel do exame dermatológico é identificar as lesões que fogem do padrão: pintas novas, que mudam de tamanho, forma ou cor, que coçam, sangram ou se destacam das demais, além de feridas que não cicatrizam em algumas semanas. A detecção precoce é o fator que mais muda o prognóstico do câncer da pele.",
@@ -809,6 +817,8 @@ export const specialties: Record<string, Specialty> = {
     eyebrow: "Dermatologia da gestante",
     title: "Cuidado dermatológico seguro durante a gestação e a amamentação.",
     lead: "Avaliação das alterações da pele na gravidez, ajuste seguro de tratamentos e atenção às dermatoses da gestação, em Copacabana, no Rio de Janeiro.",
+    heroImage: "/images/specialties/dermatologia-da-gestante.webp",
+    heroImageAlt: "Gestante recebendo avaliação da pele do rosto em consulta dermatológica",
     introTitle: "A gestação muda a pele, e muda o que é seguro usar nela.",
     intro: [
       "A gravidez altera a pele de formas esperadas: manchas como o melasma podem surgir ou escurecer, a acne pode piorar ou melhorar, estrias podem aparecer e a sensibilidade muda. Ao mesmo tempo, medicamentos comuns em dermatologia, incluindo alguns de uso tópico, não devem ser usados na gestação, e tratamentos em andamento muitas vezes precisam ser revistos.",
@@ -846,6 +856,8 @@ export const specialties: Record<string, Specialty> = {
     eyebrow: "Dermatologia geriátrica",
     title: "Cuidado dermatológico dedicado à pele madura.",
     lead: "Avaliação das doenças da pele no idoso: ressecamento e coceira, lesões suspeitas, unhas e fragilidade cutânea, com atenção aos medicamentos em uso, em Copacabana, no Rio de Janeiro.",
+    heroImage: "/images/specialties/dermatologia-geriatrica.webp",
+    heroImageAlt: "Dermatologista examinando a pele madura no antebraço de uma paciente idosa",
     introTitle: "A pele muda com a idade, e o cuidado precisa acompanhar.",
     intro: [
       "Com o envelhecimento, a pele fica mais fina, mais seca e mais frágil: coceira persistente, ressecamento, pequenos machucados que demoram a cicatrizar e manchas novas se tornam queixas frequentes. Ao mesmo tempo, a exposição solar acumulada ao longo da vida aumenta a importância do exame periódico das lesões: queratoses actínicas e câncer da pele são mais comuns nessa fase.",
