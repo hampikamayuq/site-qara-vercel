@@ -5,7 +5,7 @@ const feature = (
   <section className="section shell treatment-feature">
     <div>
       <h2>O estágio orienta a escolha do tratamento.</h2>
-      <p>Quanto mais cedo a doença é identificada e classificada, maior a chance de conter sua progressão e reduzir a formação de cicatrizes e trajetos mais complexos. A avaliação inclui a classificação da gravidade do quadro, que orienta a escolha entre tratamento clínico, cirúrgico ou a combinação dos dois — e evita que o paciente circule por anos entre diagnósticos equivocados.</p>
+      <p>Quanto mais cedo a doença é identificada e classificada, maior a chance de conter sua progressão e reduzir a formação de cicatrizes e trajetos mais complexos. A avaliação inclui a classificação da gravidade do quadro, que orienta a escolha entre tratamento clínico, cirúrgico ou a combinação dos dois, e evita que o paciente circule por anos entre diagnósticos equivocados.</p>
     </div>
     <div className="treatment-photo treatment-photo-diagram"><img src="/images/hidradenite/estagios-hs.webp" srcSet="/images/hidradenite/estagios-hs-640.webp 640w, /images/hidradenite/estagios-hs.webp 704w" sizes="(max-width: 900px) 100vw, 50vw" width={704} height={1024} alt="Diagrama dos estágios de gravidade da hidradenite supurativa, de leve a grave" loading="lazy" decoding="async" /></div>
   </section>

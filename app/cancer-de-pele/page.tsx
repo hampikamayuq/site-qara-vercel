@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 const data: Specialty = {
   eyebrow: "Câncer da pele",
   title: "Avaliação e tratamento do câncer da pele em Copacabana.",
-  lead: "Investigação de lesões suspeitas com dermatoscopia, biópsia e tratamento cirúrgico do câncer da pele, com atendimento particular em Copacabana, no Rio de Janeiro — em português, inglês e espanhol.",
+  lead: "Investigação de lesões suspeitas com dermatoscopia, biópsia e tratamento cirúrgico do câncer da pele, com atendimento particular em Copacabana, no Rio de Janeiro, em português, inglês e espanhol.",
   introTitle: "Identificar cedo faz diferença.",
   intro: [
-    "O câncer da pele é o tumor mais frequente no Brasil, e o Rio de Janeiro, pela exposição solar intensa e acumulada, concentra um grande número de casos. A maioria tem bom prognóstico quando identificada cedo — por isso, avaliar lesões novas ou que mudaram costuma ser um passo simples e importante.",
+    "O câncer da pele é o tumor mais frequente no Brasil, e o Rio de Janeiro, pela exposição solar intensa e acumulada, concentra um grande número de casos. A maioria tem bom prognóstico quando identificada cedo; por isso, avaliar lesões novas ou que mudaram costuma ser um passo simples e importante.",
     "Vale procurar avaliação diante de uma ferida que não cicatriza, uma pinta que muda de cor, tamanho ou formato, uma lesão que sangra, coça ou cresce, ou uma mancha que se destaca das demais. Pessoas de pele clara, com histórico familiar ou muita exposição solar merecem atenção redobrada e exame periódico das pintas.",
-    "Na Clínica QARA, a avaliação começa com exame completo da pele e dermatoscopia — o exame que amplia as estruturas da lesão. Quando indicado, a biópsia confirma o diagnóstico, e o tratamento cirúrgico é planejado com margens de segurança e análise histopatológica. O atendimento é particular, com emissão de nota fiscal para solicitação de reembolso, e disponível em português, inglês e espanhol.",
+    "Na Clínica QARA, a avaliação começa com exame completo da pele e dermatoscopia, o exame que amplia as estruturas da lesão. Quando indicado, a biópsia confirma o diagnóstico, e o tratamento cirúrgico é planejado com margens de segurança e análise histopatológica. O atendimento é particular, com emissão de nota fiscal para solicitação de reembolso, e disponível em português, inglês e espanhol.",
   ],
   topics: [
     ["Carcinoma basocelular", "O tipo mais comum de câncer da pele, geralmente de crescimento lento e baixo risco de espalhar. Costuma aparecer em áreas expostas ao sol, como rosto, orelhas e couro cabeludo, e costuma ter bom prognóstico quando tratado precocemente."],

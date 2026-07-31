@@ -59,12 +59,12 @@ export function Header({ current, conversionContext }: { current?: string; conve
     <header className="site-header">
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <div className="shell header-inner">
-        <Link className="wordmark" href="/" aria-label="Clínica QARA — Início">QARA<span>clínica dermatológica</span></Link>
+        <Link className="wordmark" href="/" aria-label="Clínica QARA, Início">QARA<span>clínica dermatológica</span></Link>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <details className="mega-menu">
             <summary>Especialidades <span aria-hidden="true">⌄</span></summary>
             <div className="mega-panel">
-              <div className="mega-guide"><p>Comece pela sua necessidade.</p><span>Se ainda não sabe qual especialista procurar, nossa equipe pode orientar.</span><a href={whatsappHref("Olá, ainda não sei qual especialista procurar — podem me orientar?")} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="guidance">Pedir orientação →</a></div>
+              <div className="mega-guide"><p>Comece pela sua necessidade.</p><span>Se ainda não sabe qual especialista procurar, nossa equipe pode orientar.</span><a href={whatsappHref("Olá, ainda não sei qual especialista procurar. Podem me orientar?")} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="guidance">Pedir orientação →</a></div>
               <div className="mega-group mega-specialties"><strong>Especialidades</strong>{specialties.map(s=><Fragment key={s.href}><Link href={s.href} aria-current={cur(s.href)}><span>{s.label}</span><small>{s.text}</small></Link>{s.children&&<div className="mega-sub">{s.children.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div>}</Fragment>)}</div>
               <div className="mega-group"><strong>Queixas frequentes</strong>{needs.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
               <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>

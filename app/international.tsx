@@ -137,17 +137,17 @@ export const enContent: IntlContent = {
   hero: {
     kicker: "Clínica QARA · Copacabana, Rio de Janeiro",
     h1: "English-speaking dermatologists in Copacabana.",
-    lead: "Clinical and surgical dermatology, hair, nails and inflammatory skin diseases — with appointments, diagnosis and follow-up conducted in English.",
+    lead: "Clinical and surgical dermatology, hair, nails and inflammatory skin diseases, with appointments, diagnosis and follow-up conducted in English.",
     cta: "Book on WhatsApp (in English)", ctaHref: WA_EN, quiet: "See our services",
   },
   siteNote: "Care is available in English; detailed service pages are in Portuguese.",
   assurance: [
-    ["Copacabana, near the metro", "Rua Santa Clara, 50 — by Siqueira Campos station"],
+    ["Copacabana, near the metro", "Rua Santa Clara, 50, by Siqueira Campos station"],
     ["Private care with invoice", "Itemized invoice (nota fiscal) for travel-insurance reimbursement claims"],
     ["English · Español · Deutsch · Français", "According to the attending physician"],
   ],
   servicesTitle: "What we treat.",
-  servicesText: "Every area is led by a dedicated dermatologist. Service pages are in Portuguese — message us in English and we will guide you.",
+  servicesText: "Every area is led by a dedicated dermatologist. Service pages are in Portuguese; message us in English and we will guide you.",
   services: [
     ["Clinical dermatology", "Acne, rosacea, spots, allergies and mole checks.", "/dermatologia-clinica"],
     ["Dermatologic surgery", "Biopsies, lesion removal and skin cancer surgery.", "/cirurgia-dermatologica"],
@@ -171,14 +171,14 @@ export const enContent: IntlContent = {
   stepsLead: "From your first message to follow-up, in your language.",
   steps: [
     ["Message us on WhatsApp", "Write in English. Tell us briefly what you need and our team will suggest the right specialist and available times."],
-    ["Visit the clinic", "Appointments are always scheduled — no walk-in queues. Bring any previous exams or a list of medications if you have them."],
+    ["Visit the clinic", "Appointments are always scheduled, with no walk-in queues. Bring any previous exams or a list of medications if you have them."],
     ["Diagnosis and follow-up", "You leave with a clear explanation and a plan. When clinically appropriate, follow-up can be done by telemedicine after you travel home."],
   ],
   faqTitle: "Frequently asked questions.",
   faq: [
     ["Do the doctors speak English?", "Yes. Dr. Diego Gálvez, Dr. Miguel Ceccarelli and Dr. Fabrício de Andrade provide care in English. Dr. Diego and Dr. Miguel also attend in Spanish, Dra. Diana Stohmann in French and Dra. Manuela Pedretti in German. Tell us your language when booking and we will match you with the right specialist."],
     ["Can I use my travel insurance?", "The clinic provides private care and issues an itemized invoice (nota fiscal) and medical documentation you can submit to your travel-insurance provider for reimbursement, according to your policy's rules."],
-    ["How do I book an appointment?", "Send us a WhatsApp message in English — the button on this page opens a conversation. Our team confirms the specialist, date and time with you."],
+    ["How do I book an appointment?", "Send us a WhatsApp message in English: the button on this page opens a conversation. Our team confirms the specialist, date and time with you."],
     ["What are the opening hours?", "Monday to Friday from 8am to 9pm, and Saturdays from 8am to 1pm, always by appointment."],
     ["Is telemedicine available?", "Some cases and follow-ups can be handled by telemedicine when clinically appropriate. Procedures and physical examinations require an in-person visit."],
   ],
@@ -186,7 +186,7 @@ export const enContent: IntlContent = {
   addressLines: ["Rua Santa Clara, 50 · rooms 521/522", "Copacabana, Rio de Janeiro"],
   hoursLabel: "Opening hours", hoursLines: ["Mon–Fri: 8am–9pm", "Sat: 8am–1pm"],
   mapsLabel: "Open in Google Maps", emailLabel: "E-mail",
-  ctaTitle: "Tell us what you need — in English.",
+  ctaTitle: "Tell us what you need, in English.",
   ctaBtn: "Chat on WhatsApp", ctaNote: "Mon–Fri 8am–9pm, Sat 8am–1pm, always by appointment.",
 };
 
@@ -195,17 +195,17 @@ export const esContent: IntlContent = {
   hero: {
     kicker: "Clínica QARA · Copacabana, Río de Janeiro",
     h1: "Dermatólogos que hablan español en Copacabana.",
-    lead: "Dermatología clínica y quirúrgica, cabello, uñas y enfermedades inflamatorias de la piel — con consulta, diagnóstico y seguimiento en español.",
+    lead: "Dermatología clínica y quirúrgica, cabello, uñas y enfermedades inflamatorias de la piel, con consulta, diagnóstico y seguimiento en español.",
     cta: "Agendar por WhatsApp (en español)", ctaHref: WA_ES, quiet: "Ver nuestros servicios",
   },
   siteNote: "La atención está disponible en español; las páginas detalladas de servicios están en portugués.",
   assurance: [
-    ["Copacabana, cerca del metro", "Rua Santa Clara, 50 — junto a la estación Siqueira Campos"],
+    ["Copacabana, cerca del metro", "Rua Santa Clara, 50, junto a la estación Siqueira Campos"],
     ["Atención particular con factura", "Factura detallada (nota fiscal) para el reembolso de su seguro de viaje"],
     ["Español · English · Deutsch · Français", "Según el médico tratante"],
   ],
   servicesTitle: "Qué tratamos.",
-  servicesText: "Cada área está a cargo de un dermatólogo dedicado. Las páginas de servicios están en portugués — escríbanos en español y lo orientamos.",
+  servicesText: "Cada área está a cargo de un dermatólogo dedicado. Las páginas de servicios están en portugués; escríbanos en español y lo orientamos.",
   services: [
     ["Dermatología clínica", "Acné, rosácea, manchas, alergias y control de lunares.", "/dermatologia-clinica"],
     ["Cirugía dermatológica", "Biopsias, extirpación de lesiones y cirugía del cáncer de piel.", "/cirurgia-dermatologica"],
@@ -229,14 +229,14 @@ export const esContent: IntlContent = {
   stepsLead: "Desde su primer mensaje hasta el seguimiento, en su idioma.",
   steps: [
     ["Escríbanos por WhatsApp", "Escriba en español. Cuéntenos brevemente qué necesita y nuestro equipo le indicará el especialista adecuado y los horarios disponibles."],
-    ["Visite la clínica", "La atención es siempre con cita previa — sin filas. Traiga exámenes anteriores o una lista de medicamentos si los tiene."],
+    ["Visite la clínica", "La atención es siempre con cita previa, sin filas. Traiga exámenes anteriores o una lista de medicamentos si los tiene."],
     ["Diagnóstico y seguimiento", "Usted sale con una explicación clara y un plan. Cuando es clínicamente apropiado, el seguimiento puede hacerse por telemedicina después de volver a su país."],
   ],
   faqTitle: "Preguntas frecuentes.",
   faq: [
     ["¿Los médicos hablan español?", "Sí. El Dr. Diego Gálvez y el Dr. Miguel Ceccarelli atienden en español e inglés. La Dra. Diana Stohmann también atiende en francés y la Dra. Manuela Pedretti en alemán. Indique su idioma al agendar y lo conectamos con el especialista adecuado."],
     ["¿Puedo usar mi seguro de viaje?", "La atención es particular y la clínica emite factura detallada (nota fiscal) y documentación médica que usted puede presentar a su seguro de viaje para reembolso, según las reglas de su póliza."],
-    ["¿Cómo agendo una consulta?", "Envíe un mensaje de WhatsApp en español — el botón de esta página abre la conversación. Nuestro equipo confirma con usted el especialista, la fecha y la hora."],
+    ["¿Cómo agendo una consulta?", "Envíe un mensaje de WhatsApp en español: el botón de esta página abre la conversación. Nuestro equipo confirma con usted el especialista, la fecha y la hora."],
     ["¿Cuál es el horario de atención?", "De lunes a viernes de 8 a 21 h, y sábados de 8 a 13 h, siempre con cita previa."],
     ["¿Hay telemedicina?", "Algunos casos y seguimientos pueden atenderse por telemedicina cuando es clínicamente apropiado. Los procedimientos y el examen físico requieren visita presencial."],
   ],
@@ -244,6 +244,6 @@ export const esContent: IntlContent = {
   addressLines: ["Rua Santa Clara, 50 · salas 521/522", "Copacabana, Río de Janeiro"],
   hoursLabel: "Horario", hoursLines: ["Lun–Vie: 8–21 h", "Sáb: 8–13 h"],
   mapsLabel: "Abrir en Google Maps", emailLabel: "Correo",
-  ctaTitle: "Cuéntenos qué necesita — en español.",
+  ctaTitle: "Cuéntenos qué necesita, en español.",
   ctaBtn: "Conversar por WhatsApp", ctaNote: "Lun–Vie 8–21 h, Sáb 8–13 h, siempre con cita previa.",
 };
