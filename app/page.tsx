@@ -59,12 +59,16 @@ const practicalFaq: [string, string][] = [
   ["A clínica atende planos de saúde?", "O atendimento é particular. Emitimos nota fiscal e documentos médicos para solicitação de reembolso, conforme as regras do seu plano."],
   ["Há atendimento por telemedicina?", "Alguns casos podem ser avaliados por telemedicina em todo o Brasil. Procedimentos e exames físicos exigem atendimento presencial."],
   ["Quais idiomas estão disponíveis?", "A equipe oferece atendimento em português, espanhol, inglês, francês e alemão, conforme disponibilidade do profissional."],
+  ["Onde fica a clínica e como chegar?", "A Clínica QARA fica na Rua Santa Clara, 50 — salas 521/522, em Copacabana, Rio de Janeiro, a poucos minutos a pé da estação de metrô Siqueira Campos. Atendemos pacientes de toda a Zona Sul e visitantes hospedados no bairro."],
 ];
 
 // Páginas de condição específica, que fora daqui só recebem link do mega-menu.
 // Os mesmos rótulos e hrefs existem em ui.tsx (children de `specialties`); se um
 // terceiro consumidor aparecer, extrair os dois para um módulo compartilhado.
 const conditionLinks: [string, string][] = [
+  ["acne", "/acne"],
+  ["rosácea", "/rosacea"],
+  ["melasma", "/melasma"],
   ["câncer da pele", "/cancer-de-pele"],
   ["cirurgia com controle de margens", "/cirurgia-controle-de-margens"],
   ["biópsia", "/biopsia"],
@@ -72,6 +76,9 @@ const conditionLinks: [string, string][] = [
   ["dermatite atópica", "/dermatite-atopica"],
   ["hidradenite supurativa", "/hidradenite"],
   ["vitiligo", "/vitiligo"],
+  ["transplante capilar", "/transplante-capilar"],
+  ["toxina botulínica", "/toxina-botulinica"],
+  ["preenchimento facial", "/preenchimento"],
 ];
 
 // A clínica é uma entidade só (clinicNode), descrita aqui com o que é próprio da
@@ -243,7 +250,7 @@ export default function Home() {
         </div>
       </section>
       <section className="practical-section shell"><div><h2>Informações práticas.</h2></div><div className="practical-list">{practicalFaq.map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
-      <section className="location-section"><div className="shell location-grid"><div><h2>Copacabana, Rio de Janeiro.</h2><p>Rua Santa Clara, 50 · salas 521/522<br />Próximo ao metrô Siqueira Campos.</p><a href={clinicMapsUrl} target="_blank" rel="noreferrer" data-conversion-event="maps_click" data-conversion-placement="contact" data-conversion-variant="maps" data-conversion-context="home">Abrir no Google Maps <span>→</span></a></div><div className="map-art"><iframe src={clinicContact.mapsEmbedUrl} title="Mapa da Clínica QARA em Copacabana" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div></section>
+      <section className="location-section"><div className="shell location-grid"><div><h2>Copacabana, Rio de Janeiro.</h2><p>Rua Santa Clara, 50 · salas 521/522<br />Próximo ao metrô Siqueira Campos.</p><p>A poucos minutos a pé do metrô, a clínica recebe pacientes de Copacabana, Leme, Ipanema, Botafogo e de toda a Zona Sul — além de visitantes hospedados no bairro.</p><a href={clinicMapsUrl} target="_blank" rel="noreferrer" data-conversion-event="maps_click" data-conversion-placement="contact" data-conversion-variant="maps" data-conversion-context="home">Abrir no Google Maps <span>→</span></a></div><div className="map-art"><iframe src={clinicContact.mapsEmbedUrl} title="Mapa da Clínica QARA em Copacabana" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div></section>
       <CtaBand />
     </main>
     <Footer />

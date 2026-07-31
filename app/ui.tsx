@@ -12,13 +12,19 @@ export function Header({ current, conversionContext }: { current?: string; conve
   const context = conversionContext ?? (current === "/en" || current === "/es" ? "international" : current === "/blog" ? "blog" : current && current !== "/" ? "specialty" : "home");
   const language = (target: "pt-BR" | "en" | "es", placement: "header" | "mobile_menu") => target === locale ? { "aria-current": "page" as const } : { "data-conversion-event": "language_change", "data-conversion-placement": placement, "data-conversion-context": context, "data-conversion-locale": locale, "data-conversion-to-locale": target };
   const specialties: readonly { label: string; href: string; text: string; children?: readonly [string, string][] }[] = [
-    { label: "Dermatologia clínica", href: "/dermatologia-clinica", text: "Acne, rosácea, manchas e pintas" },
+    { label: "Dermatologia clínica", href: "/dermatologia-clinica", text: "Acne, rosácea, manchas e pintas", children: [
+      ["Acne", "/acne"],
+      ["Rosácea", "/rosacea"],
+      ["Melasma", "/melasma"],
+    ] },
     { label: "Cirurgia dermatológica", href: "/cirurgia-dermatologica", text: "Biópsias, lesões e reconstruções", children: [
       ["Câncer da pele", "/cancer-de-pele"],
       ["Cirurgia com controle de margens", "/cirurgia-controle-de-margens"],
       ["Biópsia", "/biopsia"],
     ] },
-    { label: "Cabelos e couro cabeludo", href: "/cabelo", text: "Queda, alopecias e transplante" },
+    { label: "Cabelos e couro cabeludo", href: "/cabelo", text: "Queda, alopecias e transplante", children: [
+      ["Transplante capilar", "/transplante-capilar"],
+    ] },
     { label: "Doenças das unhas", href: "/unhas", text: "Micose, inflamações e cirurgia ungueal" },
     { label: "Doenças inflamatórias", href: "/doencas-inflamatorias", text: "Psoríase, dermatite e hidradenite", children: [
       ["Psoríase", "/psoriase"],
@@ -27,7 +33,10 @@ export function Header({ current, conversionContext }: { current?: string; conve
       ["Vitiligo", "/vitiligo"],
     ] },
     { label: "Dermatopediatria", href: "/dermatopediatria", text: "Pele de bebês, crianças e adolescentes" },
-    { label: "Dermatologia estética", href: "/dermatologia-estetica", text: "Pele, cicatrizes e envelhecimento" },
+    { label: "Dermatologia estética", href: "/dermatologia-estetica", text: "Pele, cicatrizes e envelhecimento", children: [
+      ["Toxina botulínica", "/toxina-botulinica"],
+      ["Preenchimento facial", "/preenchimento"],
+    ] },
   ];
   const needs = [
     ["Acne, rosácea e manchas", "/dermatologia-clinica"],

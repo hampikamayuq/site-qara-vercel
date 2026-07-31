@@ -22,6 +22,7 @@ export const conversionAllowlists = Object.freeze({
     "doencas-inflamatorias", "dermatopediatria", "dermatologia-estetica",
     "psoriase", "hidradenite", "vitiligo", "dermatite-atopica",
     "cancer-de-pele", "cirurgia-controle-de-margens", "biopsia",
+    "acne", "melasma", "rosacea", "transplante-capilar", "toxina-botulinica", "preenchimento",
   ]),
   article: freeze([
     "cancer-da-pele-sinais-de-alerta", "biopsia-de-pele-quando-e-indicada", "queda-de-cabelo-causas", "alopecia-androgenetica",
