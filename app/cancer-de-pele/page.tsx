@@ -16,6 +16,8 @@ const data: Specialty = {
   eyebrow: "Câncer da pele",
   title: "Avaliação e tratamento do câncer da pele em Copacabana.",
   lead: "Investigação de lesões suspeitas com dermatoscopia, biópsia e tratamento cirúrgico do câncer da pele, com atendimento particular em Copacabana, no Rio de Janeiro, em português, inglês e espanhol.",
+  heroImage: "/images/specialties/cancer-de-pele.webp",
+  heroImageAlt: "Dermatologista examinando uma lesão no antebraço de uma paciente com dermatoscópio",
   introTitle: "Identificar cedo faz diferença.",
   intro: [
     "O câncer da pele é o tumor mais frequente no Brasil, e o Rio de Janeiro, pela exposição solar intensa e acumulada, concentra um grande número de casos. A maioria tem bom prognóstico quando identificada cedo; por isso, avaliar lesões novas ou que mudaram costuma ser um passo simples e importante.",
