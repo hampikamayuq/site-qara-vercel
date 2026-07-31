@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import Link from "next/link";
 import { appointmentHrefForPath, appointmentLinks, clinicContact, whatsappHref } from "./clinic-links";
 
@@ -65,9 +65,11 @@ export function Header({ current, conversionContext }: { current?: string; conve
             <summary>Especialidades <span aria-hidden="true">⌄</span></summary>
             <div className="mega-panel">
               <div className="mega-guide"><p>Comece pela sua necessidade.</p><span>Se ainda não sabe qual especialista procurar, nossa equipe pode orientar.</span><a href={whatsappHref("Olá, ainda não sei qual especialista procurar. Podem me orientar?")} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="guidance">Pedir orientação →</a></div>
-              <div className="mega-group mega-specialties"><strong>Especialidades</strong>{specialties.map(s=><Fragment key={s.href}><Link href={s.href} aria-current={cur(s.href)}><span>{s.label}</span><small>{s.text}</small></Link>{s.children&&<div className="mega-sub">{s.children.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div>}</Fragment>)}</div>
-              <div className="mega-group"><strong>Queixas frequentes</strong>{needs.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
-              <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
+              <div className="mega-group mega-specialties"><strong>Especialidades</strong><div className="mega-cols">{specialties.map(s=><div className="mega-item" key={s.href}><Link href={s.href} aria-current={cur(s.href)}><span>{s.label}</span><small>{s.text}</small></Link>{s.children&&<div className="mega-sub">{s.children.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div>}</div>)}</div></div>
+              <div className="mega-stack">
+                <div className="mega-group"><strong>Queixas frequentes</strong>{needs.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
+                <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
+              </div>
             </div>
           </details>
           <Link href="/#especialistas">Equipe</Link><Link href="/#clinica">Clínica</Link><Link href="/blog" aria-current={cur("/blog")}>Conteúdo</Link>
@@ -77,7 +79,7 @@ export function Header({ current, conversionContext }: { current?: string; conve
         <details className="mobile-menu">
           <summary aria-label="Abrir menu de navegação"><span>Menu</span><i aria-hidden="true" /></summary>
           <nav aria-label="Navegação móvel">
-            <details className="mobile-menu-group"><summary>Especialidades</summary><div>{specialties.map(s=><Fragment key={s.href}><Link href={s.href} aria-current={cur(s.href)}>{s.label}</Link>{s.children?.map(([label,href])=><Link className="mobile-sub" href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</Fragment>)}</div></details>
+            <details className="mobile-menu-group"><summary>Especialidades</summary><div>{specialties.map(s=>s.children?<details className="mobile-sub-group" key={s.href}><summary>{s.label}</summary><div><Link className="mobile-sub" href={s.href} aria-current={cur(s.href)} aria-label={`Visão geral de ${s.label}`}>Visão geral</Link>{s.children.map(([label,href])=><Link className="mobile-sub" href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div></details>:<Link href={s.href} aria-current={cur(s.href)} key={s.href}>{s.label}</Link>)}</div></details>
             <details className="mobile-menu-group"><summary>Encontre seu cuidado</summary><div>{needs.map(([label,href])=><Link href={href} key={label}>{label}</Link>)}</div></details>
             {clinic.map(([label,href])=><Link href={href} key={label}>{label}</Link>)}
             <Link href="/" lang="pt-BR" {...language("pt-BR", "mobile_menu")}>PT</Link>
