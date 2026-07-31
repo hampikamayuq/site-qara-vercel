@@ -69,6 +69,7 @@ const conditionLinks: [string, string][] = [
   ["acne", "/acne"],
   ["rosácea", "/rosacea"],
   ["melasma", "/melasma"],
+  ["avaliação de pintas", "/avaliacao-de-pintas"],
   ["câncer da pele", "/cancer-de-pele"],
   ["cirurgia com controle de margens", "/cirurgia-controle-de-margens"],
   ["biópsia", "/biopsia"],
@@ -76,9 +77,16 @@ const conditionLinks: [string, string][] = [
   ["dermatite atópica", "/dermatite-atopica"],
   ["hidradenite supurativa", "/hidradenite"],
   ["vitiligo", "/vitiligo"],
+  ["queda de cabelo", "/queda-de-cabelo"],
   ["transplante capilar", "/transplante-capilar"],
+  ["micose de unha", "/micose-de-unha"],
+  ["unha encravada", "/unha-encravada"],
+  ["dermatologia da gestante", "/dermatologia-da-gestante"],
+  ["dermatologia geriátrica", "/dermatologia-geriatrica"],
   ["toxina botulínica", "/toxina-botulinica"],
   ["preenchimento facial", "/preenchimento"],
+  ["cicatrizes de acne", "/cicatrizes-de-acne"],
+  ["blefaroplastia", "/blefaroplastia"],
 ];
 
 // A clínica é uma entidade só (clinicNode), descrita aqui com o que é próprio da

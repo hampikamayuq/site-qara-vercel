@@ -16,6 +16,9 @@ export function Header({ current, conversionContext }: { current?: string; conve
       ["Acne", "/acne"],
       ["Rosácea", "/rosacea"],
       ["Melasma", "/melasma"],
+      ["Avaliação de pintas", "/avaliacao-de-pintas"],
+      ["Dermatologia da gestante", "/dermatologia-da-gestante"],
+      ["Dermatologia geriátrica", "/dermatologia-geriatrica"],
     ] },
     { label: "Cirurgia dermatológica", href: "/cirurgia-dermatologica", text: "Biópsias, lesões e reconstruções", children: [
       ["Câncer da pele", "/cancer-de-pele"],
@@ -23,9 +26,13 @@ export function Header({ current, conversionContext }: { current?: string; conve
       ["Biópsia", "/biopsia"],
     ] },
     { label: "Cabelos e couro cabeludo", href: "/cabelo", text: "Queda, alopecias e transplante", children: [
+      ["Queda de cabelo", "/queda-de-cabelo"],
       ["Transplante capilar", "/transplante-capilar"],
     ] },
-    { label: "Doenças das unhas", href: "/unhas", text: "Micose, inflamações e cirurgia ungueal" },
+    { label: "Doenças das unhas", href: "/unhas", text: "Micose, inflamações e cirurgia ungueal", children: [
+      ["Micose de unha", "/micose-de-unha"],
+      ["Unha encravada", "/unha-encravada"],
+    ] },
     { label: "Doenças inflamatórias", href: "/doencas-inflamatorias", text: "Psoríase, dermatite e hidradenite", children: [
       ["Psoríase", "/psoriase"],
       ["Dermatite atópica", "/dermatite-atopica"],
@@ -36,6 +43,8 @@ export function Header({ current, conversionContext }: { current?: string; conve
     { label: "Dermatologia estética", href: "/dermatologia-estetica", text: "Pele, cicatrizes e envelhecimento", children: [
       ["Toxina botulínica", "/toxina-botulinica"],
       ["Preenchimento facial", "/preenchimento"],
+      ["Cicatrizes de acne", "/cicatrizes-de-acne"],
+      ["Blefaroplastia", "/blefaroplastia"],
     ] },
   ];
   const needs = [

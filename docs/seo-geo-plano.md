@@ -48,8 +48,18 @@ O site já tem uma base técnica acima da média do mercado local:
 | `/transplante-capilar` | transplante capilar rio de janeiro · transplante capilar fue · implante capilar rj |
 | `/toxina-botulinica` | botox copacabana · toxina botulínica rio de janeiro |
 | `/preenchimento` | preenchimento facial rj · preenchimento ácido hialurônico |
-| `/cabelo` | dermatologista queda de cabelo · tricologista rio de janeiro |
+| `/cabelo` | tricologista rio de janeiro · tricologia copacabana |
+| `/queda-de-cabelo` | queda de cabelo tratamento · dermatologista queda de cabelo |
+| `/avaliacao-de-pintas` | avaliação de pintas · dermatoscopia rio de janeiro · dermatologista pintas |
+| `/micose-de-unha` | micose de unha tratamento · onicomicose |
+| `/unha-encravada` | cirurgia unha encravada rj · unha encravada tratamento |
+| `/cicatrizes-de-acne` | tratamento cicatriz de acne · cicatrizes de acne rio de janeiro |
+| `/blefaroplastia` | blefaroplastia rio de janeiro · cirurgia de pálpebras |
+| `/dermatologia-da-gestante` | dermatologista gestante rj · melasma gravidez |
+| `/dermatologia-geriatrica` | dermatologista idoso rio de janeiro · dermatologia geriátrica |
 | `/en`, `/es` | english speaking dermatologist rio de janeiro · dermatólogo en río de janeiro |
+
+**Nota de arquitetura:** `/cabelo` foi retitulado para "Tricologia..." e a keyword "queda de cabelo" passou para a página dedicada `/queda-de-cabelo`, evitando canibalização. A página `/avaliacao-de-pintas` descreve o serviço real — dermatoscopia com dermatoscópio convencional em toda consulta; a clínica **não** possui aparelho de dermatoscopia digital, e a página não promete mapeamento digital. Páginas de cistos/lipomas, verrugas e telemedicina foram avaliadas e **descartadas por decisão da clínica**.
 
 ## 4. Ações fora do site (responsável: clínica / gestor de marketing)
 

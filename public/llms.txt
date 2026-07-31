@@ -19,6 +19,7 @@ Todo o conteúdo médico do site tem autoria de dermatologistas identificados co
 - [Acne](https://clinicaqara.com.br/acne)
 - [Rosácea](https://clinicaqara.com.br/rosacea)
 - [Melasma](https://clinicaqara.com.br/melasma)
+- [Avaliação de pintas e dermatoscopia](https://clinicaqara.com.br/avaliacao-de-pintas): dermatoscopia com dermatoscópio convencional em toda consulta
 - [Câncer da pele](https://clinicaqara.com.br/cancer-de-pele)
 - [Cirurgia com controle de margens](https://clinicaqara.com.br/cirurgia-controle-de-margens)
 - [Biópsia de pele](https://clinicaqara.com.br/biopsia)
@@ -26,9 +27,16 @@ Todo o conteúdo médico do site tem autoria de dermatologistas identificados co
 - [Dermatite atópica](https://clinicaqara.com.br/dermatite-atopica)
 - [Hidradenite supurativa](https://clinicaqara.com.br/hidradenite)
 - [Vitiligo](https://clinicaqara.com.br/vitiligo)
+- [Queda de cabelo](https://clinicaqara.com.br/queda-de-cabelo)
 - [Transplante capilar FUE](https://clinicaqara.com.br/transplante-capilar)
+- [Micose de unha (onicomicose)](https://clinicaqara.com.br/micose-de-unha)
+- [Unha encravada](https://clinicaqara.com.br/unha-encravada)
+- [Dermatologia da gestante](https://clinicaqara.com.br/dermatologia-da-gestante)
+- [Dermatologia geriátrica](https://clinicaqara.com.br/dermatologia-geriatrica)
 - [Toxina botulínica](https://clinicaqara.com.br/toxina-botulinica)
 - [Preenchimento facial](https://clinicaqara.com.br/preenchimento)
+- [Cicatrizes de acne](https://clinicaqara.com.br/cicatrizes-de-acne)
+- [Blefaroplastia](https://clinicaqara.com.br/blefaroplastia)
 
 ## Equipe médica
 

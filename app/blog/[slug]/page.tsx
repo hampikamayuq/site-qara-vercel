@@ -30,12 +30,20 @@ const ARTICLE_SPECIALTY: Record<string, [string, string]> = {
   "hidradenite-supurativa": ["Hidradenite supurativa", "/hidradenite"],
   "vitiligo-causas-e-tratamento": ["Vitiligo", "/vitiligo"],
   "acne-tratamento-por-fases": ["Tratamento da acne", "/acne"],
-  "cicatrizes-de-acne-tratamento": ["Tratamento da acne", "/acne"],
+  "cicatrizes-de-acne-tratamento": ["Tratamento de cicatrizes de acne", "/cicatrizes-de-acne"],
   "rosacea-diferenca-da-acne": ["Tratamento da rosácea", "/rosacea"],
   "melasma-por-que-as-manchas-voltam": ["Tratamento do melasma", "/melasma"],
   "toxina-botulinica-antes-de-aplicar": ["Toxina botulínica", "/toxina-botulinica"],
   "preenchimento-facial-planejamento": ["Preenchimento facial", "/preenchimento"],
   "transplante-capilar-fue-avaliacao": ["Transplante capilar", "/transplante-capilar"],
+  "mapeamento-de-pintas-dermatoscopia-digital": ["Avaliação de pintas", "/avaliacao-de-pintas"],
+  "micose-de-unha-tratamento": ["Tratamento de micose de unha", "/micose-de-unha"],
+  "unha-encravada-tratamento-e-cirurgia": ["Tratamento de unha encravada", "/unha-encravada"],
+  "queda-de-cabelo-causas": ["Tratamento da queda de cabelo", "/queda-de-cabelo"],
+  "alopecia-androgenetica": ["Tratamento da queda de cabelo", "/queda-de-cabelo"],
+  "alopecia-areata": ["Tratamento da queda de cabelo", "/queda-de-cabelo"],
+  "efluvio-telogeno": ["Tratamento da queda de cabelo", "/queda-de-cabelo"],
+  "blefaroplastia-o-que-avaliar": ["Blefaroplastia", "/blefaroplastia"],
 };
 
 const CATEGORY_SLUG: Record<string, string> = {

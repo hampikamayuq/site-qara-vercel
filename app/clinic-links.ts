@@ -37,6 +37,13 @@ export const appointmentLinks = Object.freeze({
   dianaTransplante: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de transplante capilar com a Dra. Diana Stohmann"),
   diegoToxina: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de toxina botulínica com o Dr. Diego Galvez"),
   diegoPreenchimento: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de preenchimento com o Dr. Diego Galvez"),
+  diegoPintas: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de avaliação de pintas com o Dr. Diego Galvez"),
+  diegoCicatrizes: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de cicatrizes de acne com o Dr. Diego Galvez"),
+  diegoBlefaroplastia: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de blefaroplastia com o Dr. Diego Galvez"),
+  diegoGestante: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatologia da gestante com o Dr. Diego Galvez"),
+  diegoGeriatrica: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatologia geriátrica com o Dr. Diego Galvez"),
+  miguelMicoseUnha: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de micose de unha com o Dr. Miguel Ceccarelli"),
+  miguelUnhaEncravada: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de unha encravada com o Dr. Miguel Ceccarelli"),
 });
 
 // Fonte única do link de agendamento por página. Toda página de especialidade
@@ -65,6 +72,14 @@ const appointmentByPath: Record<string, string> = {
   "/transplante-capilar": appointmentLinks.dianaTransplante,
   "/toxina-botulinica": appointmentLinks.diegoToxina,
   "/preenchimento": appointmentLinks.diegoPreenchimento,
+  "/avaliacao-de-pintas": appointmentLinks.diegoPintas,
+  "/micose-de-unha": appointmentLinks.miguelMicoseUnha,
+  "/unha-encravada": appointmentLinks.miguelUnhaEncravada,
+  "/queda-de-cabelo": appointmentLinks.cabeloDiana,
+  "/cicatrizes-de-acne": appointmentLinks.diegoCicatrizes,
+  "/blefaroplastia": appointmentLinks.diegoBlefaroplastia,
+  "/dermatologia-da-gestante": appointmentLinks.diegoGestante,
+  "/dermatologia-geriatrica": appointmentLinks.diegoGeriatrica,
 };
 
 export function appointmentHrefForPath(path?: string): string {
