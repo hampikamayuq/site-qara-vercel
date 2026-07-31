@@ -29,6 +29,13 @@ const ARTICLE_SPECIALTY: Record<string, [string, string]> = {
   "psoriase-guia-para-pacientes": ["Psoríase", "/psoriase"],
   "hidradenite-supurativa": ["Hidradenite supurativa", "/hidradenite"],
   "vitiligo-causas-e-tratamento": ["Vitiligo", "/vitiligo"],
+  "acne-tratamento-por-fases": ["Tratamento da acne", "/acne"],
+  "cicatrizes-de-acne-tratamento": ["Tratamento da acne", "/acne"],
+  "rosacea-diferenca-da-acne": ["Tratamento da rosácea", "/rosacea"],
+  "melasma-por-que-as-manchas-voltam": ["Tratamento do melasma", "/melasma"],
+  "toxina-botulinica-antes-de-aplicar": ["Toxina botulínica", "/toxina-botulinica"],
+  "preenchimento-facial-planejamento": ["Preenchimento facial", "/preenchimento"],
+  "transplante-capilar-fue-avaliacao": ["Transplante capilar", "/transplante-capilar"],
 };
 
 const CATEGORY_SLUG: Record<string, string> = {

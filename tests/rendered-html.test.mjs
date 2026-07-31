@@ -450,7 +450,7 @@ test("keeps the homepage FAQ schema in lockstep with the rendered questions", as
     .find(node => node["@type"] === "FAQPage");
 
   assert.ok(faq, "a home precisa emitir FAQPage como as páginas de especialidade");
-  assert.equal(rendered.length, 5);
+  assert.equal(rendered.length, 6);
   assert.equal(faq.mainEntity.length, rendered.length);
   for (const [index, question] of rendered.entries()) assert.equal(faq.mainEntity[index].name, question);
   for (const question of faq.mainEntity) assert.ok(block.includes(question.acceptedAnswer.text), question.name);

@@ -31,6 +31,12 @@ export const appointmentLinks = Object.freeze({
   manuela: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta com a Dra. Manuela Pedretti Cabral"),
   manuelaVitiligo: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de vitiligo com a Dra. Manuela Pedretti Cabral"),
   dermatopediatria: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de dermatopediatria"),
+  diegoAcne: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de acne com o Dr. Diego Galvez"),
+  diegoMelasma: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de melasma com o Dr. Diego Galvez"),
+  diegoRosacea: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma consulta de rosácea com o Dr. Diego Galvez"),
+  dianaTransplante: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de transplante capilar com a Dra. Diana Stohmann"),
+  diegoToxina: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de toxina botulínica com o Dr. Diego Galvez"),
+  diegoPreenchimento: whatsappApiHref("Olá, tudo bem? Gostaria de agendar uma avaliação de preenchimento com o Dr. Diego Galvez"),
 });
 
 // Fonte única do link de agendamento por página. Toda página de especialidade
@@ -53,6 +59,12 @@ const appointmentByPath: Record<string, string> = {
   "/vitiligo": appointmentLinks.manuelaVitiligo,
   "/dermatite-atopica": appointmentLinks.manuelaDermatiteAtopica,
   "/dermatopediatria": appointmentLinks.dermatopediatria,
+  "/acne": appointmentLinks.diegoAcne,
+  "/melasma": appointmentLinks.diegoMelasma,
+  "/rosacea": appointmentLinks.diegoRosacea,
+  "/transplante-capilar": appointmentLinks.dianaTransplante,
+  "/toxina-botulinica": appointmentLinks.diegoToxina,
+  "/preenchimento": appointmentLinks.diegoPreenchimento,
 };
 
 export function appointmentHrefForPath(path?: string): string {
