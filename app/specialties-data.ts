@@ -53,7 +53,7 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Nem toda alteração da unha é micose.",
     intro: [
       "As unhas podem mudar de cor, formato ou espessura por muitos motivos: traumas repetidos, micoses, psoríase, doenças inflamatórias, medicamentos e até condições sistêmicas. Como quadros diferentes produzem alterações parecidas, tratar sem confirmar a causa pode significar meses de tratamento sem resultado. A dermatologia das unhas é a área dedicada a investigar e cuidar da unidade ungueal, a unha e as estruturas que a formam.",
-      "Vale procurar avaliação quando uma alteração persiste ou avança, quando há dor, inflamação ou secreção ao redor da unha, quando surge uma faixa escura nova ou quando tratamentos anteriores não funcionaram. Alterações em uma única unha, em especial, merecem atenção, pois podem indicar causas locais que exigem exame dirigido.",
+      "Procure avaliação se a alteração persiste ou avança, se há dor, inflamação ou secreção ao redor da unha, se surge uma faixa escura nova ou se tratamentos anteriores não funcionaram. Alterações em uma única unha, em especial, merecem atenção, pois podem indicar causas locais que exigem exame dirigido.",
       "Na consulta, o dermatologista examina todas as unhas e a pele ao redor, com dermatoscopia quando indicada, e pode coletar material para exame micológico ou cultura. Em casos selecionados, a biópsia da unidade ungueal esclarece o diagnóstico. Definida a causa, o plano pode incluir tratamento clínico, cuidados locais ou procedimento cirúrgico, conforme avaliação.",
     ],
     topics: [
@@ -90,7 +90,7 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Doenças crônicas exigem cuidado contínuo, não soluções isoladas.",
     intro: [
       "Psoríase, dermatite atópica, hidradenite supurativa e outras doenças inflamatórias da pele são condições crônicas: alternam períodos de melhora e de atividade e podem afetar o sono, o trabalho, as relações e a autoestima. Algumas também se associam a manifestações fora da pele, como sintomas articulares, o que torna o acompanhamento contínuo mais importante do que soluções isoladas para cada crise.",
-      "Vale procurar avaliação quando lesões inflamadas voltam com frequência, quando a coceira ou a dor atrapalham o dia a dia, quando surgem nódulos dolorosos em áreas de dobra ou quando o tratamento atual já não controla o quadro. O diagnóstico preciso é o ponto de partida, pois doenças diferentes podem se parecer entre si e pedem condutas distintas.",
+      "Lesões inflamadas que voltam com frequência, coceira ou dor que atrapalham o dia a dia, nódulos dolorosos em áreas de dobra e um tratamento que já não controla o quadro são sinais de que é hora de reavaliar. O diagnóstico preciso é o ponto de partida, pois doenças diferentes podem se parecer entre si e pedem condutas distintas.",
       "A consulta avalia a extensão das lesões, os sintomas, as comorbidades e o impacto emocional, e o plano é construído em conjunto com o paciente. As opções vão de tratamentos tópicos a medicamentos sistêmicos e imunobiológicos, conforme avaliação, sempre com monitoramento da resposta e da segurança ao longo do tempo.",
     ],
     topics: [
@@ -316,7 +316,7 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "A melhor indicação depende do que realmente precisa ser tratado.",
     intro: [
       "Textura irregular, manchas, cicatrizes de acne, flacidez e sinais do envelhecimento exigem estratégias diferentes, e nem todo procedimento serve para todo caso. Na dermatologia estética, o ponto de partida não é a técnica, e sim o diagnóstico: entender o que de fato precisa ser tratado na pele de cada paciente para, então, escolher a abordagem mais adequada, com segurança e naturalidade.",
-      "Vale procurar avaliação quando algum aspecto da pele incomoda de forma consistente, quando há dúvida sobre qual procedimento faz sentido ou quando tratamentos anteriores não trouxeram o resultado esperado. A avaliação médica também identifica condições de pele que precisam ser tratadas antes de qualquer procedimento estético.",
+      "Quando algum aspecto da pele incomoda de forma consistente, quando há dúvida sobre qual procedimento faz sentido ou quando tratamentos anteriores não trouxeram o resultado esperado, a consulta de avaliação é o ponto de partida. A avaliação médica também identifica condições de pele que precisam ser tratadas antes de qualquer procedimento estético.",
       "A consulta começa com o exame da pele e uma conversa sobre objetivos, histórico de saúde e expectativas. O dermatologista explica benefícios, limitações, riscos e tempo de recuperação de cada opção antes de qualquer decisão, e o plano pode ser dividido em etapas, com reavaliações para acompanhar a resposta da pele ao longo do tratamento.",
     ],
     topics: [
@@ -356,8 +356,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Acne é inflamação, não falta de limpeza.",
     intro: [
       "A acne é uma condição inflamatória dos folículos, influenciada por oleosidade, hormônios e predisposição genética. Não resulta de falta de higiene; lavar o rosto em excesso pode até piorar o quadro. Na adolescência, predomina o estímulo hormonal da puberdade; no adulto, especialmente em mulheres, fatores hormonais, medicamentos e cosméticos ganham peso, e o padrão das lesões muda.",
-      "Vale procurar avaliação quando as lesões são inflamadas, dolorosas ou numerosas, quando pioram em ciclos, quando já deixam manchas ou cicatrizes, ou quando o impacto na autoestima é importante. Tratar cedo é a melhor forma de prevenir cicatrizes, que são mais difíceis de tratar do que a própria acne.",
-      "Na Clínica QARA, em Copacabana, a consulta investiga o padrão das lesões, os ciclos de piora, os medicamentos e cosméticos em uso e, quando indicado, causas hormonais. O plano combina cuidados diários adequados e medicamentos tópicos ou orais conforme a gravidade, com retornos programados para acompanhar a resposta ao longo de semanas a meses.",
+      "Lesões inflamadas, dolorosas ou numerosas, pioras em ciclos, manchas ou cicatrizes que começam a aparecer e impacto importante na autoestima são motivos para agendar. Tratar cedo é a melhor forma de prevenir cicatrizes, que são mais difíceis de tratar do que a própria acne.",
+      "A consulta na QARA investiga o padrão das lesões, os ciclos de piora, os medicamentos e cosméticos em uso e, quando indicado, causas hormonais. O plano combina cuidados diários adequados e medicamentos tópicos ou orais conforme a gravidade, com retornos programados para acompanhar a resposta ao longo de semanas a meses.",
     ],
     topics: [
       ["Acne na adolescência", "As alterações hormonais da puberdade aumentam a oleosidade e favorecem a inflamação dos folículos. O tratamento adequado à idade controla as lesões e previne cicatrizes, com atenção também ao impacto emocional, que faz parte da avaliação."],
@@ -397,8 +397,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Melasma é uma condição crônica da pigmentação, não uma mancha comum.",
     intro: [
       "O melasma é uma hiperpigmentação adquirida e crônica, mais comum em mulheres, com participação de predisposição genética, hormônios e exposição à luz. Os melanócitos das áreas afetadas permanecem mais reativos: não apenas o sol direto, mas também a luz visível e o calor estimulam a produção de pigmento; por isso, as manchas tendem a voltar, mesmo com protetor solar.",
-      "Vale procurar avaliação quando manchas acastanhadas surgem ou escurecem no rosto, quando tratamentos anteriores irritaram a pele ou não trouxeram resultado, ou quando há dúvida sobre o diagnóstico: nem toda mancha escura é melasma, e algumas lesões pigmentadas exigem exame dermatológico para excluir outras causas.",
-      "Na Clínica QARA, em Copacabana, o tratamento é planejado em etapas: fotoproteção diária adequada ao quadro, clareadores tópicos e, em casos selecionados, peelings e tecnologias, sempre com reavaliação da resposta. Tratamentos agressivos que irritam a pele podem piorar a mancha, e a manutenção contínua faz parte do plano, não é sinal de falha.",
+      "Manchas acastanhadas que surgem ou escurecem no rosto, tratamentos anteriores que irritaram a pele ou não trouxeram resultado e dúvida sobre o diagnóstico são motivos para agendar: nem toda mancha escura é melasma, e algumas lesões pigmentadas exigem exame dermatológico para excluir outras causas.",
+      "Na QARA, o tratamento é planejado em etapas: fotoproteção diária adequada ao quadro, clareadores tópicos e, em casos selecionados, peelings e tecnologias, sempre com reavaliação da resposta. Tratamentos agressivos que irritam a pele podem piorar a mancha, e a manutenção contínua faz parte do plano, não é sinal de falha.",
     ],
     topics: [
       ["Avaliação do pigmento", "O exame avalia o padrão, a profundidade e a extensão do pigmento, fatores que influenciam diretamente a resposta ao tratamento. Essa avaliação também diferencia o melasma de outras causas de manchas no rosto."],
@@ -434,8 +434,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Rosácea não é acne, e tratar como se fosse costuma piorar.",
     intro: [
       "A rosácea é uma condição inflamatória crônica que causa vermelhidão persistente no centro do rosto, vasos visíveis, ardor e lesões inflamadas. Diferente da acne, não costuma formar cravos, e produtos indicados para acne tendem a irritar a pele com rosácea. Como as duas condições podem inclusive coexistir, o diagnóstico correto é o que define o tratamento.",
-      "Vale procurar avaliação quando a vermelhidão do rosto vai e volta e depois passa a persistir, quando há ardor, vasos visíveis ou lesões inflamadas no centro do rosto, ou quando produtos de pele provocam irritação com facilidade. Sintomas oculares, como olhos vermelhos, sensação de areia e inchaço palpebral, também merecem atenção: a rosácea pode acometer os olhos.",
-      "Na Clínica QARA, em Copacabana, a consulta identifica o subtipo da rosácea e os gatilhos individuais: sol, calor, bebidas quentes, álcool e estresse variam de pessoa para pessoa. O plano combina cuidados suaves com a pele, fotoproteção e medicamentos conforme o quadro, com acompanhamento para reduzir crises e sintomas ao longo do tempo.",
+      "Procure o dermatologista se a vermelhidão do rosto vai e volta e depois passa a persistir, se há ardor, vasos visíveis ou lesões inflamadas no centro do rosto, ou se produtos de pele provocam irritação com facilidade. Sintomas oculares, como olhos vermelhos, sensação de areia e inchaço palpebral, também merecem atenção: a rosácea pode acometer os olhos.",
+      "Na consulta, o dermatologista identifica o subtipo da rosácea e os gatilhos individuais: sol, calor, bebidas quentes, álcool e estresse variam de pessoa para pessoa. O plano combina cuidados suaves com a pele, fotoproteção e medicamentos conforme o quadro, com acompanhamento para reduzir crises e sintomas ao longo do tempo.",
     ],
     topics: [
       ["Vermelhidão persistente e flushing", "Episódios de rubor que se repetem e vermelhidão que passa a persistir no centro do rosto são manifestações típicas. O tratamento busca reduzir a frequência das crises e a intensidade da vermelhidão de base."],
@@ -471,8 +471,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "O transplante começa muito antes da cirurgia: no diagnóstico.",
     intro: [
       "Nem todo paciente com queda de cabelo é candidato ao transplante capilar. A cirurgia é indicada principalmente para alopecia androgenética estável, depois de confirmado o diagnóstico, estabilizada a queda e avaliada a qualidade da área doadora, que é finita. Sem essas etapas, o transplante pode ter resultado insatisfatório e desperdiçar folículos que não voltam.",
-      "Vale buscar avaliação quando o afinamento dos fios incomoda de forma consistente, quando o tratamento clínico já estabilizou a queda e a densidade segue insatisfatória, ou quando há dúvida sobre ser ou não candidato. A avaliação inclui tricoscopia e exclui outras causas de queda que contraindicam ou adiam a cirurgia.",
-      "Na Clínica QARA, em Copacabana, a Dra. Diana Stohmann conduz a avaliação e o planejamento: desenho da linha, estimativa de unidades foliculares e priorização de áreas, alinhados com o paciente. Na técnica FUE (extração de unidades foliculares), os folículos são retirados individualmente da área doadora e implantados nas áreas de rarefação. O tratamento clínico costuma continuar após a cirurgia, e os resultados definitivos são avaliados ao longo de meses.",
+      "A avaliação faz sentido quando o afinamento dos fios incomoda de forma consistente, quando o tratamento clínico já estabilizou a queda e a densidade segue insatisfatória, ou quando há dúvida sobre ser ou não candidato. A avaliação inclui tricoscopia e exclui outras causas de queda que contraindicam ou adiam a cirurgia.",
+      "A Dra. Diana Stohmann conduz a avaliação e o planejamento: desenho da linha, estimativa de unidades foliculares e priorização de áreas, alinhados com o paciente. Na técnica FUE (extração de unidades foliculares), os folículos são retirados individualmente da área doadora e implantados nas áreas de rarefação. O tratamento clínico costuma continuar após a cirurgia, e os resultados definitivos são avaliados ao longo de meses.",
     ],
     topics: [
       ["Avaliação de candidatura", "Diagnóstico confirmado, queda estabilizada, área doadora adequada e expectativas realistas, confirmados em consulta com tricoscopia, definem quem pode se beneficiar do transplante. Casos não candidatos recebem plano clínico adequado."],
@@ -508,8 +508,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "A aplicação é rápida; o que define o resultado é o planejamento.",
     intro: [
       "A toxina botulínica reduz temporariamente a contração de músculos selecionados, suavizando as rugas dinâmicas, as que se formam com o movimento repetido da face. Nem toda linha do rosto responde à toxina: rugas de flacidez ou de perda de volume pedem outras abordagens, e é a avaliação médica que diferencia cada situação.",
-      "Vale buscar avaliação quando as linhas de expressão incomodam de forma consistente, quando há dúvida sobre qual procedimento faz sentido ou quando aplicações anteriores tiveram resultado artificial ou assimétrico. A aplicação de toxina botulínica é ato médico: verifique sempre o registro do profissional e o ambiente adequado.",
-      "Na Clínica QARA, em Copacabana, a consulta avalia a anatomia, o padrão de contração muscular, assimetrias e o histórico de saúde, além de alinhar expectativas. Os pontos de aplicação são definidos no planejamento, o efeito se instala ao longo de dias e a resposta é avaliada em retorno programado. O efeito é temporário, e a duração varia entre pessoas.",
+      "Linhas de expressão que incomodam de forma consistente, dúvida sobre qual procedimento faz sentido e aplicações anteriores com resultado artificial ou assimétrico são motivos para uma avaliação. A aplicação de toxina botulínica é ato médico: verifique sempre o registro do profissional e o ambiente adequado.",
+      "Antes de qualquer aplicação, a consulta avalia a anatomia, o padrão de contração muscular, assimetrias e o histórico de saúde, além de alinhar expectativas. Os pontos de aplicação são definidos no planejamento, o efeito se instala ao longo de dias e a resposta é avaliada em retorno programado. O efeito é temporário, e a duração varia entre pessoas.",
     ],
     topics: [
       ["Rugas dinâmicas", "Linhas da testa, da glabela (entre as sobrancelhas) e ao redor dos olhos formadas pelo movimento repetido são as indicações clássicas. O objetivo é suavizar sem apagar a expressão natural do rosto."],
@@ -529,7 +529,7 @@ export const specialties: Record<string, Specialty> = {
     ],
     faq: [
       ["Toxina botulínica serve para qualquer ruga?", "Não. A toxina age sobre o músculo e suaviza as rugas dinâmicas, as que aparecem com o movimento. Linhas de flacidez ou de perda de volume pedem outras abordagens, definidas na avaliação médica."],
-      ["O resultado fica artificial?", "O planejamento considera a anatomia e a expressão de cada rosto justamente para buscar um resultado equilibrado, sem apagar a naturalidade. As expectativas são alinhadas antes da aplicação, e o retorno permite ajustes finos."],
+      ["O resultado fica artificial?", "O planejamento considera a anatomia e a expressão de cada rosto justamente para buscar um resultado equilibrado, sem apagar a naturalidade. O que esperar do resultado é conversado antes da aplicação, e o retorno permite ajustes finos."],
       ["Quanto tempo dura o efeito?", "O efeito é temporário e a duração varia entre pessoas. Os intervalos entre aplicações são definidos pelo médico, conforme a resposta individual observada nos retornos."],
       ["A aplicação dói? Preciso me afastar das atividades?", "O procedimento é rápido, feito em consultório com agulhas finas, e costuma permitir retorno imediato à rotina, com orientações simples para as primeiras horas. As recomendações específicas são dadas na consulta."],
       ["Quem não pode aplicar toxina botulínica?", "Pessoas com doenças neuromusculares, gestantes e lactantes, entre outras situações avaliadas em consulta. Informe seu histórico de saúde e reações a aplicações anteriores antes do procedimento; a indicação é sempre individualizada."],
@@ -548,8 +548,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Boa indicação com menos produto supera volume em excesso.",
     intro: [
       "O preenchimento repõe volume, suaviza sulcos e oferece suporte estrutural em áreas selecionadas do rosto. O ácido hialurônico é o material mais utilizado, e tem a vantagem de poder ser dissolvido quando necessário. Preenchedor e toxina botulínica têm indicações diferentes: a avaliação médica define o que cada caso realmente pede.",
-      "Vale buscar avaliação quando sulcos ou perda de volume incomodam de forma consistente, quando há dúvida entre as opções de tratamento ou quando resultados anteriores ficaram artificiais. O planejamento parte da anatomia de cada rosto, não de um padrão único; às vezes, a melhor conduta é indicar outra abordagem, ou menos produto do que se imaginava.",
-      "Na Clínica QARA, em Copacabana, a consulta analisa as proporções do rosto, a qualidade da pele e as prioridades do paciente antes de definir áreas e quantidades. Conhecimento anatômico, técnica adequada e material de qualidade reduzem riscos, e o médico deve estar preparado para reconhecer e conduzir intercorrências, que são raras, mas exigem atenção imediata."],
+      "Sulcos ou perda de volume que incomodam de forma consistente, dúvida entre as opções de tratamento e resultados anteriores que ficaram artificiais são motivos para uma avaliação. O planejamento parte da anatomia de cada rosto, não de um padrão único; às vezes, a melhor conduta é indicar outra abordagem, ou menos produto do que se imaginava.",
+      "A consulta analisa as proporções do rosto, a qualidade da pele e as prioridades do paciente antes de definir áreas e quantidades. Conhecimento anatômico, técnica adequada e material de qualidade reduzem riscos, e o médico deve estar preparado para reconhecer e conduzir intercorrências, que são raras, mas exigem atenção imediata."],
     topics: [
       ["Indicações", "Reposição de volume, suavização de sulcos e suporte estrutural em áreas selecionadas do rosto. A indicação é definida na avaliação, considerando anatomia, qualidade da pele e prioridades do paciente."],
       ["Ácido hialurônico", "É o material mais utilizado em preenchimentos e pode ser dissolvido quando necessário, uma característica importante de segurança. A escolha do produto considera a área tratada e o objetivo do tratamento."],
@@ -568,7 +568,7 @@ export const specialties: Record<string, Specialty> = {
     ],
     faq: [
       ["Qual a diferença entre preenchimento e toxina botulínica?", "A toxina reduz a contração de músculos e suaviza rugas de movimento; o preenchimento repõe volume e dá suporte estrutural. São indicações diferentes, que às vezes se complementam; a avaliação médica define o que faz sentido no seu caso."],
-      ["O resultado fica natural?", "O planejamento parte da anatomia e das proporções de cada rosto, priorizando equilíbrio: boa indicação com menos produto supera volume em excesso. As expectativas são alinhadas antes de qualquer aplicação."],
+      ["O resultado fica natural?", "O planejamento parte da anatomia e das proporções de cada rosto, priorizando equilíbrio: boa indicação com menos produto supera volume em excesso. Objetivos e limites são conversados antes de qualquer aplicação."],
       ["O preenchimento é definitivo?", "Não. O ácido hialurônico é gradualmente absorvido pelo organismo, e a durabilidade varia conforme o produto, a área e o metabolismo de cada pessoa. Ele também pode ser dissolvido quando necessário."],
       ["Quais sinais merecem contato imediato após o procedimento?", "Dor desproporcional, palidez ou escurecimento da pele na área ou ao redor, lesões que surgem em rede e qualquer alteração visual exigem avaliação urgente. Inchaço leve e pequenos roxos, por outro lado, são esperados nos primeiros dias."],
       ["Preciso de avaliação antes de agendar o procedimento?", "Sim. A consulta define se o preenchimento é adequado ao seu caso, esclarece riscos, limites e alternativas, e constrói o plano de tratamento, incluindo a decisão de quanto produto usar e onde."],
@@ -587,7 +587,7 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "A maioria das pintas é benigna; o exame identifica as que não são.",
     intro: [
       "Pintas (nevos) são muito comuns e, na maior parte dos casos, benignas. O papel do exame dermatológico é identificar as lesões que fogem do padrão: pintas novas, que mudam de tamanho, forma ou cor, que coçam, sangram ou se destacam das demais, além de feridas que não cicatrizam em algumas semanas. A detecção precoce é o fator que mais muda o prognóstico do câncer da pele.",
-      "Na Clínica QARA, em Copacabana, a dermatoscopia faz parte de toda consulta: o dermatoscópio amplia as estruturas da pele e permite avaliar padrões que não são visíveis a olho nu, ajudando a diferenciar lesões benignas de suspeitas. A avaliação também considera o perfil de risco de cada pessoa: tipo de pele, histórico pessoal e familiar de câncer da pele e exposição solar acumulada, uma realidade comum no Rio de Janeiro.",
+      "Na QARA, a dermatoscopia faz parte de toda consulta: o dermatoscópio amplia as estruturas da pele e permite avaliar padrões que não são visíveis a olho nu, ajudando a diferenciar lesões benignas de suspeitas. A avaliação também considera o perfil de risco de cada pessoa: tipo de pele, histórico pessoal e familiar de câncer da pele e exposição solar acumulada, uma realidade comum no Rio de Janeiro.",
       "Quando uma lesão levanta suspeita, o caminho é definido na própria consulta: acompanhamento programado, biópsia ou remoção, realizadas na clínica pela equipe de cirurgia dermatológica, com análise histopatológica do material. Quando está tudo bem, o exame define o intervalo adequado para a próxima revisão, conforme o risco individual.",
     ],
     topics: [
@@ -624,8 +624,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Nem toda unha espessa ou amarelada é micose.",
     intro: [
       "A onicomicose (micose das unhas) causa espessamento, descolamento e mudança de cor. O problema é que psoríase ungueal, traumas repetidos e outras doenças produzem alterações muito parecidas. Tratar sem confirmar significa, com frequência, meses de antifúngico para uma doença que não é fúngica; por isso, a confirmação por exame micológico, cultura ou análise da lâmina costuma preceder o tratamento.",
-      "Vale procurar avaliação quando a alteração persiste ou avança, quando outras unhas começam a ser acometidas ou quando tratamentos anteriores não funcionaram; este último caso, em especial, pede reavaliação do diagnóstico, não insistência no mesmo remédio.",
-      "Na Clínica QARA, em Copacabana, o Dr. Miguel Ceccarelli, dermatologista dedicado às doenças das unhas, conduz a investigação e o tratamento: esmaltes e medicamentos tópicos para quadros limitados, comprimidos quando a matriz ou várias unhas estão acometidas. Como a unha cresce devagar, a melhora visível leva meses, e o acompanhamento verifica a resposta e ajusta o plano até a substituição completa da unha doente."],
+      "Alterações que persistem ou avançam, outras unhas sendo acometidas e tratamentos anteriores que não funcionaram pedem consulta; este último caso, em especial, pede reavaliação do diagnóstico, não insistência no mesmo remédio.",
+      "O Dr. Miguel Ceccarelli, dermatologista dedicado às doenças das unhas, conduz a investigação e o tratamento: esmaltes e medicamentos tópicos para quadros limitados, comprimidos quando a matriz ou várias unhas estão acometidas. Como a unha cresce devagar, a melhora visível leva meses, e o acompanhamento verifica a resposta e ajusta o plano até a substituição completa da unha doente."],
     topics: [
       ["Confirmação do diagnóstico", "Exame micológico direto, cultura ou análise histológica da lâmina confirmam a presença do fungo antes de iniciar tratamentos prolongados. É a etapa que evita meses de medicação desnecessária."],
       ["Tratamento tópico", "Esmaltes e medicamentos tópicos são opções para quadros limitados, que não atingem a matriz da unha. A escolha considera a extensão do acometimento e a unha afetada."],
@@ -661,7 +661,7 @@ export const specialties: Record<string, Specialty> = {
     intro: [
       "A unha encravada ocorre quando a borda da unha penetra a pele ao redor, causando dor, vermelhidão, inchaço e, às vezes, infecção. Corte arredondado, calçados apertados, traumas e o próprio formato da unha favorecem o problema, e grande parte dos casos pode ser prevenida com o corte reto e calçados adequados.",
       "Em fases iniciais, medidas clínicas costumam resolver: correção do corte, cuidados locais e, quando necessário, tratamento da infecção associada. Quando a inflamação se repete, é intensa ou a anatomia da unha é desfavorável, a correção cirúrgica definitiva da borda passa a ser a indicação: um procedimento com anestesia local que remove a borda encravada e trata a matriz para reduzir a recidiva.",
-      "Na Clínica QARA, em Copacabana, o Dr. Miguel Ceccarelli, dermatologista dedicado às doenças das unhas, avalia cada caso e conduz do tratamento clínico à cirurgia, quando indicada. Pessoas com diabetes ou problemas de circulação merecem atenção redobrada: infecções nos pés podem evoluir rapidamente nesses casos, e o cuidado não deve ser adiado.",
+      "O Dr. Miguel Ceccarelli, dermatologista dedicado às doenças das unhas, avalia cada caso e conduz do tratamento clínico à cirurgia, quando indicada. Pessoas com diabetes ou problemas de circulação merecem atenção redobrada: infecções nos pés podem evoluir rapidamente nesses casos, e o cuidado não deve ser adiado.",
     ],
     topics: [
       ["Por que a unha encrava", "Corte arredondado, calçados apertados, trauma e o formato da unha favorecem a penetração da borda na pele. Identificar e corrigir esses fatores faz parte do tratamento e da prevenção de novos episódios."],
@@ -697,8 +697,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "Queda de cabelo não é um diagnóstico único.",
     intro: [
       "Alopecia androgenética, eflúvio telógeno, alopecia areata, doenças do couro cabeludo e alopecias cicatriciais causam queda por mecanismos diferentes, e mais de uma causa pode coexistir na mesma pessoa. Suplementos e tratamentos por conta própria, sem diagnóstico, costumam não ajudar; em alopecias cicatriciais, o atraso pode significar perda definitiva dos fios.",
-      "Vale procurar avaliação quando a queda é intensa ou persistente, quando o cabelo afina progressivamente, quando surgem falhas delimitadas ou quando há sintomas no couro cabeludo: dor, ardor, feridas, descamação intensa ou coceira, que pedem avaliação mais breve.",
-      "Na Clínica QARA, em Copacabana, a Dra. Diana Stohmann, dermatologista dedicada à tricologia, conduz a investigação: história detalhada, exame do couro cabeludo e tricoscopia, com exames laboratoriais ou biópsia quando contribuem para o diagnóstico. O tratamento é dirigido à causa, da correção de fatores associados aos medicamentos tópicos e sistêmicos, e, em casos selecionados de alopecia androgenética estável, inclui a avaliação de transplante capilar FUE.",
+      "Queda intensa ou persistente, afinamento progressivo e falhas delimitadas justificam a consulta; sintomas no couro cabeludo, como dor, ardor, feridas, descamação intensa ou coceira, pedem avaliação mais breve.",
+      "A investigação é conduzida pela Dra. Diana Stohmann, dermatologista dedicada à tricologia: história detalhada, exame do couro cabeludo e tricoscopia, com exames laboratoriais ou biópsia quando contribuem para o diagnóstico. O tratamento é dirigido à causa, da correção de fatores associados aos medicamentos tópicos e sistêmicos, e, em casos selecionados de alopecia androgenética estável, inclui a avaliação de transplante capilar FUE.",
     ],
     topics: [
       ["Alopecia androgenética", "Afinamento progressivo de origem genética e hormonal, com padrões diferentes em homens e mulheres. Começar cedo ajuda a limitar a progressão; o transplante capilar é opção apenas em casos selecionados e estáveis."],
@@ -736,7 +736,7 @@ export const specialties: Record<string, Specialty> = {
     intro: [
       "Cicatrizes de acne variam em tipo e profundidade, das atróficas (deprimidas) às elevadas, e um mesmo rosto costuma apresentar mais de um padrão. Cada padrão responde melhor a técnicas diferentes, e é por isso que o tratamento eficaz começa pelo mapeamento do que existe em cada área, não pela escolha prévia de um procedimento.",
       "Antes de tratar cicatrizes, é preciso controlar a acne ativa: novas lesões inflamatórias geram novas marcas. Também é importante diferenciar cicatrizes de manchas pós-inflamatórias: as manchas escuras que ficam após as lesões não são cicatrizes e têm tratamento próprio, geralmente mais simples.",
-      "Na Clínica QARA, em Copacabana, a avaliação mapeia os padrões presentes e define quais técnicas fazem sentido e em que ordem: microagulhamento, peelings, preenchimento e pequenos procedimentos cirúrgicos podem ser combinados conforme o caso, em sessões planejadas. A melhora é gradual e avaliada ao longo de meses, com acompanhamento fotográfico.",
+      "A avaliação mapeia os padrões presentes e define quais técnicas fazem sentido e em que ordem: microagulhamento, peelings, preenchimento e pequenos procedimentos cirúrgicos podem ser combinados conforme o caso, em sessões planejadas. A melhora é gradual e avaliada ao longo de meses, com acompanhamento fotográfico.",
     ],
     topics: [
       ["Mapeamento dos padrões", "A avaliação identifica os tipos de cicatriz presentes em cada área do rosto; é esse mapa que define as técnicas e a ordem do tratamento, não o contrário."],
@@ -776,12 +776,12 @@ export const specialties: Record<string, Specialty> = {
     intro: [
       "A blefaroplastia trata o excesso de pele das pálpebras que pesa sobre o olhar: um incômodo que pode ser estético e, em alguns casos, também funcional, quando a pele repousa sobre os cílios e cansa a visão no fim do dia. Mas nem toda queixa na região dos olhos se resolve com essa cirurgia: a posição das sobrancelhas, a qualidade da pele e outras condições da região precisam ser avaliadas antes de qualquer decisão.",
       "A avaliação examina as pálpebras, a posição das sobrancelhas e a superfície ocular, e considera condições oftalmológicas: olho seco, por exemplo, influencia a indicação e o planejamento. As expectativas são alinhadas antes de qualquer decisão cirúrgica: o objetivo é um olhar descansado e natural, não uma mudança de fisionomia.",
-      "Na Clínica QARA, em Copacabana, o procedimento é planejado individualmente, em geral com anestesia local e sedação, com retirada do excesso de pele e cicatriz posicionada na dobra palpebral, onde tende a ficar discreta. A recuperação envolve repouso relativo, compressas e cuidados locais nos primeiros dias, com inchaço e roxos temporários que fazem parte do processo.",
+      "O procedimento é planejado individualmente na clínica, em geral com anestesia local e sedação, com retirada do excesso de pele e cicatriz posicionada na dobra palpebral, onde tende a ficar discreta. A recuperação envolve repouso relativo, compressas e cuidados locais nos primeiros dias, com inchaço e roxos temporários que fazem parte do processo.",
     ],
     topics: [
       ["Quando é considerada", "Excesso de pele que pesa sobre os cílios, cansaço visual no fim do dia e incômodo estético persistente motivam a avaliação. A indicação é definida caso a caso, depois do exame da região."],
       ["A avaliação", "Exame das pálpebras, da posição das sobrancelhas e da superfície ocular. Condições oftalmológicas, como olho seco, são consideradas no planejamento, e podem pedir cuidado conjunto com a oftalmologia."],
-      ["O planejamento cirúrgico", "A quantidade de pele a remover e o desenho da incisão são definidos individualmente, buscando um olhar descansado que preserva a fisionomia. As expectativas são alinhadas antes da decisão."],
+      ["O planejamento cirúrgico", "A quantidade de pele a remover e o desenho da incisão são definidos individualmente, buscando um olhar descansado que preserva a fisionomia. O que a cirurgia pode e não pode mudar fica claro antes da decisão."],
       ["Como é a cirurgia", "Procedimento em geral com anestesia local e sedação, com retirada do excesso de pele e sutura na dobra palpebral, onde a cicatriz tende a ficar discreta com o tempo."],
       ["Recuperação", "Repouso relativo, compressas e cuidados locais nos primeiros dias. Inchaço e roxos temporários fazem parte da recuperação esperada; os retornos acompanham a cicatrização."],
       ["Sinais de alerta no pós-operatório", "Dor ocular intensa, sangramento persistente, alteração da visão ou incapacidade de fechar os olhos não fazem parte da recuperação esperada e exigem avaliação imediata."],
@@ -812,8 +812,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "A gestação muda a pele, e muda o que é seguro usar nela.",
     intro: [
       "A gravidez altera a pele de formas esperadas: manchas como o melasma podem surgir ou escurecer, a acne pode piorar ou melhorar, estrias podem aparecer e a sensibilidade muda. Ao mesmo tempo, medicamentos comuns em dermatologia, incluindo alguns de uso tópico, não devem ser usados na gestação, e tratamentos em andamento muitas vezes precisam ser revistos.",
-      "Vale procurar avaliação ao descobrir a gravidez, se você usa medicamentos dermatológicos contínuos; quando surgem manchas, acne ou alterações que incomodam; e, especialmente, quando há coceira intensa ou erupções na pele: algumas dermatoses são próprias da gestação e merecem diagnóstico e acompanhamento adequados, em conjunto com o pré-natal.",
-      "Na Clínica QARA, em Copacabana, a consulta revisa os tratamentos em uso, ajusta o cuidado da pele para opções seguras na gestação e na amamentação e acompanha as queixas de cada fase. Procedimentos que não são indicados nesse período são adiados e planejados para depois, com transparência sobre o que pode e o que deve esperar.",
+      "Procure o dermatologista ao descobrir a gravidez, se você usa medicamentos dermatológicos contínuos; quando surgem manchas, acne ou alterações que incomodam; e, especialmente, quando há coceira intensa ou erupções na pele: algumas dermatoses são próprias da gestação e merecem diagnóstico e acompanhamento adequados, em conjunto com o pré-natal.",
+      "A consulta revisa os tratamentos em uso, ajusta o cuidado da pele para opções seguras na gestação e na amamentação e acompanha as queixas de cada fase. Procedimentos que não são indicados nesse período são adiados e planejados para depois, com transparência sobre o que pode e o que deve esperar.",
     ],
     topics: [
       ["Melasma e manchas na gestação", "As alterações hormonais favorecem o surgimento ou escurecimento do melasma. Na gestação, o cuidado prioriza fotoproteção adequada; clareadores e procedimentos são planejados para depois, conforme orientação individualizada."],
@@ -849,8 +849,8 @@ export const specialties: Record<string, Specialty> = {
     introTitle: "A pele muda com a idade, e o cuidado precisa acompanhar.",
     intro: [
       "Com o envelhecimento, a pele fica mais fina, mais seca e mais frágil: coceira persistente, ressecamento, pequenos machucados que demoram a cicatrizar e manchas novas se tornam queixas frequentes. Ao mesmo tempo, a exposição solar acumulada ao longo da vida aumenta a importância do exame periódico das lesões: queratoses actínicas e câncer da pele são mais comuns nessa fase.",
-      "Vale procurar avaliação quando a coceira ou o ressecamento incomodam de forma persistente, quando surgem lesões novas ou feridas que não cicatrizam, quando as unhas engrossam ou mudam de cor, ou para um exame completo da pele, especialmente para quem trabalhou ou viveu com grande exposição ao sol.",
-      "Na Clínica QARA, em Copacabana, a consulta considera o conjunto: o exame completo da pele com dermatoscopia, as unhas, a fragilidade cutânea e os medicamentos em uso, que nessa fase são mais numerosos e podem causar ou agravar reações na pele. O plano de cuidado é prático e adaptado à rotina e à autonomia de cada paciente.",
+      "Coceira ou ressecamento persistentes, lesões novas, feridas que não cicatrizam e unhas que engrossam ou mudam de cor justificam a consulta, assim como o exame completo da pele, especialmente para quem trabalhou ou viveu com grande exposição ao sol.",
+      "A consulta considera o conjunto: o exame completo da pele com dermatoscopia, as unhas, a fragilidade cutânea e os medicamentos em uso, que nessa fase são mais numerosos e podem causar ou agravar reações na pele. O plano de cuidado é prático e adaptado à rotina e à autonomia de cada paciente.",
     ],
     topics: [
       ["Ressecamento e coceira", "A pele madura perde água e barreira com mais facilidade, e a coceira persistente é uma das queixas mais comuns. O cuidado combina hidratação adequada, ajuste de hábitos de banho e tratamento das causas identificadas."],
