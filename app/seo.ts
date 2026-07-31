@@ -59,7 +59,7 @@ export function clinicNode() {
     identifier: "CRM-RJ 1285041",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Rua Santa Clara, 50 — salas 521/522",
+      streetAddress: "Rua Santa Clara, 50, salas 521/522",
       addressLocality: "Rio de Janeiro",
       addressRegion: "RJ",
       postalCode: "22041-012",

@@ -135,7 +135,7 @@ const profiles: Record<string, Profile> = {
       ["Formação", "Pediatria e Terapia Intensiva Pediátrica", "Hospital Prontobaby."],
       ["Atuação acadêmica", "Preceptor em Dermatologia", "Preceptor do Ambulatório Geral da Pós-Graduação do Instituto de Dermatologia Professor Rubem David Azulay."],
       ["Agenda", "Horários de atendimento", "Terças-feiras, das 14h às 20h; quartas-feiras, das 10h às 20h; e quintas-feiras, das 10h às 14h."],
-      ["Local", "Clínica QARA — Copacabana", "Rua Santa Clara, 50, salas 521/522, Copacabana, Rio de Janeiro."],
+      ["Local", "Clínica QARA · Copacabana", "Rua Santa Clara, 50, salas 521/522, Copacabana, Rio de Janeiro."],
     ],
     languages: ["pt-BR", "en"],
     quotes: [
@@ -152,10 +152,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = profiles[slug];
   if (!p) return {};
   return {
-    title: `${p.name} — ${p.role} | Clínica QARA`,
+    title: `${p.name} · ${p.role} | Clínica QARA`,
     description: `${p.lead} ${p.credential}.`,
     alternates: { canonical: `/equipe/${slug}` },
-    openGraph: { title: `${p.name} — ${p.role}`, description: p.lead, images: [{ url: p.image, width: p.imageW, height: p.imageH, alt: p.name }] },
+    openGraph: { title: `${p.name} · ${p.role}`, description: p.lead, images: [{ url: p.image, width: p.imageW, height: p.imageH, alt: p.name }] },
   };
 }
 

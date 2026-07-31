@@ -18,7 +18,7 @@ const data: Specialty = {
   lead: "Coleta de uma pequena amostra de pele, unha ou couro cabeludo para análise ao microscópio, em procedimento breve com anestesia local, em Copacabana. Atendimento particular, com nota fiscal para reembolso.",
   introTitle: "Quando o diagnóstico precisa do exame do tecido.",
   intro: [
-    "Algumas lesões e doenças da pele se parecem muito entre si. Quando o exame clínico e a dermatoscopia não bastam para esclarecer o diagnóstico, a biópsia — a retirada de uma pequena amostra para análise ao microscópio — costuma ser o caminho mais seguro para definir a conduta.",
+    "Algumas lesões e doenças da pele se parecem muito entre si. Quando o exame clínico e a dermatoscopia não bastam para esclarecer o diagnóstico, a biópsia (a retirada de uma pequena amostra para análise ao microscópio) costuma ser o caminho mais seguro para definir a conduta.",
     "A biópsia é indicada em lesões suspeitas, feridas que não cicatrizam, manchas e doenças inflamatórias de difícil diagnóstico, além de alterações das unhas e do couro cabeludo. É um procedimento breve, em geral realizado com anestesia local no próprio consultório.",
     "Na Clínica QARA, o dermatologista explica a técnica escolhida, coleta a amostra e encaminha o material para análise histopatológica. O resultado é discutido em consulta, para que o laudo seja interpretado no contexto clínico e os próximos passos definidos em conjunto. Atendimento particular, com nota fiscal para reembolso.",
   ],
@@ -27,7 +27,7 @@ const data: Specialty = {
     ["Tipos de biópsia", "Conforme a lesão, a amostra pode ser retirada com um pequeno instrumento circular (punch), por remoção parcial ou total da lesão. O médico escolhe a técnica mais adequada a cada caso."],
     ["Como é feita", "Após anestesia local, uma pequena amostra é coletada. O procedimento costuma ser rápido e, dependendo da técnica, pode necessitar de um ou mais pontos."],
     ["Análise histopatológica", "A amostra é examinada ao microscópio por um laboratório especializado. Esse exame confirma o diagnóstico e orienta o tratamento."],
-    ["Resultado e conduta", "O laudo é discutido em consulta, no contexto clínico, para definir os próximos passos — acompanhamento, tratamento ou cirurgia, quando indicada."],
+    ["Resultado e conduta", "O laudo é discutido em consulta, no contexto clínico, para definir os próximos passos: acompanhamento, tratamento ou cirurgia, quando indicada."],
     ["Biópsia de unhas e couro cabeludo", "Alterações persistentes das unhas e quadros de queda de cabelo podem exigir biópsia dirigida dessas regiões, realizada com técnica específica."],
   ],
   process: [

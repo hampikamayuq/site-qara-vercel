@@ -16,6 +16,9 @@ export function Header({ current, conversionContext }: { current?: string; conve
       ["Acne", "/acne"],
       ["Rosácea", "/rosacea"],
       ["Melasma", "/melasma"],
+      ["Avaliação de pintas", "/avaliacao-de-pintas"],
+      ["Dermatologia da gestante", "/dermatologia-da-gestante"],
+      ["Dermatologia geriátrica", "/dermatologia-geriatrica"],
     ] },
     { label: "Cirurgia dermatológica", href: "/cirurgia-dermatologica", text: "Biópsias, lesões e reconstruções", children: [
       ["Câncer da pele", "/cancer-de-pele"],
@@ -23,9 +26,13 @@ export function Header({ current, conversionContext }: { current?: string; conve
       ["Biópsia", "/biopsia"],
     ] },
     { label: "Cabelos e couro cabeludo", href: "/cabelo", text: "Queda, alopecias e transplante", children: [
+      ["Queda de cabelo", "/queda-de-cabelo"],
       ["Transplante capilar", "/transplante-capilar"],
     ] },
-    { label: "Doenças das unhas", href: "/unhas", text: "Micose, inflamações e cirurgia ungueal" },
+    { label: "Doenças das unhas", href: "/unhas", text: "Micose, inflamações e cirurgia ungueal", children: [
+      ["Micose de unha", "/micose-de-unha"],
+      ["Unha encravada", "/unha-encravada"],
+    ] },
     { label: "Doenças inflamatórias", href: "/doencas-inflamatorias", text: "Psoríase, dermatite e hidradenite", children: [
       ["Psoríase", "/psoriase"],
       ["Dermatite atópica", "/dermatite-atopica"],
@@ -36,6 +43,8 @@ export function Header({ current, conversionContext }: { current?: string; conve
     { label: "Dermatologia estética", href: "/dermatologia-estetica", text: "Pele, cicatrizes e envelhecimento", children: [
       ["Toxina botulínica", "/toxina-botulinica"],
       ["Preenchimento facial", "/preenchimento"],
+      ["Cicatrizes de acne", "/cicatrizes-de-acne"],
+      ["Blefaroplastia", "/blefaroplastia"],
     ] },
   ];
   const needs = [
@@ -50,12 +59,12 @@ export function Header({ current, conversionContext }: { current?: string; conve
     <header className="site-header">
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <div className="shell header-inner">
-        <Link className="wordmark" href="/" aria-label="Clínica QARA — Início">QARA<span>clínica dermatológica</span></Link>
+        <Link className="wordmark" href="/" aria-label="Clínica QARA, Início">QARA<span>clínica dermatológica</span></Link>
         <nav className="desktop-nav" aria-label="Navegação principal">
           <details className="mega-menu">
             <summary>Especialidades <span aria-hidden="true">⌄</span></summary>
             <div className="mega-panel">
-              <div className="mega-guide"><p>Comece pela sua necessidade.</p><span>Se ainda não sabe qual especialista procurar, nossa equipe pode orientar.</span><a href={whatsappHref("Olá, ainda não sei qual especialista procurar — podem me orientar?")} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="guidance">Pedir orientação →</a></div>
+              <div className="mega-guide"><p>Comece pela sua necessidade.</p><span>Se ainda não sabe qual especialista procurar, nossa equipe pode orientar.</span><a href={whatsappHref("Olá, ainda não sei qual especialista procurar. Podem me orientar?")} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="guidance">Pedir orientação →</a></div>
               <div className="mega-group mega-specialties"><strong>Especialidades</strong>{specialties.map(s=><Fragment key={s.href}><Link href={s.href} aria-current={cur(s.href)}><span>{s.label}</span><small>{s.text}</small></Link>{s.children&&<div className="mega-sub">{s.children.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div>}</Fragment>)}</div>
               <div className="mega-group"><strong>Queixas frequentes</strong>{needs.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
               <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
