@@ -3,7 +3,7 @@ import { InternationalPage, esContent } from "../international";
 
 export const metadata: Metadata = {
   title: "Dermatólogo que habla español en Copacabana, Río de Janeiro | Clínica QARA",
-  description: "Dermatólogos certificados con atención en español en Copacabana: piel, cabello, uñas, cirugía y control de lunares. Atención particular con factura para su seguro de viaje.",
+  description: "Dermatólogos certificados en Copacabana, atención en español: piel, cabello, uñas, cirugía y control de lunares. Factura para su seguro de viaje.",
   alternates: { canonical: "/es", languages: { "pt-BR": "/", en: "/en", es: "/es", "x-default": "/" } },
   openGraph: {
     title: "Dermatólogo que habla español en Copacabana | Clínica QARA",

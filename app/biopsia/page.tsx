@@ -3,7 +3,7 @@ import { SpecialtyTemplate, type Specialty } from "../specialty-template";
 
 export const metadata: Metadata = {
   title: "Biópsia de Pele em Copacabana | Clínica QARA",
-  description: "Biópsia de pele, unhas e couro cabeludo para diagnóstico preciso, em procedimento breve com anestesia local, em Copacabana, RJ. Atendimento particular, com nota fiscal para reembolso.",
+  description: "Biópsia de pele, unhas e couro cabeludo para diagnóstico preciso, com anestesia local, em Copacabana, RJ. Atendimento particular com nota fiscal para reembolso.",
   alternates: { canonical: "/biopsia" },
   openGraph: {
     title: "Biópsia de Pele em Copacabana | Clínica QARA",

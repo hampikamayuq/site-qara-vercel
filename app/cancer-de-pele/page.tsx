@@ -3,7 +3,7 @@ import { SpecialtyTemplate, type Specialty } from "../specialty-template";
 
 export const metadata: Metadata = {
   title: "Câncer da Pele em Copacabana | Avaliação e Cirurgia | Clínica QARA",
-  description: "Investigação de lesões suspeitas com dermatoscopia, biópsia e tratamento cirúrgico do câncer da pele em Copacabana, RJ. Atendimento particular em português, inglês e espanhol, com nota fiscal para reembolso.",
+  description: "Lesões suspeitas investigadas com dermatoscopia, biópsia e cirurgia do câncer da pele. Copacabana, RJ. Atendimento particular com nota fiscal para reembolso.",
   alternates: { canonical: "/cancer-de-pele" },
   openGraph: {
     title: "Câncer da Pele em Copacabana | Clínica QARA",

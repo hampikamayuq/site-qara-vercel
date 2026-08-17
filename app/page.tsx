@@ -9,7 +9,7 @@ import { CLINIC_ID, clinicNode, DEFAULT_OG_IMAGE, faqPageSchema, HREFLANG, OG_BA
 // Fonte única: alimentam <title>, meta description, Open Graph, Twitter (que o
 // Next autopreenche) e o MedicalWebPage. Não repetir estas strings.
 const TITLE = "Dermatologista em Copacabana, RJ | Clínica QARA";
-const DESCRIPTION = "Clínica dermatológica em Copacabana, RJ: dermatologia clínica e cirúrgica, cabelos, unhas, doenças inflamatórias e dermatopediatria. Atendimento particular com hora marcada.";
+const DESCRIPTION = "Dermatologia clínica e cirúrgica em Copacabana, RJ: cabelos, unhas, doenças inflamatórias e dermatopediatria. Atendimento particular com hora marcada.";
 
 export const metadata: Metadata = {
   title: TITLE,
