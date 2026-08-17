@@ -3,7 +3,7 @@ import { SpecialtyTemplate, type Specialty } from "../specialty-template";
 
 export const metadata: Metadata = {
   title: "Cirurgia do Câncer da Pele com Controle de Margens | Copacabana | Clínica QARA",
-  description: "Remoção de tumores da pele com verificação das margens ao microscópio, buscando retirada completa e preservação máxima da pele saudável, em Copacabana, RJ. Atendimento particular, em português, inglês e espanhol.",
+  description: "Remoção de tumores da pele com margens verificadas ao microscópio, buscando retirada completa e preservar pele saudável. Copacabana, RJ, atendimento particular.",
   alternates: { canonical: "/cirurgia-controle-de-margens" },
   openGraph: {
     title: "Cirurgia com Controle de Margens | Clínica QARA",

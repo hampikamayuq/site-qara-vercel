@@ -205,3 +205,23 @@ test("confines hreflang to the three routes that are actually translated", async
     assert.equal(links, translated.has(route) ? 4 : 0, `${name}: ${links} hreflang`);
   }
 });
+
+// O Bing corta a description em 160 caracteres e o Google em torno disso. Toda
+// vez que uma passou do limite aqui, o pedaço perdido foi o diferencial
+// comercial no fim da frase ("nota fiscal para reembolso", "hora marcada") —
+// justamente o que faz clicar. O piso de 25 é o do próprio Bing: abaixo disso
+// ele considera a description curta demais e monta o snippet a partir do corpo.
+// Só página de erro pode não declarar description; a que declarar entra na faixa.
+test("mantém cada meta description dentro do que o buscador exibe", async () => {
+  const entities = { "&quot;": '"', "&#x27;": "'", "&lt;": "<", "&gt;": ">", "&amp;": "&" };
+  const decode = value => value.replace(/&quot;|&#x27;|&lt;|&gt;|&amp;/g, match => entities[match]);
+  for (const { name, isError, html } of await prerenderedPages()) {
+    const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
+    if (!description) {
+      assert.ok(isError, `${name}: sem meta description`);
+      continue;
+    }
+    const { length } = decode(description);
+    assert.ok(length >= 25 && length <= 160, `${name}: ${length} caracteres, fora da faixa 25-160`);
+  }
+});

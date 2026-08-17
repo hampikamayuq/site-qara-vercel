@@ -3,7 +3,7 @@ import { InternationalPage, enContent } from "../international";
 
 export const metadata: Metadata = {
   title: "English-Speaking Dermatologist in Copacabana, Rio de Janeiro | Clínica QARA",
-  description: "Board-certified dermatologists offering care in English in Copacabana: skin, hair, nails, surgery and skin-cancer checks. Private care with invoice for travel-insurance claims.",
+  description: "Board-certified dermatologists in Copacabana, care in English: skin, hair, nails, surgery and skin-cancer checks. Invoice provided for travel-insurance claims.",
   alternates: { canonical: "/en", languages: { "pt-BR": "/", en: "/en", es: "/es", "x-default": "/" } },
   openGraph: {
     title: "English-Speaking Dermatologist in Copacabana | Clínica QARA",

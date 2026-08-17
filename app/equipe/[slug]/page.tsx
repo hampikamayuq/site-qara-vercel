@@ -21,7 +21,7 @@ const profiles: Record<string, Profile> = {
   "dr-diego-galvez": {
     name: "Dr. Diego Gálvez", role: "Dermatologista e cirurgião dermatológico",
     credential: "CRM-RJ 52-0112387-4 · RQE 57517",
-    lead: "Atuação em dermatologia clínica e cirurgia dermatológica, com foco em diagnóstico preciso, planejamento seguro e acompanhamento próximo.",
+    lead: "Dermatologia clínica e cirurgia dermatológica, com foco em diagnóstico preciso, planejamento seguro e acompanhamento próximo.",
     image: "/images/dr-diego.webp", imageW: 1351, imageH: 1672,
     facts: ["Português, espanhol e inglês", "Atendimento presencial e telemedicina", "Fundador da Clínica QARA"],
     areas: [
@@ -98,7 +98,7 @@ const profiles: Record<string, Profile> = {
   "dra-manuela-pedretti": {
     name: "Dra. Manuela Pedretti", role: "Dermatologista · Psoríase e doenças inflamatórias",
     credential: "CRM-RJ 52-8115976-3 · RQE 53939",
-    lead: "Atuação dedicada à psoríase, à dermatite atópica, à hidradenite e às doenças autoimunes, com acompanhamento individualizado das doenças crônicas da pele.",
+    lead: "Atuação dedicada à psoríase, à dermatite atópica, à hidradenite e às doenças autoimunes, com acompanhamento individualizado.",
     image: "/images/dra-manuela.webp", imageW: 852, imageH: 1280,
     facts: ["Atendimento também em alemão", "Residência em Dermatologia pela UERJ", "Acompanhamento de doenças crônicas da pele"],
     areas: [
