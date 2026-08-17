@@ -1,26 +1,30 @@
 "use client";
 
 /**
- * Captura de identificadores de clique do Google Ads (gclid / gbraid / wbraid)
- * e injeção deles no texto pré-preenchido dos links de WhatsApp.
+ * Captura de identificadores de clique de mídia paga — Google Ads
+ * (gclid / gbraid / wbraid) e Microsoft Ads (msclkid) — e injeção deles no
+ * texto pré-preenchido dos links de WhatsApp.
  *
  * Fluxo:
- * 1. Na chegada, lê ?gclid= (ou gbraid/wbraid) da URL e grava num cookie
+ * 1. Na chegada, lê ?gclid= (ou gbraid/wbraid/msclkid) da URL e grava num cookie
  *    first-party (90 dias). Assim o id sobrevive à navegação entre páginas.
  * 2. Reescreve todo link de WhatsApp (wa.me / api.whatsapp.com) para acrescentar
  *    "Cód: gclid:XXXX" ao fim da mensagem. A primeira mensagem que o paciente
  *    envia passa a conter o id -> o Kommo extrai e guarda como campo customizado.
- * 3. A conversão offline (etapas "agendada"/"confirmada") é reimportada ao
- *    Google Ads usando esse gclid. Só então os lances miram agendamento real.
+ * 3. A conversão offline (etapas "agendada"/"confirmada") é reimportada à
+ *    plataforma de origem usando esse id — Google Ads via gclid, Microsoft Ads
+ *    via msclkid. Só então os lances miram agendamento real.
  *
- * Sem gclid na URL nem no cookie, nada é alterado (degrada em silêncio).
+ * O prefixo no cookie ("gclid:" / "msclkid:") é o que diz para qual plataforma
+ * a conversão offline deve voltar. Sem id na URL nem no cookie, nada é alterado
+ * (degrada em silêncio).
  */
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const COOKIE = "qara_click_id";
-const PARAMS = ["gclid", "gbraid", "wbraid"] as const;
+const PARAMS = ["gclid", "gbraid", "wbraid", "msclkid"] as const;
 const MARKER = "Cód:";
 
 function readClickIdFromUrl(search: string): string | null {
