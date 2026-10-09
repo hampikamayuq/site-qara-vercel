@@ -6,6 +6,12 @@ export const clinicMapsUrl = clinicContact.mapsUrl;
 
 type HeaderConversionContext = "home" | "specialty" | "profile" | "blog" | "article" | "international" | "not_found";
 
+// Na home, âncoras da própria página viram "#secao" num <a> nativo: com query
+// de anúncio na URL (?gclid=...), o <Link href="/#secao"> troca o hash mas não rola.
+function SectionLink({ onHome, href, children }: { onHome: boolean; href: string; children: ReactNode }) {
+  return onHome && href.startsWith("/#") ? <a href={href.slice(1)}>{children}</a> : <Link href={href}>{children}</Link>;
+}
+
 export function Header({ current, conversionContext }: { current?: string; conversionContext?: HeaderConversionContext } = {}) {
   const cur = (href: string) => { const h = href.split("#")[0]; return h && h !== "/" && h === current ? "page" as const : undefined; };
   const locale = current === "/en" ? "en" : current === "/es" ? "es" : "pt-BR";
@@ -68,11 +74,11 @@ export function Header({ current, conversionContext }: { current?: string; conve
               <div className="mega-group mega-specialties"><strong>Especialidades</strong><div className="mega-cols">{specialties.map(s=><div className="mega-item" key={s.href}><Link href={s.href} aria-current={cur(s.href)}><span>{s.label}</span><small>{s.text}</small></Link>{s.children&&<div className="mega-sub">{s.children.map(([label,href])=><Link href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div>}</div>)}</div></div>
               <div className="mega-stack">
                 <div className="mega-group"><strong>Queixas frequentes</strong>{needs.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
-                <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><Link href={href} key={label}>{label}<span aria-hidden="true">→</span></Link>)}</div>
+                <div className="mega-group"><strong>Clínica e conteúdo</strong>{clinic.map(([label,href])=><SectionLink onHome={current === "/"} href={href} key={label}>{label}<span aria-hidden="true">→</span></SectionLink>)}</div>
               </div>
             </div>
           </details>
-          <Link href="/#especialistas">Equipe</Link><Link href="/#clinica">Clínica</Link><Link href="/blog" aria-current={cur("/blog")}>Conteúdo</Link>
+          <SectionLink onHome={current === "/"} href="/#especialistas">Equipe</SectionLink><SectionLink onHome={current === "/"} href="/#clinica">Clínica</SectionLink><Link href="/blog" aria-current={cur("/blog")}>Conteúdo</Link>
           <div className="language-switcher" aria-label="Idiomas" role="group"><Link className="lang-link" href="/" lang="pt-BR" {...language("pt-BR", "header")}>PT</Link><Link className="lang-link" href="/en" lang="en" {...language("en", "header")}>EN</Link><Link className="lang-link" href="/es" lang="es" {...language("es", "header")}>ES</Link></div>
         </nav>
         <a className="header-cta" href={appointmentHrefForPath(current)} target="_blank" rel="noopener noreferrer" aria-label="Agendar pelo WhatsApp (abre em nova aba)" data-conversion-event="whatsapp_click" data-conversion-placement="header" data-conversion-variant="schedule"><span className="cta-full">Agendar pelo WhatsApp</span><span className="cta-short">Agendar</span></a>
@@ -81,7 +87,7 @@ export function Header({ current, conversionContext }: { current?: string; conve
           <nav aria-label="Navegação móvel">
             <details className="mobile-menu-group"><summary>Especialidades</summary><div>{specialties.map(s=>s.children?<details className="mobile-sub-group" key={s.href}><summary>{s.label}</summary><div><Link className="mobile-sub" href={s.href} aria-current={cur(s.href)} aria-label={`Visão geral de ${s.label}`}>Visão geral</Link>{s.children.map(([label,href])=><Link className="mobile-sub" href={href} aria-current={cur(href)} key={href}>{label}</Link>)}</div></details>:<Link href={s.href} aria-current={cur(s.href)} key={s.href}>{s.label}</Link>)}</div></details>
             <details className="mobile-menu-group"><summary>Encontre seu cuidado</summary><div>{needs.map(([label,href])=><Link href={href} key={label}>{label}</Link>)}</div></details>
-            {clinic.map(([label,href])=><Link href={href} key={label}>{label}</Link>)}
+            {clinic.map(([label,href])=><SectionLink onHome={current === "/"} href={href} key={label}>{label}</SectionLink>)}
             <Link href="/" lang="pt-BR" {...language("pt-BR", "mobile_menu")}>PT</Link>
             <Link href="/en" lang="en" {...language("en", "mobile_menu")}>English</Link>
             <Link href="/es" lang="es" {...language("es", "mobile_menu")}>Español</Link>
@@ -101,7 +107,7 @@ export function Footer() {
         <div className="footer-column"><strong>Especialidades</strong><nav aria-label="Especialidades"><Link href="/dermatologia-clinica">Dermatologia clínica</Link><Link href="/cirurgia-dermatologica">Cirurgia dermatológica</Link><Link href="/cabelo">Cabelos e couro cabeludo</Link><Link href="/unhas">Doenças das unhas</Link><Link href="/doencas-inflamatorias">Doenças inflamatórias</Link><Link href="/dermatopediatria">Dermatopediatria</Link><Link href="/dermatologia-estetica">Dermatologia estética</Link></nav></div>
         <div className="footer-column footer-hours"><strong>Horário de atendimento</strong><dl><div><dt>Segunda-feira</dt><dd>08:00–21:00</dd></div><div><dt>Terça-feira</dt><dd>08:00–21:00</dd></div><div><dt>Quarta-feira</dt><dd>08:00–21:00</dd></div><div><dt>Quinta-feira</dt><dd>08:00–21:00</dd></div><div><dt>Sexta-feira</dt><dd>08:00–21:00</dd></div><div><dt>Sábado</dt><dd>08:00–13:00</dd></div></dl><p>Atendimento com hora marcada.</p></div>
         <div className="footer-column"><strong>Contato</strong><address><a href={clinicContact.mapsUrl} target="_blank" rel="noopener noreferrer" data-conversion-event="maps_click" data-conversion-placement="footer" data-conversion-variant="maps">Rua Santa Clara, 50 · salas 521/522<br />Copacabana · Rio de Janeiro</a><a href={clinicContact.whatsappUrl} target="_blank" rel="noopener noreferrer" data-conversion-event="whatsapp_click" data-conversion-placement="footer" data-conversion-variant="whatsapp">WhatsApp: (21) 99218-9718</a><a href={clinicContact.telephoneHref} data-conversion-event="phone_click" data-conversion-placement="footer" data-conversion-variant="phone">Ligar: (21) 99218-9718</a><a href={clinicContact.emailHref}>{clinicContact.email}</a></address><a className="footer-social" href={clinicContact.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram da Clínica QARA: @qaraclinica"><span aria-hidden="true">◎</span>@qaraclinica</a></div>
-        <div className="footer-column footer-registration"><strong>Registro</strong><p>Clínica QARA<br />CRM 1285041-RJ</p><p><b>Diretor técnico</b><br />Dr. Miguel Ceccarelli<br />CRM-RJ 1092456<br />RQE 34414 · Dermatologia</p></div>
+        <div className="footer-column footer-registration"><strong>Registro</strong><p>Clínica QARA<br />CNPJ 44.697.695/0001-88<br />CRM 1285041-RJ</p><p><b>Diretor técnico</b><br />Dr. Miguel Ceccarelli<br />CRM-RJ 1092456<br />RQE 34414 · Dermatologia</p></div>
       </div>
     </footer>
   );

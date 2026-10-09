@@ -75,5 +75,6 @@ export function clinicNode() {
     availableLanguage: ["pt-BR", "en", "es", "de", "fr"],
     hasMap: clinicContact.mapsUrl,
     sameAs: [clinicContact.instagramUrl, clinicContact.doctoraliaUrl],
+    taxID: "44.697.695/0001-88",
   };
 }
