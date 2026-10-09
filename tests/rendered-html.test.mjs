@@ -368,6 +368,7 @@ test("credits aesthetic publications to Dr. Diego and ships the complete contact
   const html = await response.text();
   assert.match(html, /Horário de atendimento/);
   assert.match(html, /CRM 1285041-RJ/);
+  assert.match(html, /CNPJ 44\.697\.695\/0001-88/);
   assert.match(html, /RQE 34414 · Dermatologia/);
   assert.match(html, /@qaraclinica/);
   assert.match(html, /whatsapp-float/);
